@@ -14,54 +14,17 @@
  * limitations under the License.
  */
 
-import React from 'react';
 import {
-  CustomFieldExtensionSchema,
-  CustomFieldValidator,
-  FieldExtensionOptions,
-  FieldExtensionComponentProps,
   NextCustomFieldValidator,
   NextFieldExtensionOptions,
   NextFieldExtensionComponentProps,
 } from './types';
 import { Extension, attachComponentData } from '@backstage/core-plugin-api';
 import { UIOptionsType } from '@rjsf/utils';
+import { FieldExtensionComponent } from '../../extensions';
 
 export const FIELD_EXTENSION_WRAPPER_KEY = 'scaffolder.extensions.wrapper.v1';
 export const FIELD_EXTENSION_KEY = 'scaffolder.extensions.field.v1';
-
-/**
- * A type used to wrap up the FieldExtension to embed the ReturnValue and the InputProps
- *
- * @public
- */
-export type FieldExtensionComponent<_TReturnValue, _TInputProps> = () => null;
-
-/**
- * Method for creating field extensions that can be used in the scaffolder
- * frontend form.
- * @public
- */
-export function createScaffolderFieldExtension<
-  TReturnValue = unknown,
-  TInputProps = unknown,
->(
-  options: FieldExtensionOptions<TReturnValue, TInputProps>,
-): Extension<FieldExtensionComponent<TReturnValue, TInputProps>> {
-  return {
-    expose() {
-      const FieldExtensionDataHolder: any = () => null;
-
-      attachComponentData(
-        FieldExtensionDataHolder,
-        FIELD_EXTENSION_KEY,
-        options,
-      );
-
-      return FieldExtensionDataHolder;
-    },
-  };
-}
 
 /**
  * Method for creating field extensions that can be used in the scaffolder
@@ -89,28 +52,8 @@ export function createNextScaffolderFieldExtension<
   };
 }
 
-/**
- * The Wrapping component for defining fields extensions inside
- *
- * @public
- */
-export const ScaffolderFieldExtensions: React.ComponentType =
-  (): JSX.Element | null => null;
-
-attachComponentData(
-  ScaffolderFieldExtensions,
-  FIELD_EXTENSION_WRAPPER_KEY,
-  true,
-);
-
 export type {
-  CustomFieldExtensionSchema,
-  CustomFieldValidator,
-  FieldExtensionOptions,
-  FieldExtensionComponentProps,
   NextCustomFieldValidator,
   NextFieldExtensionOptions,
   NextFieldExtensionComponentProps,
 };
-
-export { DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS } from './default';
