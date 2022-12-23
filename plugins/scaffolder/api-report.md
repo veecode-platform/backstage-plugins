@@ -9,7 +9,6 @@ import { ApiHolder } from '@backstage/core-plugin-api';
 import { ApiRef } from '@backstage/core-plugin-api';
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { ComponentType } from 'react';
-import { createNextScaffolderFieldExtension as createNextScaffolderFieldExtension_2 } from '@backstage/plugin-scaffolder-react';
 import { createScaffolderFieldExtension } from '@backstage/plugin-scaffolder-react';
 import { CustomFieldExtensionSchema } from '@backstage/plugin-scaffolder-react';
 import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react';
@@ -22,34 +21,28 @@ import { FieldExtensionComponent } from '@backstage/plugin-scaffolder-react';
 import { FieldExtensionComponentProps } from '@backstage/plugin-scaffolder-react';
 import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
 import { FieldValidation } from '@rjsf/core';
-import type { FormProps as FormProps_2 } from '@rjsf/core';
-import { FormProps as FormProps_3 } from '@backstage/plugin-scaffolder-react';
+import type { FormProps } from '@rjsf/core';
+import { FormProps as FormProps_2 } from '@backstage/plugin-scaffolder-react';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
 import { JSONSchema7 } from 'json-schema';
 import { JsonValue } from '@backstage/types';
-import { NextCustomFieldValidator as NextCustomFieldValidator_2 } from '@backstage/plugin-scaffolder-react';
-import { NextFieldExtensionComponentProps as NextFieldExtensionComponentProps_2 } from '@backstage/plugin-scaffolder-react';
-import { NextFieldExtensionOptions as NextFieldExtensionOptions_2 } from '@backstage/plugin-scaffolder-react';
 import { Observable } from '@backstage/types';
-import { PathParams } from '@backstage/core-plugin-api';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
 import { rootRouteRef } from '@backstage/plugin-scaffolder-react';
 import { RouteRef } from '@backstage/core-plugin-api';
 import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderUseTemplateSecrets } from '@backstage/plugin-scaffolder-react';
 import { ScmIntegrationRegistry } from '@backstage/integration';
 import { selectedTemplateRouteRef } from '@backstage/plugin-scaffolder-react';
-import { SubRouteRef } from '@backstage/core-plugin-api';
 import { TaskSpec } from '@backstage/plugin-scaffolder-common';
 import { TaskStep } from '@backstage/plugin-scaffolder-common';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
 import { UiSchema } from '@rjsf/utils';
+import { useTemplateSecrets } from '@backstage/plugin-scaffolder-react';
 import { z } from 'zod';
-
-// @alpha @deprecated (undocumented)
-export const createNextScaffolderFieldExtension: typeof createNextScaffolderFieldExtension_2;
 
 export { createScaffolderFieldExtension };
 
@@ -106,9 +99,9 @@ export type EntityPickerUiOptions =
 export const EntityTagsPickerFieldExtension: FieldExtensionComponent<
   string[],
   {
-    helperText?: string | undefined;
-    kinds?: string[] | undefined;
     showCounts?: boolean | undefined;
+    kinds?: string[] | undefined;
+    helperText?: string | undefined;
   }
 >;
 
@@ -116,9 +109,9 @@ export const EntityTagsPickerFieldExtension: FieldExtensionComponent<
 export const EntityTagsPickerFieldSchema: FieldSchema<
   string[],
   {
-    helperText?: string | undefined;
-    kinds?: string[] | undefined;
     showCounts?: boolean | undefined;
+    kinds?: string[] | undefined;
+    helperText?: string | undefined;
   }
 >;
 
@@ -142,9 +135,6 @@ export interface FieldSchema<TReturn, TUiOptions> {
   readonly uiOptionsType: TUiOptions;
 }
 
-// @alpha @deprecated (undocumented)
-export type FormProps = FormProps_3;
-
 // @public
 export type LayoutComponent<_TInputProps> = () => null;
 
@@ -157,7 +147,7 @@ export interface LayoutOptions<P = any> {
 }
 
 // @public
-export type LayoutTemplate<T = any> = FormProps_2<T>['ObjectFieldTemplate'];
+export type LayoutTemplate<T = any> = FormProps<T>['ObjectFieldTemplate'];
 
 // @public
 export type ListActionsResponse = Array<{
@@ -196,24 +186,6 @@ export function makeFieldSchemaFromZod<
     : never
 >;
 
-// @alpha @deprecated (undocumented)
-export type NextCustomFieldValidator<T> = NextCustomFieldValidator_2<T>;
-
-// @alpha @deprecated (undocumented)
-export type NextFieldExtensionComponentProps<
-  TFieldReturnValue,
-  TUiOptions = {},
-> = NextFieldExtensionComponentProps_2<TFieldReturnValue, TUiOptions>;
-
-// @alpha @deprecated (undocumented)
-export type NextFieldExtensionOptions<
-  TFieldReturnValue = unknown,
-  TInputProps = unknown,
-> = NextFieldExtensionOptions_2<TFieldReturnValue, TInputProps>;
-
-// @alpha @deprecated (undocumented)
-export const nextRouteRef: RouteRef<undefined>;
-
 // @alpha
 export type NextRouterProps = {
   components?: {
@@ -223,18 +195,13 @@ export type NextRouterProps = {
     TaskPageComponent?: React_2.ComponentType<{}>;
   };
   groups?: TemplateGroupFilter[];
-  FormProps?: FormProps_3;
+  FormProps?: FormProps_2;
 };
 
 // @alpha
 export const NextScaffolderPage: (
   props: PropsWithChildren<NextRouterProps>,
 ) => JSX.Element;
-
-// @alpha @deprecated (undocumented)
-export const nextSelectedTemplateRouteRef: SubRouteRef<
-  PathParams<'/templates/:namespace/:templateName'>
->;
 
 // @public
 export const OwnedEntityPickerFieldExtension: FieldExtensionComponent<
@@ -594,6 +561,8 @@ export type ScaffolderTaskStatus =
   | 'completed'
   | 'skipped';
 
+export { ScaffolderUseTemplateSecrets };
+
 export { selectedTemplateRouteRef };
 
 // @public
@@ -614,4 +583,6 @@ export { TemplateParameterSchema };
 
 // @public
 export const TemplateTypePicker: () => JSX.Element | null;
+
+export { useTemplateSecrets };
 ```
