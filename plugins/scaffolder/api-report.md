@@ -9,70 +9,58 @@ import { ApiHolder } from '@backstage/core-plugin-api';
 import { ApiRef } from '@backstage/core-plugin-api';
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { ComponentType } from 'react';
+import { createNextScaffolderFieldExtension as createNextScaffolderFieldExtension_2 } from '@backstage/plugin-scaffolder-react';
+import { createScaffolderFieldExtension } from '@backstage/plugin-scaffolder-react';
+import { CustomFieldExtensionSchema } from '@backstage/plugin-scaffolder-react';
+import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react';
 import { DiscoveryApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import { Extension } from '@backstage/core-plugin-api';
 import { ExternalRouteRef } from '@backstage/core-plugin-api';
 import { FetchApi } from '@backstage/core-plugin-api';
-import { FieldProps } from '@rjsf/core';
-import { FieldProps as FieldProps_2 } from '@rjsf/utils';
+import { FieldExtensionComponent } from '@backstage/plugin-scaffolder-react';
+import { FieldExtensionComponentProps } from '@backstage/plugin-scaffolder-react';
+import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
 import { FieldValidation } from '@rjsf/core';
-import { FieldValidation as FieldValidation_2 } from '@rjsf/utils';
 import type { FormProps as FormProps_2 } from '@rjsf/core';
-import type { FormProps as FormProps_3 } from '@rjsf/core-v5';
+import { FormProps as FormProps_3 } from '@backstage/plugin-scaffolder-react';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
 import { JSONSchema7 } from 'json-schema';
 import { JsonValue } from '@backstage/types';
+import { NextCustomFieldValidator as NextCustomFieldValidator_2 } from '@backstage/plugin-scaffolder-react';
+import { NextFieldExtensionComponentProps as NextFieldExtensionComponentProps_2 } from '@backstage/plugin-scaffolder-react';
+import { NextFieldExtensionOptions as NextFieldExtensionOptions_2 } from '@backstage/plugin-scaffolder-react';
 import { Observable } from '@backstage/types';
 import { PathParams } from '@backstage/core-plugin-api';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
+import { rootRouteRef } from '@backstage/plugin-scaffolder-react';
 import { RouteRef } from '@backstage/core-plugin-api';
+import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
 import { ScmIntegrationRegistry } from '@backstage/integration';
+import { selectedTemplateRouteRef } from '@backstage/plugin-scaffolder-react';
 import { SubRouteRef } from '@backstage/core-plugin-api';
 import { TaskSpec } from '@backstage/plugin-scaffolder-common';
 import { TaskStep } from '@backstage/plugin-scaffolder-common';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
-import { UIOptionsType } from '@rjsf/utils';
+import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
 import { UiSchema } from '@rjsf/utils';
 import { z } from 'zod';
 
-// @alpha
-export function createNextScaffolderFieldExtension<
-  TReturnValue = unknown,
-  TInputProps extends UIOptionsType = {},
->(
-  options: NextFieldExtensionOptions<TReturnValue, TInputProps>,
-): Extension<FieldExtensionComponent<TReturnValue, TInputProps>>;
+// @alpha @deprecated (undocumented)
+export const createNextScaffolderFieldExtension: typeof createNextScaffolderFieldExtension_2;
 
-// @public
-export function createScaffolderFieldExtension<
-  TReturnValue = unknown,
-  TInputProps = unknown,
->(
-  options: FieldExtensionOptions<TReturnValue, TInputProps>,
-): Extension<FieldExtensionComponent<TReturnValue, TInputProps>>;
+export { createScaffolderFieldExtension };
 
 // @public
 export function createScaffolderLayout<TInputProps = unknown>(
   options: LayoutOptions,
 ): Extension<LayoutComponent<TInputProps>>;
 
-// @public
-export type CustomFieldExtensionSchema = {
-  returnValue: JSONSchema7;
-  uiOptions?: JSONSchema7;
-};
+export { CustomFieldExtensionSchema };
 
-// @public
-export type CustomFieldValidator<TFieldReturnValue> = (
-  data: TFieldReturnValue,
-  field: FieldValidation,
-  context: {
-    apiHolder: ApiHolder;
-  },
-) => void | Promise<void>;
+export { CustomFieldValidator };
 
 // @public
 export const EntityNamePickerFieldExtension: FieldExtensionComponent<
@@ -118,9 +106,9 @@ export type EntityPickerUiOptions =
 export const EntityTagsPickerFieldExtension: FieldExtensionComponent<
   string[],
   {
-    showCounts?: boolean | undefined;
-    kinds?: string[] | undefined;
     helperText?: string | undefined;
+    kinds?: string[] | undefined;
+    showCounts?: boolean | undefined;
   }
 >;
 
@@ -128,9 +116,9 @@ export const EntityTagsPickerFieldExtension: FieldExtensionComponent<
 export const EntityTagsPickerFieldSchema: FieldSchema<
   string[],
   {
-    showCounts?: boolean | undefined;
-    kinds?: string[] | undefined;
     helperText?: string | undefined;
+    kinds?: string[] | undefined;
+    showCounts?: boolean | undefined;
   }
 >;
 
@@ -138,32 +126,11 @@ export const EntityTagsPickerFieldSchema: FieldSchema<
 export type EntityTagsPickerUiOptions =
   typeof EntityTagsPickerFieldSchema.uiOptionsType;
 
-// @public
-export type FieldExtensionComponent<_TReturnValue, _TInputProps> = () => null;
+export { FieldExtensionComponent };
 
-// @public
-export interface FieldExtensionComponentProps<
-  TFieldReturnValue,
-  TUiOptions extends {} = {},
-> extends FieldProps<TFieldReturnValue> {
-  // (undocumented)
-  uiSchema: FieldProps['uiSchema'] & {
-    'ui:options'?: TUiOptions;
-  };
-}
+export { FieldExtensionComponentProps };
 
-// @public
-export type FieldExtensionOptions<
-  TFieldReturnValue = unknown,
-  TInputProps = unknown,
-> = {
-  name: string;
-  component: (
-    props: FieldExtensionComponentProps<TFieldReturnValue, TInputProps>,
-  ) => JSX.Element | null;
-  validation?: CustomFieldValidator<TFieldReturnValue>;
-  schema?: CustomFieldExtensionSchema;
-};
+export { FieldExtensionOptions };
 
 // @public
 export interface FieldSchema<TReturn, TUiOptions> {
@@ -175,11 +142,8 @@ export interface FieldSchema<TReturn, TUiOptions> {
   readonly uiOptionsType: TUiOptions;
 }
 
-// @alpha
-export type FormProps = Pick<
-  FormProps_3,
-  'transformErrors' | 'noHtml5Validate'
->;
+// @alpha @deprecated (undocumented)
+export type FormProps = FormProps_3;
 
 // @public
 export type LayoutComponent<_TInputProps> = () => null;
@@ -232,41 +196,22 @@ export function makeFieldSchemaFromZod<
     : never
 >;
 
-// @alpha
-export type NextCustomFieldValidator<TFieldReturnValue> = (
-  data: TFieldReturnValue,
-  field: FieldValidation_2,
-  context: {
-    apiHolder: ApiHolder;
-    formData: JsonObject;
-  },
-) => void | Promise<void>;
+// @alpha @deprecated (undocumented)
+export type NextCustomFieldValidator<T> = NextCustomFieldValidator_2<T>;
 
-// @alpha
-export interface NextFieldExtensionComponentProps<
+// @alpha @deprecated (undocumented)
+export type NextFieldExtensionComponentProps<
   TFieldReturnValue,
   TUiOptions = {},
-> extends PropsWithChildren<FieldProps_2<TFieldReturnValue>> {
-  // (undocumented)
-  uiSchema?: UiSchema<TFieldReturnValue> & {
-    'ui:options'?: TUiOptions & UIOptionsType;
-  };
-}
+> = NextFieldExtensionComponentProps_2<TFieldReturnValue, TUiOptions>;
 
-// @alpha
+// @alpha @deprecated (undocumented)
 export type NextFieldExtensionOptions<
   TFieldReturnValue = unknown,
   TInputProps = unknown,
-> = {
-  name: string;
-  component: (
-    props: NextFieldExtensionComponentProps<TFieldReturnValue, TInputProps>,
-  ) => JSX.Element | null;
-  validation?: NextCustomFieldValidator<TFieldReturnValue>;
-  schema?: CustomFieldExtensionSchema;
-};
+> = NextFieldExtensionOptions_2<TFieldReturnValue, TInputProps>;
 
-// @alpha (undocumented)
+// @alpha @deprecated (undocumented)
 export const nextRouteRef: RouteRef<undefined>;
 
 // @alpha
@@ -278,7 +223,7 @@ export type NextRouterProps = {
     TaskPageComponent?: React_2.ComponentType<{}>;
   };
   groups?: TemplateGroupFilter[];
-  FormProps?: FormProps;
+  FormProps?: FormProps_3;
 };
 
 // @alpha
@@ -286,7 +231,7 @@ export const NextScaffolderPage: (
   props: PropsWithChildren<NextRouterProps>,
 ) => JSX.Element;
 
-// @alpha (undocumented)
+// @alpha @deprecated (undocumented)
 export const nextSelectedTemplateRouteRef: SubRouteRef<
   PathParams<'/templates/:namespace/:templateName'>
 >;
@@ -361,11 +306,11 @@ export const repoPickerValidation: (
 export const RepoUrlPickerFieldExtension: FieldExtensionComponent<
   string,
   {
-    allowedOwners?: string[] | undefined;
+    allowedHosts?: string[] | undefined;
     allowedOrganizations?: string[] | undefined;
+    allowedOwners?: string[] | undefined;
     allowedProjects?: string[] | undefined;
     allowedRepos?: string[] | undefined;
-    allowedHosts?: string[] | undefined;
     requestUserCredentials?:
       | {
           additionalScopes?:
@@ -387,11 +332,11 @@ export const RepoUrlPickerFieldExtension: FieldExtensionComponent<
 export const RepoUrlPickerFieldSchema: FieldSchema<
   string,
   {
-    allowedOwners?: string[] | undefined;
+    allowedHosts?: string[] | undefined;
     allowedOrganizations?: string[] | undefined;
+    allowedOwners?: string[] | undefined;
     allowedProjects?: string[] | undefined;
     allowedRepos?: string[] | undefined;
-    allowedHosts?: string[] | undefined;
     requestUserCredentials?:
       | {
           additionalScopes?:
@@ -427,8 +372,7 @@ export type ReviewStepProps = {
   }[];
 };
 
-// @public (undocumented)
-export const rootRouteRef: RouteRef<undefined>;
+export { rootRouteRef };
 
 // @public
 export type RouterProps = {
@@ -551,8 +495,7 @@ export interface ScaffolderDryRunResponse {
   steps: TaskStep[];
 }
 
-// @public
-export const ScaffolderFieldExtensions: React_2.ComponentType;
+export { ScaffolderFieldExtensions };
 
 // @public
 export interface ScaffolderGetIntegrationsListOptions {
@@ -657,10 +600,7 @@ export interface ScaffolderUseTemplateSecrets {
   setSecrets: (input: Record<string, string>) => void;
 }
 
-// @public (undocumented)
-export const selectedTemplateRouteRef: SubRouteRef<
-  PathParams<'/templates/:namespace/:templateName'>
->;
+export { selectedTemplateRouteRef };
 
 // @public
 export const TaskPage: ({ loadingText }: TaskPageProps) => JSX.Element;
@@ -676,16 +616,7 @@ export type TemplateGroupFilter = {
   filter: (entity: Entity) => boolean;
 };
 
-// @public
-export type TemplateParameterSchema = {
-  title: string;
-  description?: string;
-  steps: Array<{
-    title: string;
-    description?: string;
-    schema: JsonObject;
-  }>;
-};
+export { TemplateParameterSchema };
 
 // @public
 export const TemplateTypePicker: () => JSX.Element | null;
