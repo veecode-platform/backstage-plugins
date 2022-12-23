@@ -594,12 +594,6 @@ export type ScaffolderTaskStatus =
   | 'completed'
   | 'skipped';
 
-// @public
-export interface ScaffolderUseTemplateSecrets {
-  // (undocumented)
-  setSecrets: (input: Record<string, string>) => void;
-}
-
 export { selectedTemplateRouteRef };
 
 // @public
@@ -620,7 +614,4 @@ export { TemplateParameterSchema };
 
 // @public
 export const TemplateTypePicker: () => JSX.Element | null;
-
-// @public
-export const useTemplateSecrets: () => ScaffolderUseTemplateSecrets;
 ```
