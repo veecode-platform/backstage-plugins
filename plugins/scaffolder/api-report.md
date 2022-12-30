@@ -6,73 +6,75 @@
 /// <reference types="react" />
 
 import { ApiHolder } from '@backstage/core-plugin-api';
+import { ApiRef } from '@backstage/core-plugin-api';
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { ComponentType } from 'react';
-import { createScaffolderFieldExtension } from '@backstage/plugin-scaffolder-react';
-import { CustomFieldExtensionSchema } from '@backstage/plugin-scaffolder-react';
-import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react';
+import { createScaffolderFieldExtension as createScaffolderFieldExtension_2 } from '@backstage/plugin-scaffolder-react';
+import { CustomFieldExtensionSchema as CustomFieldExtensionSchema_2 } from '@backstage/plugin-scaffolder-react';
+import { CustomFieldValidator as CustomFieldValidator_2 } from '@backstage/plugin-scaffolder-react';
 import { DiscoveryApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import { Extension } from '@backstage/core-plugin-api';
 import { ExternalRouteRef } from '@backstage/core-plugin-api';
 import { FetchApi } from '@backstage/core-plugin-api';
-import { FieldExtensionComponent } from '@backstage/plugin-scaffolder-react';
-import { FieldExtensionComponentProps } from '@backstage/plugin-scaffolder-react';
-import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
+import { FieldExtensionComponent as FieldExtensionComponent_2 } from '@backstage/plugin-scaffolder-react';
+import { FieldExtensionComponentProps as FieldExtensionComponentProps_2 } from '@backstage/plugin-scaffolder-react';
+import { FieldExtensionOptions as FieldExtensionOptions_2 } from '@backstage/plugin-scaffolder-react';
 import { FieldValidation } from '@rjsf/core';
 import type { FormProps } from '@rjsf/core';
 import { FormProps as FormProps_2 } from '@backstage/plugin-scaffolder-react';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
-import { ListActionsResponse } from '@backstage/plugin-scaffolder-react';
-import { LogEvent } from '@backstage/plugin-scaffolder-react';
+import { ListActionsResponse as ListActionsResponse_2 } from '@backstage/plugin-scaffolder-react';
+import { LogEvent as LogEvent_2 } from '@backstage/plugin-scaffolder-react';
 import { Observable } from '@backstage/types';
+import { PathParams } from '@backstage/core-plugin-api';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
-import { rootRouteRef } from '@backstage/plugin-scaffolder-react';
 import { RouteRef } from '@backstage/core-plugin-api';
-import { ScaffolderApi } from '@backstage/plugin-scaffolder-react';
-import { scaffolderApiRef } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderDryRunOptions } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderDryRunResponse } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderGetIntegrationsListOptions } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderGetIntegrationsListResponse } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderApi as ScaffolderApi_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderDryRunOptions as ScaffolderDryRunOptions_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderDryRunResponse as ScaffolderDryRunResponse_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderGetIntegrationsListOptions as ScaffolderGetIntegrationsListOptions_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderGetIntegrationsListResponse as ScaffolderGetIntegrationsListResponse_2 } from '@backstage/plugin-scaffolder-react';
 import { ScaffolderOutputLink } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderScaffoldOptions } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderScaffoldResponse } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderStreamLogsOptions } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderTask } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderTaskOutput } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderTaskStatus } from '@backstage/plugin-scaffolder-react';
-import { ScaffolderUseTemplateSecrets } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderScaffoldOptions as ScaffolderScaffoldOptions_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderScaffoldResponse as ScaffolderScaffoldResponse_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderStreamLogsOptions as ScaffolderStreamLogsOptions_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTask as ScaffolderTask_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTaskOutput as ScaffolderTaskOutput_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTaskStatus as ScaffolderTaskStatus_2 } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderUseTemplateSecrets as ScaffolderUseTemplateSecrets_2 } from '@backstage/plugin-scaffolder-react';
 import { ScmIntegrationRegistry } from '@backstage/integration';
-import { selectedTemplateRouteRef } from '@backstage/plugin-scaffolder-react';
+import { SubRouteRef } from '@backstage/core-plugin-api';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
-import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
+import { TemplateParameterSchema as TemplateParameterSchema_2 } from '@backstage/plugin-scaffolder-react';
 import { UiSchema } from '@rjsf/utils';
-import { useTemplateSecrets } from '@backstage/plugin-scaffolder-react';
 import { z } from 'zod';
 
-export { createScaffolderFieldExtension };
+// @public @deprecated (undocumented)
+export const createScaffolderFieldExtension: typeof createScaffolderFieldExtension_2;
 
 // @public
 export function createScaffolderLayout<TInputProps = unknown>(
   options: LayoutOptions,
 ): Extension<LayoutComponent<TInputProps>>;
 
-export { CustomFieldExtensionSchema };
+// @public @deprecated (undocumented)
+export type CustomFieldExtensionSchema = CustomFieldExtensionSchema_2;
 
-export { CustomFieldValidator };
+// @public @deprecated (undocumented)
+export type CustomFieldValidator<TReturnFieldData> =
+  CustomFieldValidator_2<TReturnFieldData>;
 
 // @public
-export const EntityNamePickerFieldExtension: FieldExtensionComponent<
+export const EntityNamePickerFieldExtension: FieldExtensionComponent_2<
   string,
   {}
 >;
 
 // @public
-export const EntityPickerFieldExtension: FieldExtensionComponent<
+export const EntityPickerFieldExtension: FieldExtensionComponent_2<
   string,
   {
     defaultKind?: string | undefined;
@@ -106,7 +108,7 @@ export type EntityPickerUiOptions =
   typeof EntityPickerFieldSchema.uiOptionsType;
 
 // @public
-export const EntityTagsPickerFieldExtension: FieldExtensionComponent<
+export const EntityTagsPickerFieldExtension: FieldExtensionComponent_2<
   string[],
   {
     showCounts?: boolean | undefined;
@@ -129,18 +131,25 @@ export const EntityTagsPickerFieldSchema: FieldSchema<
 export type EntityTagsPickerUiOptions =
   typeof EntityTagsPickerFieldSchema.uiOptionsType;
 
-export { FieldExtensionComponent };
+// @public @deprecated (undocumented)
+export type FieldExtensionComponent<_TReturnValue, _TInputProps> =
+  FieldExtensionComponent_2<_TReturnValue, _TInputProps>;
 
-export { FieldExtensionComponentProps };
+// @public @deprecated (undocumented)
+export type FieldExtensionComponentProps<
+  TFieldReturnValue,
+  TUiOptions extends {} = {},
+> = FieldExtensionComponentProps_2<TFieldReturnValue, TUiOptions>;
 
-export { FieldExtensionOptions };
+// @public @deprecated (undocumented)
+export type FieldExtensionOptions = FieldExtensionOptions_2;
 
 // @public
 export interface FieldSchema<TReturn, TUiOptions> {
   // (undocumented)
-  readonly schema: CustomFieldExtensionSchema;
+  readonly schema: CustomFieldExtensionSchema_2;
   // (undocumented)
-  readonly type: FieldExtensionComponentProps<TReturn, TUiOptions>;
+  readonly type: FieldExtensionComponentProps_2<TReturn, TUiOptions>;
   // (undocumented)
   readonly uiOptionsType: TUiOptions;
 }
@@ -159,9 +168,11 @@ export interface LayoutOptions<P = any> {
 // @public
 export type LayoutTemplate<T = any> = FormProps<T>['ObjectFieldTemplate'];
 
-export { ListActionsResponse };
+// @public @deprecated (undocumented)
+export type ListActionsResponse = ListActionsResponse_2;
 
-export { LogEvent };
+// @public @deprecated (undocumented)
+export type LogEvent = LogEvent_2;
 
 // @public
 export function makeFieldSchemaFromZod<
@@ -195,7 +206,7 @@ export const NextScaffolderPage: (
 ) => JSX.Element;
 
 // @public
-export const OwnedEntityPickerFieldExtension: FieldExtensionComponent<
+export const OwnedEntityPickerFieldExtension: FieldExtensionComponent_2<
   string,
   {
     defaultKind?: string | undefined;
@@ -221,7 +232,7 @@ export type OwnedEntityPickerUiOptions =
   typeof OwnedEntityPickerFieldSchema.uiOptionsType;
 
 // @public
-export const OwnerPickerFieldExtension: FieldExtensionComponent<
+export const OwnerPickerFieldExtension: FieldExtensionComponent_2<
   string,
   {
     defaultNamespace?: string | false | undefined;
@@ -261,7 +272,7 @@ export const repoPickerValidation: (
 ) => void;
 
 // @public
-export const RepoUrlPickerFieldExtension: FieldExtensionComponent<
+export const RepoUrlPickerFieldExtension: FieldExtensionComponent_2<
   string,
   {
     allowedHosts?: string[] | undefined;
@@ -330,7 +341,8 @@ export type ReviewStepProps = {
   }[];
 };
 
-export { rootRouteRef };
+// @public @deprecated (undocumented)
+export const rootRouteRef: RouteRef<undefined>;
 
 // @public
 export type RouterProps = {
@@ -359,12 +371,14 @@ export type RouterProps = {
   };
 };
 
-export { ScaffolderApi };
+// @public @deprecated (undocumented)
+export type ScaffolderApi = ScaffolderApi_2;
 
-export { scaffolderApiRef };
+// @public @deprecated (undocumented)
+export const scaffolderApiRef: ApiRef<ScaffolderApi_2>;
 
 // @public
-export class ScaffolderClient implements ScaffolderApi {
+export class ScaffolderClient implements ScaffolderApi_2 {
   constructor(options: {
     discoveryApi: DiscoveryApi;
     fetchApi: FetchApi;
@@ -373,45 +387,55 @@ export class ScaffolderClient implements ScaffolderApi {
     useLongPollingLogs?: boolean;
   });
   // (undocumented)
-  dryRun(options: ScaffolderDryRunOptions): Promise<ScaffolderDryRunResponse>;
+  dryRun(
+    options: ScaffolderDryRunOptions_2,
+  ): Promise<ScaffolderDryRunResponse_2>;
   // (undocumented)
   getIntegrationsList(
-    options: ScaffolderGetIntegrationsListOptions,
-  ): Promise<ScaffolderGetIntegrationsListResponse>;
+    options: ScaffolderGetIntegrationsListOptions_2,
+  ): Promise<ScaffolderGetIntegrationsListResponse_2>;
   // (undocumented)
-  getTask(taskId: string): Promise<ScaffolderTask>;
+  getTask(taskId: string): Promise<ScaffolderTask_2>;
   // (undocumented)
   getTemplateParameterSchema(
     templateRef: string,
-  ): Promise<TemplateParameterSchema>;
+  ): Promise<TemplateParameterSchema_2>;
   // (undocumented)
-  listActions(): Promise<ListActionsResponse>;
+  listActions(): Promise<ListActionsResponse_2>;
   // (undocumented)
   listTasks(options: { filterByOwnership: 'owned' | 'all' }): Promise<{
-    tasks: ScaffolderTask[];
+    tasks: ScaffolderTask_2[];
   }>;
   // (undocumented)
   scaffold(
-    options: ScaffolderScaffoldOptions,
-  ): Promise<ScaffolderScaffoldResponse>;
+    options: ScaffolderScaffoldOptions_2,
+  ): Promise<ScaffolderScaffoldResponse_2>;
   // (undocumented)
-  streamLogs(options: ScaffolderStreamLogsOptions): Observable<LogEvent>;
+  streamLogs(options: ScaffolderStreamLogsOptions_2): Observable<LogEvent_2>;
 }
 
-export { ScaffolderDryRunOptions };
+// @public @deprecated (undocumented)
+export type ScaffolderDryRunOptions = ScaffolderDryRunOptions_2;
 
-export { ScaffolderDryRunResponse };
+// @public @deprecated (undocumented)
+export type ScaffolderDryRunResponse = ScaffolderDryRunResponse_2;
 
-export { ScaffolderFieldExtensions };
+// @public @deprecated (undocumented)
+export const ScaffolderFieldExtensions: ComponentType<{}>;
 
-export { ScaffolderGetIntegrationsListOptions };
+// @public @deprecated (undocumented)
+export type ScaffolderGetIntegrationsListOptions =
+  ScaffolderGetIntegrationsListOptions_2;
 
-export { ScaffolderGetIntegrationsListResponse };
+// @public @deprecated (undocumented)
+export type ScaffolderGetIntegrationsListResponse =
+  ScaffolderGetIntegrationsListResponse_2;
 
 // @public
 export const ScaffolderLayouts: React.ComponentType;
 
-export { ScaffolderOutputLink };
+// @public @deprecated (undocumented)
+export type ScaffolderOutputlink = ScaffolderOutputLink;
 
 // @public
 export const ScaffolderPage: (props: RouterProps) => JSX.Element;
@@ -435,21 +459,31 @@ export const scaffolderPlugin: BackstagePlugin<
   {}
 >;
 
-export { ScaffolderScaffoldOptions };
+// @public @deprecated (undocumented)
+export type ScaffolderScaffoldOptions = ScaffolderScaffoldOptions_2;
 
-export { ScaffolderScaffoldResponse };
+// @public @deprecated (undocumented)
+export type ScaffolderScaffoldResponse = ScaffolderScaffoldResponse_2;
 
-export { ScaffolderStreamLogsOptions };
+// @public @deprecated (undocumented)
+export type ScaffolderStreamLogsOptions = ScaffolderStreamLogsOptions_2;
 
-export { ScaffolderTask };
+// @public @deprecated (undocumented)
+export type ScaffolderTask = ScaffolderTask_2;
 
-export { ScaffolderTaskOutput };
+// @public @deprecated (undocumented)
+export type ScaffolderTaskOutput = ScaffolderTaskOutput_2;
 
-export { ScaffolderTaskStatus };
+// @public @deprecated (undocumented)
+export type ScaffolderTaskStatus = ScaffolderTaskStatus_2;
 
-export { ScaffolderUseTemplateSecrets };
+// @public @deprecated (undocumented)
+export type ScaffolderUseTemplateSecrets = ScaffolderUseTemplateSecrets_2;
 
-export { selectedTemplateRouteRef };
+// @public @deprecated (undocumented)
+export const selectedTemplateRouteRef: SubRouteRef<
+  PathParams<'/templates/:namespace/:templateName'>
+>;
 
 // @public
 export const TaskPage: ({ loadingText }: TaskPageProps) => JSX.Element;
@@ -465,10 +499,12 @@ export type TemplateGroupFilter = {
   filter: (entity: Entity) => boolean;
 };
 
-export { TemplateParameterSchema };
+// @public @deprecated (undocumented)
+export type TemplateParameterSchema = TemplateParameterSchema_2;
 
 // @public
 export const TemplateTypePicker: () => JSX.Element | null;
 
-export { useTemplateSecrets };
+// @public @deprecated (undocumented)
+export const useTemplateSecrets: () => ScaffolderUseTemplateSecrets_2;
 ```
