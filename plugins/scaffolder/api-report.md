@@ -6,7 +6,6 @@
 /// <reference types="react" />
 
 import { ApiHolder } from '@backstage/core-plugin-api';
-import { ApiRef } from '@backstage/core-plugin-api';
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { ComponentType } from 'react';
 import { createScaffolderFieldExtension } from '@backstage/plugin-scaffolder-react';
@@ -25,19 +24,30 @@ import type { FormProps } from '@rjsf/core';
 import { FormProps as FormProps_2 } from '@backstage/plugin-scaffolder-react';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
-import { JSONSchema7 } from 'json-schema';
-import { JsonValue } from '@backstage/types';
+import { ListActionsResponse } from '@backstage/plugin-scaffolder-react';
+import { LogEvent } from '@backstage/plugin-scaffolder-react';
 import { Observable } from '@backstage/types';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
 import { rootRouteRef } from '@backstage/plugin-scaffolder-react';
 import { RouteRef } from '@backstage/core-plugin-api';
+import { ScaffolderApi } from '@backstage/plugin-scaffolder-react';
+import { scaffolderApiRef } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderDryRunOptions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderDryRunResponse } from '@backstage/plugin-scaffolder-react';
 import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderGetIntegrationsListOptions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderGetIntegrationsListResponse } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderOutputLink } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderScaffoldOptions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderScaffoldResponse } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderStreamLogsOptions } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTask } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTaskOutput } from '@backstage/plugin-scaffolder-react';
+import { ScaffolderTaskStatus } from '@backstage/plugin-scaffolder-react';
 import { ScaffolderUseTemplateSecrets } from '@backstage/plugin-scaffolder-react';
 import { ScmIntegrationRegistry } from '@backstage/integration';
 import { selectedTemplateRouteRef } from '@backstage/plugin-scaffolder-react';
-import { TaskSpec } from '@backstage/plugin-scaffolder-common';
-import { TaskStep } from '@backstage/plugin-scaffolder-common';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
 import { UiSchema } from '@rjsf/utils';
@@ -149,28 +159,9 @@ export interface LayoutOptions<P = any> {
 // @public
 export type LayoutTemplate<T = any> = FormProps<T>['ObjectFieldTemplate'];
 
-// @public
-export type ListActionsResponse = Array<{
-  id: string;
-  description?: string;
-  schema?: {
-    input?: JSONSchema7;
-    output?: JSONSchema7;
-  };
-}>;
+export { ListActionsResponse };
 
-// @public
-export type LogEvent = {
-  type: 'log' | 'completion';
-  body: {
-    message: string;
-    stepId?: string;
-    status?: ScaffolderTaskStatus;
-  };
-  createdAt: string;
-  id: string;
-  taskId: string;
-};
+export { LogEvent };
 
 // @public
 export function makeFieldSchemaFromZod<
@@ -368,34 +359,9 @@ export type RouterProps = {
   };
 };
 
-// @public
-export interface ScaffolderApi {
-  // (undocumented)
-  dryRun?(options: ScaffolderDryRunOptions): Promise<ScaffolderDryRunResponse>;
-  // (undocumented)
-  getIntegrationsList(
-    options: ScaffolderGetIntegrationsListOptions,
-  ): Promise<ScaffolderGetIntegrationsListResponse>;
-  // (undocumented)
-  getTask(taskId: string): Promise<ScaffolderTask>;
-  // (undocumented)
-  getTemplateParameterSchema(
-    templateRef: string,
-  ): Promise<TemplateParameterSchema>;
-  listActions(): Promise<ListActionsResponse>;
-  // (undocumented)
-  listTasks?(options: { filterByOwnership: 'owned' | 'all' }): Promise<{
-    tasks: ScaffolderTask[];
-  }>;
-  scaffold(
-    options: ScaffolderScaffoldOptions,
-  ): Promise<ScaffolderScaffoldResponse>;
-  // (undocumented)
-  streamLogs(options: ScaffolderStreamLogsOptions): Observable<LogEvent>;
-}
+export { ScaffolderApi };
 
-// @public
-export const scaffolderApiRef: ApiRef<ScaffolderApi>;
+export { scaffolderApiRef };
 
 // @public
 export class ScaffolderClient implements ScaffolderApi {
@@ -424,6 +390,7 @@ export class ScaffolderClient implements ScaffolderApi {
   listTasks(options: { filterByOwnership: 'owned' | 'all' }): Promise<{
     tasks: ScaffolderTask[];
   }>;
+  // (undocumented)
   scaffold(
     options: ScaffolderScaffoldOptions,
   ): Promise<ScaffolderScaffoldResponse>;
@@ -431,65 +398,20 @@ export class ScaffolderClient implements ScaffolderApi {
   streamLogs(options: ScaffolderStreamLogsOptions): Observable<LogEvent>;
 }
 
-// @public (undocumented)
-export interface ScaffolderDryRunOptions {
-  // (undocumented)
-  directoryContents: {
-    path: string;
-    base64Content: string;
-  }[];
-  // (undocumented)
-  secrets?: Record<string, string>;
-  // (undocumented)
-  template: JsonValue;
-  // (undocumented)
-  values: JsonObject;
-}
+export { ScaffolderDryRunOptions };
 
-// @public (undocumented)
-export interface ScaffolderDryRunResponse {
-  // (undocumented)
-  directoryContents: Array<{
-    path: string;
-    base64Content: string;
-    executable: boolean;
-  }>;
-  // (undocumented)
-  log: Array<Pick<LogEvent, 'body'>>;
-  // (undocumented)
-  output: ScaffolderTaskOutput;
-  // (undocumented)
-  steps: TaskStep[];
-}
+export { ScaffolderDryRunResponse };
 
 export { ScaffolderFieldExtensions };
 
-// @public
-export interface ScaffolderGetIntegrationsListOptions {
-  // (undocumented)
-  allowedHosts: string[];
-}
+export { ScaffolderGetIntegrationsListOptions };
 
-// @public
-export interface ScaffolderGetIntegrationsListResponse {
-  // (undocumented)
-  integrations: {
-    type: string;
-    title: string;
-    host: string;
-  }[];
-}
+export { ScaffolderGetIntegrationsListResponse };
 
 // @public
 export const ScaffolderLayouts: React.ComponentType;
 
-// @public (undocumented)
-export type ScaffolderOutputLink = {
-  title?: string;
-  icon?: string;
-  url?: string;
-  entityRef?: string;
-};
+export { ScaffolderOutputLink };
 
 // @public
 export const ScaffolderPage: (props: RouterProps) => JSX.Element;
@@ -513,53 +435,17 @@ export const scaffolderPlugin: BackstagePlugin<
   {}
 >;
 
-// @public
-export interface ScaffolderScaffoldOptions {
-  // (undocumented)
-  secrets?: Record<string, string>;
-  // (undocumented)
-  templateRef: string;
-  // (undocumented)
-  values: Record<string, JsonValue>;
-}
+export { ScaffolderScaffoldOptions };
 
-// @public
-export interface ScaffolderScaffoldResponse {
-  // (undocumented)
-  taskId: string;
-}
+export { ScaffolderScaffoldResponse };
 
-// @public
-export interface ScaffolderStreamLogsOptions {
-  // (undocumented)
-  after?: number;
-  // (undocumented)
-  taskId: string;
-}
+export { ScaffolderStreamLogsOptions };
 
-// @public
-export type ScaffolderTask = {
-  id: string;
-  spec: TaskSpec;
-  status: 'failed' | 'completed' | 'processing' | 'open' | 'cancelled';
-  lastHeartbeatAt: string;
-  createdAt: string;
-};
+export { ScaffolderTask };
 
-// @public (undocumented)
-export type ScaffolderTaskOutput = {
-  links?: ScaffolderOutputLink[];
-} & {
-  [key: string]: unknown;
-};
+export { ScaffolderTaskOutput };
 
-// @public
-export type ScaffolderTaskStatus =
-  | 'open'
-  | 'processing'
-  | 'failed'
-  | 'completed'
-  | 'skipped';
+export { ScaffolderTaskStatus };
 
 export { ScaffolderUseTemplateSecrets };
 
