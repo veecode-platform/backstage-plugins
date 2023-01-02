@@ -21,8 +21,8 @@ import { FieldExtensionComponent as FieldExtensionComponent_2 } from '@backstage
 import { FieldExtensionComponentProps as FieldExtensionComponentProps_2 } from '@backstage/plugin-scaffolder-react';
 import { FieldExtensionOptions as FieldExtensionOptions_2 } from '@backstage/plugin-scaffolder-react';
 import { FieldValidation } from '@rjsf/core';
-import type { FormProps } from '@rjsf/core';
-import { FormProps as FormProps_2 } from '@backstage/plugin-scaffolder-react';
+import type { FormProps as FormProps_2 } from '@rjsf/core';
+import type { FormProps as FormProps_3 } from '@rjsf/core-v5';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
 import { ListActionsResponse as ListActionsResponse_2 } from '@backstage/plugin-scaffolder-react';
@@ -154,6 +154,12 @@ export interface FieldSchema<TReturn, TUiOptions> {
   readonly uiOptionsType: TUiOptions;
 }
 
+// @alpha @deprecated
+export type FormProps = Pick<
+  FormProps_3,
+  'transformErrors' | 'noHtml5Validate'
+>;
+
 // @public
 export type LayoutComponent<_TInputProps> = () => null;
 
@@ -166,7 +172,7 @@ export interface LayoutOptions<P = any> {
 }
 
 // @public
-export type LayoutTemplate<T = any> = FormProps<T>['ObjectFieldTemplate'];
+export type LayoutTemplate<T = any> = FormProps_2<T>['ObjectFieldTemplate'];
 
 // @public @deprecated (undocumented)
 export type ListActionsResponse = ListActionsResponse_2;
@@ -197,7 +203,7 @@ export type NextRouterProps = {
     TaskPageComponent?: React_2.ComponentType<{}>;
   };
   groups?: TemplateGroupFilter[];
-  FormProps?: FormProps_2;
+  FormProps?: FormProps;
 };
 
 // @alpha
