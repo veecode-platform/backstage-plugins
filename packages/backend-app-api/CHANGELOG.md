@@ -1,5 +1,23 @@
 # @backstage/backend-app-api
 
+## 0.3.0-next.1
+
+### Minor Changes
+
+- 02b119ff93: **BREAKING**: The `httpRouterFactory` now accepts a `getPath` option rather than `indexPlugin`. To set up custom index path, configure the new `rootHttpRouterFactory` with a custom `indexPath` instead.
+
+  Added an implementation for the new `rootHttpRouterServiceRef`.
+
+### Patch Changes
+
+- 8e06f3cf00: Switched imports of `loggerToWinstonLogger` to `@backstage/backend-common`.
+- Updated dependencies
+  - @backstage/backend-common@0.18.0-next.1
+  - @backstage/backend-plugin-api@0.3.0-next.1
+  - @backstage/backend-tasks@0.4.1-next.1
+  - @backstage/plugin-permission-node@0.7.3-next.1
+  - @backstage/errors@1.1.4
+
 ## 0.2.5-next.0
 
 ### Patch Changes
