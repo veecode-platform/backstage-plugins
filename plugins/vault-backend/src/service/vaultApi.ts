@@ -26,6 +26,7 @@ import { getVaultConfig, VaultConfig } from '../config';
  */
 export type VaultSecretList = {
   data: {
+    data: object;
     keys: string[];
   };
 };
@@ -85,12 +86,12 @@ export class VaultClient implements VaultApi {
 
   private async callApi<T>(
     path: string,
-    query: { [key in string]: any },
+    _query: { [key in string]: any },
     method: string = 'GET',
   ): Promise<T> {
     const url = new URL(path, this.vaultConfig.baseUrl);
     const response = await fetch(
-      `${url.toString()}?${new URLSearchParams(query).toString()}`,
+      `${url.toString()}`, // original url `${url.toString()}?${new URLSearchParams(query).toString()}`,
       {
         method,
         headers: {
@@ -126,7 +127,36 @@ export class VaultClient implements VaultApi {
 
     const secrets: VaultSecret[] = [];
 
+    const filteredResult = [];
+    for (const key in result.data.data) {
+      if (result.data.data.hasOwnProperty(key)) {
+        filteredResult.push(key);
+      }
+    }
+
     await Promise.all(
+      filteredResult.map(async secret => {
+        if (secret.endsWith('/')) {
+          secrets.push(
+            ...(await this.limit(() =>
+              this.listSecrets(`${secretPath}/${secret.slice(0, -1)}`),
+            )),
+          );
+        } else {
+          const vaultUrl =
+            this.vaultConfig.publicUrl || this.vaultConfig.baseUrl;
+          secrets.push({
+            name: secret,
+            path: secretPath,
+            editUrl: `${vaultUrl}/ui/vault/secrets/${this.vaultConfig.secretEngine}/edit/${secretPath}`,
+            showUrl: `${vaultUrl}/ui/vault/secrets/${this.vaultConfig.secretEngine}/show/${secretPath}`,
+          });
+        }
+      }),
+    );
+
+    // original
+    /* await Promise.all(
       result.data.keys.map(async secret => {
         if (secret.endsWith('/')) {
           secrets.push(
@@ -145,7 +175,7 @@ export class VaultClient implements VaultApi {
           });
         }
       }),
-    );
+    );*/
 
     return secrets;
   }
