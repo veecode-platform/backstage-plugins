@@ -1,12 +1,12 @@
 {
-  "name": "@luccas-teste/plugin-vault-backend",
+  "name": "@veecode-platform/plugin-vault-backend",
   "description": "A Backstage backend plugin that integrates towards Vault - veeCode version",
   "version": "0.3.2-next.1",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
   "license": "Apache-2.0",
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
@@ -16,8 +16,8 @@
   "homepage": "https://backstage.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luccasmtxr/backstage.git",
-    "directory": "plugins/vault"
+    "url": "git+https://github.com/veecode-platform/backstage-plugins.git",
+    "directory": "plugins/vault-backend"
   },
   "keywords": [
     "backstage",
@@ -64,5 +64,5 @@
   "bugs": {
     "url": "https://github.com/luccasmtxr/backstage/issues"
   },
-  "author": "teste"
+  "author": "veecode-platform"
 }
