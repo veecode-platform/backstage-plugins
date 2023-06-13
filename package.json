@@ -40,7 +40,8 @@
   "workspaces": {
     "packages": [
       "plugins/vault-backend",
-      "plugins/user-settings"
+      "plugins/user-settings",
+      "plugins/api-docs"
     ]
   },
   "resolutions": {
