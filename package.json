@@ -39,7 +39,8 @@
   },
   "workspaces": {
     "packages": [
-      "plugins/vault-backend"
+      "plugins/vault-backend",
+      "plugins/user-settings"
     ]
   },
   "resolutions": {

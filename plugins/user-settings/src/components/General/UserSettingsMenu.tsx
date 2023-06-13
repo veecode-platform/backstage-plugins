@@ -22,16 +22,27 @@ import {
   identityApiRef,
   errorApiRef,
   useApi,
+  configApiRef,
 } from '@backstage/core-plugin-api';
 
 /** @public */
 export const UserSettingsMenu = () => {
   const errorApi = useApi(errorApiRef);
   const identityApi = useApi(identityApiRef);
+  const config = useApi(configApiRef);
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<undefined | HTMLElement>(
     undefined,
   );
+
+  const handleKeycloakSessionLogout = async () => {
+    const token = await identityApi.getCredentials();
+    const backendBaseUrl = config.getConfig('backend').get('baseUrl');
+    await fetch(`${backendBaseUrl}/api/devportal/keycloak/logout`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token.token}` },
+    });
+  };
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -55,9 +66,10 @@ export const UserSettingsMenu = () => {
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem
           data-testid="sign-out"
-          onClick={() =>
-            identityApi.signOut().catch(error => errorApi.post(error))
-          }
+          onClick={async () => {
+            await handleKeycloakSessionLogout();
+            identityApi.signOut().catch((error: any) => errorApi.post(error));
+          }}
         >
           <ListItemIcon>
             <SignOutIcon />

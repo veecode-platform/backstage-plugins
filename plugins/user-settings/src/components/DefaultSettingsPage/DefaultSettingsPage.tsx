@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { UserSettingsAuthProviders } from '../AuthProviders';
-import { UserSettingsFeatureFlags } from '../FeatureFlags';
+// import { UserSettingsFeatureFlags } from '../FeatureFlags';
 import { UserSettingsGeneral } from '../General';
 import { SettingsLayout, SettingsLayoutRouteProps } from '../SettingsLayout';
 
@@ -40,9 +40,9 @@ export const DefaultSettingsPage = (props: {
       >
         <UserSettingsAuthProviders providerSettings={providerSettings} />
       </SettingsLayout.Route>
-      <SettingsLayout.Route path="feature-flags" title="Feature Flags">
+      {/* <SettingsLayout.Route path="feature-flags" title="Feature Flags">
         <UserSettingsFeatureFlags />
-      </SettingsLayout.Route>
+    </SettingsLayout.Route>*/}
       {tabs}
     </SettingsLayout>
   );
