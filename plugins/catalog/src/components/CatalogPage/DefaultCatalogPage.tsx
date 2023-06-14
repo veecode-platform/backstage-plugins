@@ -68,11 +68,14 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
   const orgName =
     useApi(configApiRef).getOptionalString('organization.name') ?? 'Backstage';
   const createComponentLink = useRouteRef(createComponentRouteRef);
-
   const { createButtonTitle } = useCatalogPluginOptions();
 
   return (
-    <PageWithHeader title={`${orgName} Catalog`} themeId="home">
+    <PageWithHeader
+      title={`${orgName} Catalog`}
+      subtitle="Find APIs, Components, and Templates"
+      themeId="home"
+    >
       <Content>
         <ContentHeader title="">
           <CreateButton

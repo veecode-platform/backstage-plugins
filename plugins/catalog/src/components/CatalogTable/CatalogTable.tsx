@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 import {
-  ANNOTATION_EDIT_URL,
-  ANNOTATION_VIEW_URL,
+  // ANNOTATION_EDIT_URL,
+  // ANNOTATION_VIEW_URL,
   Entity,
   RELATION_OWNED_BY,
   RELATION_PART_OF,
@@ -35,8 +35,8 @@ import {
 } from '@backstage/plugin-catalog-react';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Edit from '@material-ui/icons/Edit';
-import OpenInNew from '@material-ui/icons/OpenInNew';
+// import Edit from '@material-ui/icons/Edit';
+// import OpenInNew from '@material-ui/icons/OpenInNew';
 import Star from '@material-ui/icons/Star';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { capitalize } from 'lodash';
@@ -84,13 +84,13 @@ export const CatalogTable = (props: CatalogTableProps) => {
       columnFactories.createTitleColumn({ hidden: true }),
       columnFactories.createNameColumn({ defaultKind: filters.kind?.value }),
       ...createEntitySpecificColumns(),
-      columnFactories.createMetadataDescriptionColumn(),
+      // columnFactories.createMetadataDescriptionColumn(),
       columnFactories.createTagsColumn(),
     ];
 
     function createEntitySpecificColumns(): TableColumn<CatalogTableRow>[] {
       const baseColumns = [
-        columnFactories.createSystemColumn(),
+        // columnFactories.createSystemColumn(),
         columnFactories.createOwnerColumn(),
         columnFactories.createSpecTypeColumn(),
         columnFactories.createSpecLifecycleColumn(),
@@ -137,7 +137,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
   }
 
   const defaultActions: TableProps<CatalogTableRow>['actions'] = [
-    ({ entity }) => {
+    /* ({ entity }) => {
       const url = entity.metadata.annotations?.[ANNOTATION_VIEW_URL];
       const title = 'View';
 
@@ -174,7 +174,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
           window.open(url, '_blank');
         },
       };
-    },
+    },*/
     ({ entity }) => {
       const isStarred = isStarredEntity(entity);
       const title = isStarred ? 'Remove from favorites' : 'Add to favorites';

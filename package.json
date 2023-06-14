@@ -41,7 +41,8 @@
     "packages": [
       "plugins/vault-backend",
       "plugins/user-settings",
-      "plugins/api-docs"
+      "plugins/api-docs",
+      "plugins/catalog"
     ]
   },
   "resolutions": {
