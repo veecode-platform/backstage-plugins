@@ -24,7 +24,10 @@ import {
   TableProps,
 } from '@backstage/core-components';
 import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
-import { CatalogTable, CatalogTableRow } from '@backstage/plugin-catalog';
+import {
+  CatalogTable,
+  CatalogTableRow,
+} from '@veecode-platform/plugin-catalog';
 import {
   EntityKindPicker,
   EntityLifecyclePicker,
@@ -44,11 +47,11 @@ import { adminAccessPermission } from '@veecode-platform/plugin-application-comm
 const defaultColumns: TableColumn<CatalogTableRow>[] = [
   CatalogTable.columns.createTitleColumn({ hidden: true }),
   CatalogTable.columns.createNameColumn({ defaultKind: 'API' }),
-  CatalogTable.columns.createSystemColumn(),
+  // CatalogTable.columns.createSystemColumn(),
   CatalogTable.columns.createOwnerColumn(),
   CatalogTable.columns.createSpecTypeColumn(),
   CatalogTable.columns.createSpecLifecycleColumn(),
-  CatalogTable.columns.createMetadataDescriptionColumn(),
+  // CatalogTable.columns.createMetadataDescriptionColumn(),
   CatalogTable.columns.createTagsColumn(),
 ];
 
