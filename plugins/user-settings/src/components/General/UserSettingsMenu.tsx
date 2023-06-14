@@ -37,7 +37,7 @@ export const UserSettingsMenu = () => {
 
   const handleKeycloakSessionLogout = async () => {
     const token = await identityApi.getCredentials();
-    const backendBaseUrl = config.getConfig('backend.baseUrl');
+    const backendBaseUrl = config.getString('backend.baseUrl');
     await fetch(`${backendBaseUrl}/api/devportal/keycloak/logout`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${token.token}` },
