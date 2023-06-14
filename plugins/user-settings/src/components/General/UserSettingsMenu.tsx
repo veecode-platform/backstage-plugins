@@ -37,7 +37,7 @@ export const UserSettingsMenu = () => {
 
   const handleKeycloakSessionLogout = async () => {
     const token = await identityApi.getCredentials();
-    const backendBaseUrl = config.getConfig('backend').get('baseUrl');
+    const backendBaseUrl = config.getConfig('backend.baseUrl');
     await fetch(`${backendBaseUrl}/api/devportal/keycloak/logout`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${token.token}` },
@@ -67,7 +67,9 @@ export const UserSettingsMenu = () => {
         <MenuItem
           data-testid="sign-out"
           onClick={async () => {
-            await handleKeycloakSessionLogout();
+            if (!config.getBoolean('platform.guest.enabled')) {
+              await handleKeycloakSessionLogout();
+            }
             identityApi.signOut().catch((error: any) => errorApi.post(error));
           }}
         >
