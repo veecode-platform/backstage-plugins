@@ -68,6 +68,9 @@ const useStyles = makeStyles<
   BackstageTheme,
   { fontColor: string; backgroundImage: string }
 >(theme => ({
+  card: {
+    cursor: 'pointer',
+  },
   cardHeader: {
     position: 'relative',
   },
@@ -217,7 +220,12 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
   const sourceLocation = getEntitySourceLocation(template, scmIntegrationsApi);
 
   return (
-    <Card>
+    <Card
+      className={classes.card}
+      onClick={() => {
+        window.location.replace(href);
+      }}
+    >
       <CardMedia className={classes.cardHeader}>
         <FavoriteEntity className={classes.starButton} entity={template} />
         {deprecated && <DeprecationWarning />}
@@ -275,7 +283,10 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
             >
               <IconButton
                 className={classes.leftButton}
-                href={sourceLocation.locationTargetUrl}
+                // href={sourceLocation.locationTargetUrl}
+                onClick={e => {
+                  e.stopPropagation();
+                }}
               >
                 <ScmIntegrationIcon type={sourceLocation.integrationType} />
               </IconButton>
@@ -285,7 +296,10 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
             <Tooltip title="View TechDocs">
               <IconButton
                 className={classes.leftButton}
-                href={viewTechDocsLink}
+                // href={viewTechDocsLink}
+                onClick={e => {
+                  e.stopPropagation();
+                }}
               >
                 <MuiIcon icon={iconResolver('docs')} />
               </IconButton>

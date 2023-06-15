@@ -42,7 +42,8 @@
       "plugins/vault-backend",
       "plugins/user-settings",
       "plugins/api-docs",
-      "plugins/catalog"
+      "plugins/catalog",
+      "plugins/scaffolder"
     ]
   },
   "resolutions": {
