@@ -119,7 +119,7 @@ export class VaultClient implements VaultApi {
   async listSecrets(secretPath: string): Promise<VaultSecret[]> {
     const listUrl =
       this.vaultConfig.kvVersion === 2
-        ? `v1/${this.vaultConfig.secretEngine}/metadata/${secretPath}`
+        ? `v1/${this.vaultConfig.secretEngine}/data/${secretPath}`
         : `v1/${this.vaultConfig.secretEngine}/${secretPath}`;
     const result = await this.limit(() =>
       this.callApi<VaultSecretList>(listUrl, { list: true }),
