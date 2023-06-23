@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 The Backstage Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import {
   ANNOTATION_EDIT_URL,
   ANNOTATION_LOCATION,
@@ -24,14 +9,12 @@ import {
   IconLinkVerticalProps,
   InfoCardVariants,
   Link,
+  // Link,
 } from '@backstage/core-components';
 import {
-  alertApiRef,
-  errorApiRef,
-  useApi,
-  useApp,
-  useRouteRef,
-} from '@backstage/core-plugin-api';
+   alertApiRef, 
+   useApi
+  } from '@backstage/core-plugin-api';
 import {
   ScmIntegrationIcon,
   scmIntegrationsApiRef,
@@ -41,7 +24,6 @@ import {
   getEntitySourceLocation,
   useEntity,
 } from '@backstage/plugin-catalog-react';
-import { isTemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import {
   Card,
   CardContent,
@@ -50,13 +32,10 @@ import {
   IconButton,
   makeStyles,
 } from '@material-ui/core';
-import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import CachedIcon from '@material-ui/icons/Cached';
 import DocsIcon from '@material-ui/icons/Description';
 import EditIcon from '@material-ui/icons/Edit';
 import React, { useCallback } from 'react';
-
-import { createFromTemplateRouteRef, viewTechDocRouteRef } from '../../routes';
 import { AboutContent } from './AboutContent';
 
 const useStyles = makeStyles({
@@ -93,15 +72,11 @@ export interface AboutCardProps {
  */
 export function AboutCard(props: AboutCardProps) {
   const { variant } = props;
-  const app = useApp();
   const classes = useStyles();
   const { entity } = useEntity();
   const scmIntegrationsApi = useApi(scmIntegrationsApiRef);
   const catalogApi = useApi(catalogApiRef);
   const alertApi = useApi(alertApiRef);
-  const errorApi = useApi(errorApiRef);
-  const viewTechdocLink = useRouteRef(viewTechDocRouteRef);
-  const templateRoute = useRouteRef(createFromTemplateRouteRef);
 
   const entitySourceLocation = getEntitySourceLocation(
     entity,
@@ -116,40 +91,20 @@ export function AboutCard(props: AboutCardProps) {
     icon: <ScmIntegrationIcon type={entitySourceLocation?.integrationType} />,
     href: entitySourceLocation?.locationTargetUrl,
   };
+  
   const viewInTechDocs: IconLinkVerticalProps = {
     label: 'View TechDocs',
     disabled:
-      !entity.metadata.annotations?.['backstage.io/techdocs-ref'] ||
-      !viewTechdocLink,
+      !entity.metadata.annotations?.hasOwnProperty('backstage.io/techdocs-ref') || entity.spec?.type == "openapi",
     icon: <DocsIcon />,
-    href:
-      viewTechdocLink &&
-      viewTechdocLink({
-        namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
-        kind: entity.kind,
-        name: entity.metadata.name,
-      }),
+    href: `/catalog/${entity.metadata.namespace ?? DEFAULT_NAMESPACE }/${entity.kind}/${entity.metadata.name}/docs`
+      // viewTechdocLink &&
+      // viewTechdocLink({
+      //   namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
+      //   kind: entity.kind,
+      //   name: entity.metadata.name,
+      // }),
   };
-
-  const subHeaderLinks = [viewInSource, viewInTechDocs];
-
-  if (isTemplateEntityV1beta3(entity)) {
-    const Icon = app.getSystemIcon('scaffolder') ?? CreateComponentIcon;
-
-    const launchTemplate: IconLinkVerticalProps = {
-      label: 'Launch Template',
-      icon: <Icon />,
-      disabled: !templateRoute,
-      href:
-        templateRoute &&
-        templateRoute({
-          templateName: entity.metadata.name,
-          namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
-        }),
-    };
-
-    subHeaderLinks.push(launchTemplate);
-  }
 
   let cardClass = '';
   if (variant === 'gridItem') {
@@ -157,7 +112,6 @@ export function AboutCard(props: AboutCardProps) {
   } else if (variant === 'fullHeight') {
     cardClass = classes.fullHeightCard;
   }
-
   let cardContentClass = '';
   if (variant === 'gridItem') {
     cardContentClass = classes.gridItemCardContent;
@@ -170,13 +124,9 @@ export function AboutCard(props: AboutCardProps) {
   const allowRefresh =
     entityLocation?.startsWith('url:') || entityLocation?.startsWith('file:');
   const refreshEntity = useCallback(async () => {
-    try {
-      await catalogApi.refreshEntity(stringifyEntityRef(entity));
-      alertApi.post({ message: 'Refresh scheduled', severity: 'info' });
-    } catch (e) {
-      errorApi.post(e);
-    }
-  }, [catalogApi, alertApi, errorApi, entity]);
+    await catalogApi.refreshEntity(stringifyEntityRef(entity));
+    alertApi.post({ message: 'Refresh scheduled', severity: 'info' });
+  }, [catalogApi, alertApi, entity]);
 
   return (
     <Card className={cardClass}>
@@ -204,7 +154,7 @@ export function AboutCard(props: AboutCardProps) {
             </IconButton>
           </>
         }
-        subheader={<HeaderIconLinkRow links={subHeaderLinks} />}
+        subheader={<HeaderIconLinkRow links={[viewInSource, viewInTechDocs]} />} // to do
       />
       <Divider />
       <CardContent className={cardContentClass}>
