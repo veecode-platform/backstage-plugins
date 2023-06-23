@@ -1,40 +1,26 @@
-/*
- * Copyright 2020 The Backstage Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import {
   BackstageIdentityResponse,
-  configApiRef,
+  // configApiRef,
   SignInPageProps,
   useApi,
 } from '@backstage/core-plugin-api';
 import { UserIdentity } from './UserIdentity';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React, { useState } from 'react';
 import { useMountEffect } from '@react-hookz/web';
-import { Progress } from '../../components/Progress';
-import { Content } from '../Content/Content';
-import { ContentHeader } from '../ContentHeader/ContentHeader';
-import { Header } from '../Header';
-import { InfoCard } from '../InfoCard';
-import { Page } from '../Page';
+import { Progress } from '@backstage/core-components';
+import { Content } from '@backstage/core-components';
+import { Page } from '@backstage/core-components';
 import { getSignInProviders, useSignInProviders } from './providers';
 import { GridItem, useStyles } from './styles';
 import { IdentityProviders, SignInProviderConfig } from './types';
+import { Logo } from './plataformLogo/plataformLogo';
+import BackstageLogo from "./assets/backstage.png";
+import KeycloakLogo from "./assets/keycloak.png";
+import OktaLogo from "./assets/okta.png";
+import GithubLogo from "./assets/github.png";
+
 
 type MultiSignInPageProps = SignInPageProps & {
   providers: IdentityProviders;
@@ -52,10 +38,10 @@ export type Props = MultiSignInPageProps | SingleSignInPageProps;
 export const MultiSignInPage = ({
   onSignInSuccess,
   providers = [],
-  title,
-  align = 'left',
+  // title,
+  // align = 'left',
 }: MultiSignInPageProps) => {
-  const configApi = useApi(configApiRef);
+  // const configApi = useApi(configApiRef);
   const classes = useStyles();
 
   const signInProviders = getSignInProviders(providers);
@@ -70,17 +56,31 @@ export const MultiSignInPage = ({
 
   return (
     <Page themeId="home">
-      <Header title={configApi.getString('app.title')} />
-      <Content>
-        {title && <ContentHeader title={title} textAlign={align} />}
+      {/* <Header title={configApi.getString('app.title')} /> */}
+      <Content className={classes.wrapper}>
+        {/* {title && <ContentHeader title={title} textAlign={align} />} */}
+        <Grid  className={classes.logo}>
+            <Logo/>
+        </Grid>
         <Grid
-          container
-          justifyContent={align === 'center' ? align : 'flex-start'}
-          spacing={2}
-          component="ul"
-          classes={classes}
-        >
+            container
+            justifyContent="center"
+            spacing={2}
+            component="ul"
+            classes={classes}
+          >
           {providerElements}
+        </Grid>
+        <Grid item className={classes.footerWrapper} lg={12}>
+              <p className={classes.footer}>
+                {' '}
+                <span className={classes.footerText}>Powered by </span>{' '}
+                <img
+                  src={BackstageLogo}
+                  alt="backstage logo"
+                  className={classes.logoBackstage}
+                />{' '}
+              </p>
         </Grid>
       </Content>
     </Page>
@@ -94,7 +94,7 @@ export const SingleSignInPage = ({
 }: SingleSignInPageProps) => {
   const classes = useStyles();
   const authApi = useApi(provider.apiRef);
-  const configApi = useApi(configApiRef);
+  // const configApi = useApi(configApiRef);
 
   const [error, setError] = useState<Error>();
 
@@ -153,41 +153,51 @@ export const SingleSignInPage = ({
 
   return showLoginPage ? (
     <Page themeId="home">
-      <Header title={configApi.getString('app.title')} />
-      <Content>
-        <Grid
-          container
-          justifyContent="center"
-          spacing={2}
-          component="ul"
-          classes={classes}
-        >
-          <GridItem>
-            <InfoCard
-              variant="fullHeight"
-              title={provider.title}
-              actions={
-                <Button
-                  color="primary"
-                  variant="outlined"
-                  onClick={() => {
-                    login({ showPopup: true });
-                  }}
-                >
-                  Sign In
-                </Button>
-              }
-            >
-              <Typography variant="body1">{provider.message}</Typography>
-              {error && error.name !== 'PopupRejectedError' && (
-                <Typography variant="body1" color="error">
-                  {error.message}
-                </Typography>
-              )}
-            </InfoCard>
-          </GridItem>
-        </Grid>
-      </Content>
+      {/* <Header title={configApi.getString('app.title')} /> */}
+        <Content className={classes.wrapper}>
+          <Grid  className={classes.logo}>
+              <Logo />
+          </Grid>
+          <Grid
+            container
+            justifyContent="center"
+            spacing={2}
+            component="ul"
+            classes={classes}
+          >
+            <GridItem>
+              <Grid
+                className={classes.loginBox}
+                onClick={() => {
+                  login({ showPopup: true });
+                }}
+              >
+                <div className={classes.providerTitleBar}>
+                  {provider.title === "Keycloak" && <img src={KeycloakLogo} alt={provider.title} className={classes.providerLogo}/>}
+                  {provider.title === "Okta" && <img src={OktaLogo} alt={provider.title} className={classes.providerLogo} />}
+                  {provider.title === "GitHub" && <img src={GithubLogo} alt={provider.title} className={classes.providerLogo} />}
+                  <h3>{provider.message}</h3>
+                </div>
+                {error && error.name !== 'PopupRejectedError' && (
+                  <Typography variant="body1" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </Grid>
+            </GridItem>
+          </Grid>
+          <Grid item className={classes.footerWrapper} lg={12}>
+                <p className={classes.footer}>
+                  {' '}
+                  <span className={classes.footerText}>Powered by </span>{' '}
+                  <img
+                    src={BackstageLogo}
+                    alt="backstage logo"
+                    className={classes.logoBackstage}
+                  />{' '}
+                </p>
+              </Grid>
+        </Content>
     </Page>
   ) : (
     <Progress />

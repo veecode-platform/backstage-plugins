@@ -23,7 +23,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import isEmpty from 'lodash/isEmpty';
-import { InfoCard } from '../InfoCard/InfoCard';
+import { InfoCard } from '@backstage/core-components';
 import { ProviderComponent, ProviderLoader, SignInProvider } from './types';
 import { GridItem } from './styles';
 import { UserIdentity } from './UserIdentity';

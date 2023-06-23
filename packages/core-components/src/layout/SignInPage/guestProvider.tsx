@@ -17,7 +17,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { InfoCard } from '../InfoCard/InfoCard';
+import { InfoCard } from '@backstage/core-components';
 import { GridItem } from './styles';
 import { ProviderComponent, ProviderLoader, SignInProvider } from './types';
 import { GuestUserIdentity } from './GuestUserIdentity';
