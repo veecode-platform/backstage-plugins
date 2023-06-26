@@ -109,6 +109,8 @@ export const CatalogTable = (props: CatalogTableProps) => {
             columnFactories.createSpecTypeColumn(),
             columnFactories.createSpecTargetsColumn(),
           ];
+        case 'api':
+          return [...baseColumns, columnFactories.createCreatedAtColumn()];
         default:
           return entities.every(
             entity => entity.metadata.namespace === 'default',

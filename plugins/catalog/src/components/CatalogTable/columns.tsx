@@ -115,6 +115,12 @@ export const columnFactories = Object.freeze({
       field: 'entity.spec.lifecycle',
     };
   },
+  createCreatedAtColumn(): TableColumn<CatalogTableRow> {
+    return {
+      title: 'Created At',
+      field: 'entity.metadata.createdAt',
+    };
+  },
   createMetadataDescriptionColumn(): TableColumn<CatalogTableRow> {
     return {
       title: 'Description',
