@@ -1,3 +1,18 @@
+/*
+ * Copyright 2023 The Backstage Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import {
   ANNOTATION_EDIT_URL,
   ANNOTATION_LOCATION,
@@ -12,7 +27,8 @@ import {
   // Link,
 } from '@backstage/core-components';
 import {
-   alertApiRef, 
+   alertApiRef,
+   errorApiRef,
    useApi
   } from '@backstage/core-plugin-api';
 import {
@@ -77,6 +93,7 @@ export function AboutCard(props: AboutCardProps) {
   const scmIntegrationsApi = useApi(scmIntegrationsApiRef);
   const catalogApi = useApi(catalogApiRef);
   const alertApi = useApi(alertApiRef);
+  const errorApi = useApi(errorApiRef);
 
   const entitySourceLocation = getEntitySourceLocation(
     entity,
@@ -95,7 +112,7 @@ export function AboutCard(props: AboutCardProps) {
   const viewInTechDocs: IconLinkVerticalProps = {
     label: 'View TechDocs',
     disabled:
-      !entity.metadata.annotations?.hasOwnProperty('backstage.io/techdocs-ref') || entity.spec?.type == "openapi",
+      !entity.metadata.annotations?.hasOwnProperty('backstage.io/techdocs-ref') || entity.spec?.type === "openapi",
     icon: <DocsIcon />,
     href: `/catalog/${entity.metadata.namespace ?? DEFAULT_NAMESPACE }/${entity.kind}/${entity.metadata.name}/docs`
       // viewTechdocLink &&
@@ -124,9 +141,17 @@ export function AboutCard(props: AboutCardProps) {
   const allowRefresh =
     entityLocation?.startsWith('url:') || entityLocation?.startsWith('file:');
   const refreshEntity = useCallback(async () => {
-    await catalogApi.refreshEntity(stringifyEntityRef(entity));
-    alertApi.post({ message: 'Refresh scheduled', severity: 'info' });
-  }, [catalogApi, alertApi, entity]);
+    try {
+      await catalogApi.refreshEntity(stringifyEntityRef(entity));
+      alertApi.post({
+        message: 'Refresh scheduled',
+        severity: 'info',
+        display: 'transient',
+      });
+    } catch (e) {
+      errorApi.post(e);
+    }
+  }, [catalogApi, alertApi, errorApi, entity]);
 
   return (
     <Card className={cardClass}>

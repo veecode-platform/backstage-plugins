@@ -1,5 +1,45 @@
 # @backstage/plugin-catalog-node
 
+## 1.4.0-next.0
+
+### Minor Changes
+
+- f06f0e46ba88: Support placeholder resolvers in the CatalogPlugin, also moves `PlaceholderResolver` and related types from `@backstage/plugin-catalog-backend` to `@backstage/plugin-catalog-node`.
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/errors@1.2.1-next.0
+  - @backstage/backend-plugin-api@0.5.4-next.0
+  - @backstage/catalog-client@1.4.3-next.0
+  - @backstage/catalog-model@1.4.1-next.0
+  - @backstage/types@1.1.0
+  - @backstage/plugin-catalog-common@1.0.15-next.0
+
+## 1.3.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/catalog-client@1.4.2
+  - @backstage/types@1.1.0
+  - @backstage/catalog-model@1.4.0
+  - @backstage/errors@1.2.0
+  - @backstage/backend-plugin-api@0.5.3
+  - @backstage/plugin-catalog-common@1.0.14
+
+## 1.3.7-next.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/catalog-model@1.4.0-next.1
+  - @backstage/backend-plugin-api@0.5.3-next.2
+  - @backstage/catalog-client@1.4.2-next.2
+  - @backstage/errors@1.2.0-next.0
+  - @backstage/types@1.0.2
+  - @backstage/plugin-catalog-common@1.0.14-next.1
+
 ## 1.3.7-next.1
 
 ### Patch Changes

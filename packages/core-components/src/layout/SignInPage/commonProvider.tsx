@@ -25,7 +25,7 @@ import { useApi, errorApiRef } from '@backstage/core-plugin-api';
 import { GridItem, useStyles } from './styles';
 import { ForwardedError } from '@backstage/errors';
 import { UserIdentity } from './UserIdentity';
-import { Grid } from '@material-ui/core';
+import  Grid from '@material-ui/core/Grid';
 import KeycloakLogo from "./assets/keycloak.png";
 import OktaLogo from "./assets/okta.png";
 import GithubLogo from "./assets/github.png";

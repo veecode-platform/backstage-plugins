@@ -43,6 +43,7 @@ import { capitalize } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
 import { columnFactories } from './columns';
 import { CatalogTableRow } from './types';
+import pluralize from 'pluralize';
 
 /**
  * Props for {@link CatalogTable}.
@@ -228,6 +229,11 @@ export const CatalogTable = (props: CatalogTableProps) => {
     typeColumn.hidden = !showTypeColumn;
   }
   const showPagination = rows.length > 20;
+  const currentKind = filters.kind?.value || '';
+  const currentType = filters.type?.value || '';
+  const titleDisplay = [titlePreamble, currentType, pluralize(currentKind)]
+    .filter(s => s)
+    .join(' ');
 
   return (
     <Table<CatalogTableRow>
@@ -243,7 +249,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
         pageSizeOptions: [20, 50, 100],
         ...tableOptions,
       }}
-      title={`${titlePreamble} (${entities.length})`}
+      title={`${titleDisplay} (${entities.length})`}
       data={rows}
       actions={actions || defaultActions}
       subtitle={subtitle}
