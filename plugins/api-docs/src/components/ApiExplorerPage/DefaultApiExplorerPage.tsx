@@ -51,7 +51,7 @@ const defaultColumns: TableColumn<CatalogTableRow>[] = [
   CatalogTable.columns.createOwnerColumn(),
   CatalogTable.columns.createSpecTypeColumn(),
   CatalogTable.columns.createSpecLifecycleColumn(),
-  CatalogTable.columns.createCreatedAtColumn(),
+  CatalogTable.columns.createPublishedAtColumn(),
   // CatalogTable.columns.createMetadataDescriptionColumn(),
   CatalogTable.columns.createTagsColumn(),
 ];
