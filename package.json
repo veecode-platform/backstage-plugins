@@ -105,5 +105,5 @@
       "node ./scripts/verify-lockfile-duplicates --fix"
     ]
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0" 
 }
