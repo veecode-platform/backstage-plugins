@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
       - name: yarn install
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: yarn tsc
         run: yarn tsc
       - name: build workspace plugins 
