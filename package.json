@@ -39,6 +39,7 @@
   },
   "workspaces": {
     "packages": [
+      "packages/core-components",
       "plugins/vault-backend",
       "plugins/user-settings",
       "plugins/api-docs",
@@ -104,5 +105,5 @@
       "node ./scripts/verify-lockfile-duplicates --fix"
     ]
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.6.0"
 }

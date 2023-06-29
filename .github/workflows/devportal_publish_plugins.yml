@@ -1,0 +1,34 @@
+name: Publish Devportal plugins
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [18.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+      - name: yarn tsc
+        run: yarn tsc
+      - name: build workspace plugins 
+        run: yarn backstage-cli repo build #yarn workspaces foreach run backstage-cli package build
+      - name: publish plugins on npm #validar - publicacao somente de plugins alterados  antigo publish yarn workspaces foreach -p -j 10 -v --no-private npm publish --access public --tolerate-republish
+        run: |
+          yarn config set -H 'npmAuthToken' "${{secrets.NPM_TOKEN}}"
+          yarn workspaces foreach -p -j 10 -v --no-private run publish
+
+
+
+        
