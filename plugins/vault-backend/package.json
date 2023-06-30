@@ -1,7 +1,7 @@
 {
   "name": "@veecode-platform/plugin-vault-backend",
   "description": "A Backstage backend plugin that integrates towards Vault - veeCode version",
-  "version": "0.3.3-next.2",
+  "version": "0.3.3-next.4",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "license": "Apache-2.0",
@@ -30,8 +30,7 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack",
-    "publish": "npm publish"
+    "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
     "@backstage/backend-common": "^0.19.0",

@@ -1,7 +1,7 @@
 {
   "name": "@veecode-platform/core-components",
   "description": "Core components used by Backstage plugins and apps - veeCode version",
-  "version": "0.13.3-next.1",
+  "version": "0.13.3-next.4",
   "publishConfig": {
     "access": "public",
     "main": "dist/index.esm.js",
@@ -29,8 +29,7 @@
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
     "clean": "backstage-cli package clean",
-    "start": "backstage-cli package start",
-    "publish": "npm publish"
+    "start": "backstage-cli package start"
   },
   "dependencies": {
     "@backstage/config": "^1.0.8",
