@@ -19,7 +19,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
+          registry-url: https://registry.npmjs.org/
+          token: ${{secrets.NPM_TOKEN}}
+      - name: test npm login
+        run: 
       - name: yarn install
         run: yarn install
       - name: yarn tsc
@@ -27,8 +30,12 @@ jobs:
         run: yarn tsc
       - name: build workspace plugins 
         run: yarn backstage-cli repo build #yarn workspaces foreach run backstage-cli package build
+      - name: bump plugins version
+        run: yarn workspaces foreach -v version patch
       - name: publish plugins on npm #validar - publicacao somente de plugins alterados  antigo publish yarn workspaces foreach -p -j 10 -v --no-private npm publish --access public --tolerate-republish
         run: npm publish --workspaces=true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
