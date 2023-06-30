@@ -34,7 +34,10 @@ jobs:
         run: npm publish --workspaces=true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: update plugins version
+          committer_name: veecode_actions
+          committer_email: actions@vee.codes
 
         
