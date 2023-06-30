@@ -21,8 +21,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
           token: ${{secrets.NPM_TOKEN}}
-      - name: test npm login
-        run: 
+      #- name: test npm login
+      #  run: 
       - name: yarn install
         run: yarn install
       - name: yarn tsc
