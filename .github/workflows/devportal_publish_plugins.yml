@@ -10,6 +10,8 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [18.x]
+    env:
+      CI: 'true'
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -17,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/ #:_authToken=${{secrets.NPM_TOKEN}}
       - name: yarn install
         run: yarn install
       - name: yarn tsc
@@ -28,6 +30,7 @@ jobs:
       - name: publish plugins on npm #validar - publicacao somente de plugins alterados  antigo publish yarn workspaces foreach -p -j 10 -v --no-private npm publish --access public --tolerate-republish
         run: |
           yarn config set -H 'npmAuthToken' "${{secrets.NPM_TOKEN}}"
+          npm config set registry https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
           yarn workspaces foreach -p -j 10 -v --no-private run publish
 
 
