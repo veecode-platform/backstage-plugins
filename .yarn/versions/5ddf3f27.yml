@@ -1,0 +1,7 @@
+undecided:
+  - root
+  - "@veecode-platform/core-components"
+  - "@veecode-platform/plugin-api-docs"
+  - "@veecode-platform/plugin-catalog"
+  - "@veecode-platform/plugin-scaffolder"
+  - "@veecode-platform/plugin-user-settings"
