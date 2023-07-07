@@ -45,12 +45,13 @@ const generatedColumns: TableColumn[] = [
     title: 'ID',
     field: 'id',
     type: 'numeric',
-    width: '150px',
+    width: 'auto',
   },
   {
     title: 'Message',
     field: 'message',
     highlight: true,
+    width: 'auto',
     render: (row: Partial<WorkflowRun>) => {
       const LinkWrapper = () => {
         const routeLink = useRouteRef(buildRouteRef);
@@ -66,6 +67,7 @@ const generatedColumns: TableColumn[] = [
   },
   {
     title: 'Source',
+    width: 'auto',
     render: (row: Partial<WorkflowRun>) => (
       <Typography variant="body2" noWrap>
         <Typography paragraph variant="body2">
@@ -80,11 +82,12 @@ const generatedColumns: TableColumn[] = [
   {
     title: 'Workflow',
     field: 'workflowName',
+    width: 'auto',
+
   },
   {
     title: 'Status',
-    width: '150px',
-
+    width: 'auto',
     render: (row: Partial<WorkflowRun>) => (
       <Box display="flex" alignItems="center">
         <WorkflowRunStatus status={row.status} conclusion={row.conclusion} />
