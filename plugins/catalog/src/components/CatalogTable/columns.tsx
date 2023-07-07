@@ -57,6 +57,7 @@ export const columnFactories = Object.freeze({
           title={entity.metadata?.title}
         />
       ),
+      width: 'auto'
     };
   },
   createSystemColumn(): TableColumn<CatalogTableRow> {
@@ -69,6 +70,7 @@ export const columnFactories = Object.freeze({
           defaultKind="system"
         />
       ),
+      width: 'auto',
     };
   },
   createOwnerColumn(): TableColumn<CatalogTableRow> {
@@ -81,6 +83,7 @@ export const columnFactories = Object.freeze({
           defaultKind="group"
         />
       ),
+      width: 'auto',
     };
   },
   createSpecTargetsColumn(): TableColumn<CatalogTableRow> {
@@ -99,6 +102,7 @@ export const columnFactories = Object.freeze({
           )}
         </>
       ),
+      width: 'auto'
     };
   },
   createSpecTypeColumn(): TableColumn<CatalogTableRow> {
@@ -113,12 +117,14 @@ export const columnFactories = Object.freeze({
     return {
       title: 'Lifecycle',
       field: 'entity.spec.lifecycle',
+      width: 'auto',
     };
   },
   createPublishedAtColumn(): TableColumn<CatalogTableRow> {
     return {
       title: 'Published At',
       field: 'entity.metadata.publishedAt',
+      width: 'auto',
     };
   },
   createMetadataDescriptionColumn(): TableColumn<CatalogTableRow> {
@@ -139,7 +145,7 @@ export const columnFactories = Object.freeze({
       title: 'Tags',
       field: 'entity.metadata.tags',
       cellStyle: {
-        padding: '0px 16px 0px 20px',
+        padding: '.8em .5em',
       },
       render: ({ entity }) => (
         <>
@@ -166,6 +172,7 @@ export const columnFactories = Object.freeze({
       field: 'entity.metadata.title',
       hidden: options?.hidden,
       searchable: true,
+      width: 'auto',
     };
   },
   createLabelColumn(
