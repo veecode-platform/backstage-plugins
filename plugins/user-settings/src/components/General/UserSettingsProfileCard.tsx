@@ -17,7 +17,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
-import { UserSettingsMenu } from './UserSettingsMenu';
+// import { UserSettingsMenu } from './UserSettingsMenu';
 import { useUserProfile } from '../useUserProfileInfo';
 import { InfoCard } from '@backstage/core-components';
 
@@ -42,9 +42,9 @@ export const UserSettingsProfileCard = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <UserSettingsMenu />
-          </Grid>
+  </Grid>*/}
         </Grid>
       </Grid>
     </InfoCard>
