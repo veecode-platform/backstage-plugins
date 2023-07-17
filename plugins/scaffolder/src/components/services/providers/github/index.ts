@@ -65,9 +65,9 @@ export async function getUserGithub(Params: ParamsProvider): Promise<string> {
     }
 
     // console.log('Error');
-    return 'not found';
+    return 'Not found';
   } catch (error) {
     // console.log('Error');
-    return 'not found';
+    return 'Not found';
   }
 }

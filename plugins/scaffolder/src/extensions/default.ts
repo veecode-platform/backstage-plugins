@@ -43,6 +43,11 @@ import {
   MyGroupsPicker,
   MyGroupsPickerSchema,
 } from '../components/fields/MyGroupsPicker/MyGroupsPicker';
+// Custom
+import { RepoUrlPlatform } from '../components/fields/RepoUrlPlatform/RepoUrlPlatform'
+import { repoCustomValidation } from '../components';
+import { RepoUrlPlatformSchema } from '../components/fields/RepoUrlPlatform/schema';
+
 
 export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
   {
@@ -82,4 +87,10 @@ export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
     name: 'MyGroupsPicker',
     schema: MyGroupsPickerSchema,
   },
+  {
+    component: RepoUrlPlatform,
+    name: 'RepoUrlPlatform',
+    validation: repoCustomValidation,
+    schema: RepoUrlPlatformSchema,
+  }
 ];
