@@ -61,6 +61,10 @@ useEffect(()=>{
   setOwnerList( data != undefined ? data : [{label: messageLoading, value: messageLoading}]);
 },[items]);
 
+useEffect(()=>{
+  onChange({ owner: ownerData as string })
+},[ownerData])
+
 
   const itemsList = (data:string[]) : SelectItem[] => {
     if(data !== undefined){
@@ -86,7 +90,7 @@ useEffect(()=>{
       <FormControl
         margin="normal"
         required
-        error={rawErrors?.length > 0 && !owner}
+        error={rawErrors?.length > 0 && !ownerData}
       >
         {
           hasIntegration ? (
@@ -99,7 +103,7 @@ useEffect(()=>{
                   onChange({ owner: String(Array.isArray(s) ? s[0] : s) })
                 }
                 disabled={allowedOwners.length === 1}
-                selected={owner}
+                selected={owner??""}
                 items={ownerItems}
               />
             ) : (
