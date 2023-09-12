@@ -44,8 +44,7 @@
       "plugins/user-settings",
       "plugins/api-docs",
       "plugins/catalog",
-      "plugins/scaffolder",
-      "plugins/github-actions"
+      "plugins/scaffolder"
     ]
   },
   "resolutions": {
