@@ -160,3 +160,15 @@ tsconfig.tmp.json
 # VS Code backing up svg files
 *svg.bkp
 *svg.dtmp
+
+#VEECODE PLATFORM
+
+packages/*
+!packages/core-components
+
+plugins/*
+!plugins/vault-backend
+!plugins/user-settings
+!plugins/api-docs
+!plugins/catalog
+!plugins/scaffolde
