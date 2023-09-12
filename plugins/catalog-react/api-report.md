@@ -25,6 +25,7 @@ import { ScmIntegrationRegistry } from '@backstage/integration';
 import { StyleRules } from '@material-ui/core/styles/withStyles';
 import { SystemEntity } from '@backstage/catalog-model';
 import { TableColumn } from '@backstage/core-components';
+import { TableOptions } from '@backstage/core-components';
 
 // @public
 export const AsyncEntityProvider: (
@@ -62,7 +63,13 @@ export const catalogApiRef: ApiRef<CatalogApi>;
 // @public (undocumented)
 export const CatalogFilterLayout: {
   (props: { children: React_2.ReactNode }): JSX.Element;
-  Filters: (props: { children: React_2.ReactNode }) => JSX.Element;
+  Filters: (props: {
+    children: React_2.ReactNode;
+    options?: {
+      drawerBreakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
+      drawerAnchor?: 'left' | 'right' | 'top' | 'bottom';
+    };
+  }) => JSX.Element;
   Content: (props: { children: React_2.ReactNode }) => JSX.Element;
 };
 
@@ -394,6 +401,8 @@ export interface EntityTableProps<T extends Entity> {
   emptyContent?: ReactNode;
   // (undocumented)
   entities: T[];
+  // (undocumented)
+  tableOptions?: TableOptions;
   // (undocumented)
   title: string;
   // (undocumented)

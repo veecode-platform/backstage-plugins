@@ -18,7 +18,7 @@ import { ParamsService } from './types';
 
 export async function getOrgs(Params: ParamsService): Promise<string[]> {
   const { provider, host, token } = Params;
-
+  
   switch (provider) {
     case 'github':
       return await getOrgsGithub({ host, token });
@@ -28,3 +28,7 @@ export async function getOrgs(Params: ParamsService): Promise<string[]> {
       return ['not orgs avaliable'];
   }
 }
+
+export * from './service/router';
+export * from './config';
+export { airbrakePlugin } from './plugin';

@@ -1,5 +1,106 @@
 # @backstage/plugin-auth-backend
 
+## 0.18.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.19.4
+  - @backstage/plugin-auth-node@0.2.19
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.18.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.19.3
+  - @backstage/plugin-auth-node@0.2.18
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.18.6
+
+### Patch Changes
+
+- 16452cd007ae: Updated `frameHandler` to return `undefined` when using the redirect flow instead of returning `postMessageReponse` which was causing errors
+- 9dad4b0e61bd: Updated config schema to match what was being used in code
+- bb70a9c3886a: Add frontend visibility to provider objects in `auth` config.
+- Updated dependencies
+  - @backstage/backend-common@0.19.2
+  - @backstage/plugin-auth-node@0.2.17
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.18.6-next.2
+
+### Patch Changes
+
+- 16452cd007ae: Updated `frameHandler` to return `undefined` when using the redirect flow instead of returning `postMessageReponse` which was causing errors
+- bb70a9c3886a: Add frontend visibility to provider objects in `auth` config.
+- Updated dependencies
+  - @backstage/backend-common@0.19.2-next.2
+  - @backstage/plugin-auth-node@0.2.17-next.2
+
+## 0.18.6-next.1
+
+### Patch Changes
+
+- 9dad4b0e61bd: Updated config schema to match what was being used in code
+- Updated dependencies
+  - @backstage/backend-common@0.19.2-next.1
+  - @backstage/plugin-auth-node@0.2.17-next.1
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.18.6-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.19.2-next.0
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+  - @backstage/plugin-auth-node@0.2.17-next.0
+
+## 0.18.5
+
+### Patch Changes
+
+- c27ae5004fc2: Support for Token Endpoint Auth Method for OIDC Provider
+- Updated dependencies
+  - @backstage/errors@1.2.1
+  - @backstage/backend-common@0.19.1
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/types@1.1.0
+  - @backstage/plugin-auth-node@0.2.16
+
+## 0.18.5-next.1
+
+### Patch Changes
+
+- c27ae5004fc2: Support for Token Endpoint Auth Method for OIDC Provider
+- Updated dependencies
+  - @backstage/config@1.0.8
+
 ## 0.18.5-next.0
 
 ### Patch Changes

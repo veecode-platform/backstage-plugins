@@ -1,5 +1,14 @@
 # @backstage/plugin-permission-common
 
+## 0.7.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/errors@1.2.1
+  - @backstage/config@1.0.8
+  - @backstage/types@1.1.0
+
 ## 0.7.7-next.0
 
 ### Patch Changes
@@ -424,7 +433,7 @@
 
 - b768259244: **BREAKING**: Authorize API request and response types have been updated. The existing `AuthorizeRequest` and `AuthorizeResponse` types now match the entire request and response objects for the /authorize endpoint, and new types `AuthorizeQuery` and `AuthorizeDecision` have been introduced for individual items in the request and response batches respectively.
 
-  **BREAKING**: PermissionClient has been updated to use the new request and response format in the latest version of @backstage/permission-backend.
+  **BREAKING**: PermissionClient has been updated to use the new request and response format in the latest version of @backstage/plugin-permission-backend.
 
 ### Patch Changes
 
@@ -437,7 +446,7 @@
 
 - b768259244: **BREAKING**: Authorize API request and response types have been updated. The existing `AuthorizeRequest` and `AuthorizeResponse` types now match the entire request and response objects for the /authorize endpoint, and new types `AuthorizeQuery` and `AuthorizeDecision` have been introduced for individual items in the request and response batches respectively.
 
-  **BREAKING**: PermissionClient has been updated to use the new request and response format in the latest version of @backstage/permission-backend.
+  **BREAKING**: PermissionClient has been updated to use the new request and response format in the latest version of @backstage/plugin-permission-backend.
 
 ### Patch Changes
 

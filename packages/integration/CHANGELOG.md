@@ -1,5 +1,44 @@
 # @backstage/integration
 
+## 1.6.2
+
+### Patch Changes
+
+- cf196443d8da: Additional fix for Gitiles auth links
+- Updated dependencies
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+
+## 1.6.1
+
+### Patch Changes
+
+- 842eb24ef5e8: Gitiles: Fixed auth prefix issue
+- Updated dependencies
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+
+## 1.6.0
+
+### Minor Changes
+
+- 443afcf7f567: Added `buildGerritGitilesArchiveUrl()` to construct a Gitiles URL to download an archive.
+  Gitiles URL that uses an authenticated prefix (`/a/`) can now be parsed by the integration.
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/errors@1.2.1
+  - @backstage/config@1.0.8
+
 ## 1.5.1-next.0
 
 ### Patch Changes

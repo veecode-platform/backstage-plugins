@@ -1,5 +1,138 @@
 # @backstage/plugin-linguist-backend
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.19.4
+  - @backstage/backend-tasks@0.5.7
+  - @backstage/plugin-auth-node@0.2.19
+  - @backstage/plugin-catalog-node@1.4.3
+  - @backstage/backend-plugin-api@0.6.2
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+  - @backstage/plugin-linguist-common@0.1.1
+
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.19.3
+  - @backstage/backend-tasks@0.5.6
+  - @backstage/plugin-auth-node@0.2.18
+  - @backstage/plugin-catalog-node@1.4.2
+  - @backstage/backend-plugin-api@0.6.1
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+  - @backstage/plugin-linguist-common@0.1.1
+
+## 0.4.0
+
+### Minor Changes
+
+- d440f1dd0e72: Adds a processor to the linguist backend which can automatically add language tags to entities
+- 0896d85d5ab5: **BREAKING**: Removed the alpha export plugin options from exported `linguistPlugin()` (used by the new backend system) in favour of static config.
+
+### Patch Changes
+
+- 12a8c94eda8d: Add package repository and homepage metadata
+- ca5e591cb86a: Fixed bug in LinguistBackendClient.ts file where if the linguistJsOptions is specified and sent over to the linguist-js package it would get changed (another attribute would be added) causing future entities of the batch to fail with an error
+- Updated dependencies
+  - @backstage/backend-common@0.19.2
+  - @backstage/backend-plugin-api@0.6.0
+  - @backstage/plugin-linguist-common@0.1.1
+  - @backstage/plugin-catalog-node@1.4.1
+  - @backstage/plugin-auth-node@0.2.17
+  - @backstage/backend-tasks@0.5.5
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.4.0-next.2
+
+### Minor Changes
+
+- d440f1dd0e72: Adds a processor to the linguist backend which can automatically add language tags to entities
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-linguist-common@0.1.1-next.1
+  - @backstage/backend-plugin-api@0.6.0-next.2
+  - @backstage/backend-tasks@0.5.5-next.2
+  - @backstage/backend-common@0.19.2-next.2
+  - @backstage/plugin-catalog-node@1.4.1-next.2
+  - @backstage/plugin-auth-node@0.2.17-next.2
+
+## 0.3.2-next.1
+
+### Patch Changes
+
+- 12a8c94eda8d: Add package repository and homepage metadata
+- Updated dependencies
+  - @backstage/backend-common@0.19.2-next.1
+  - @backstage/plugin-linguist-common@0.1.1-next.0
+  - @backstage/plugin-auth-node@0.2.17-next.1
+  - @backstage/backend-plugin-api@0.6.0-next.1
+  - @backstage/backend-tasks@0.5.5-next.1
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+
+## 0.3.2-next.0
+
+### Patch Changes
+
+- ca5e591cb86a: Fixed bug in LinguistBackendClient.ts file where if the linguistJsOptions is specified and sent over to the linguist-js package it would get changed (another attribute would be added) causing future entities of the batch to fail with an error
+- Updated dependencies
+  - @backstage/backend-common@0.19.2-next.0
+  - @backstage/backend-plugin-api@0.5.5-next.0
+  - @backstage/backend-tasks@0.5.5-next.0
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/errors@1.2.1
+  - @backstage/types@1.1.0
+  - @backstage/plugin-auth-node@0.2.17-next.0
+  - @backstage/plugin-linguist-common@0.1.0
+
+## 0.3.1
+
+### Patch Changes
+
+- ae261e79d256: Added alpha support for the [new backend system](https://backstage.io/docs/backend-system/)
+- Updated dependencies
+  - @backstage/errors@1.2.1
+  - @backstage/backend-common@0.19.1
+  - @backstage/backend-plugin-api@0.5.4
+  - @backstage/backend-tasks@0.5.4
+  - @backstage/catalog-client@1.4.3
+  - @backstage/catalog-model@1.4.1
+  - @backstage/config@1.0.8
+  - @backstage/types@1.1.0
+  - @backstage/plugin-auth-node@0.2.16
+  - @backstage/plugin-linguist-common@0.1.0
+
+## 0.3.1-next.1
+
+### Patch Changes
+
+- ae261e79d256: Added alpha support for the [new backend system](https://backstage.io/docs/backend-system/)
+- Updated dependencies
+  - @backstage/config@1.0.8
+
 ## 0.3.1-next.0
 
 ### Patch Changes

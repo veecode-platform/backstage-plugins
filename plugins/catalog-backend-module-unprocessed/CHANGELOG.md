@@ -1,5 +1,78 @@
 # @backstage/plugin-catalog-backend-module-unprocessed
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.2.19
+  - @backstage/backend-plugin-api@0.6.2
+  - @backstage/catalog-model@1.4.1
+
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.2.18
+  - @backstage/backend-plugin-api@0.6.1
+  - @backstage/catalog-model@1.4.1
+
+## 0.2.0
+
+### Minor Changes
+
+- 5156a94c2e2a: **BREAKING**: Fixing typo in exported module. You will have to rename the import to the correct spelling. `UnprocessedEntites` -> `UnprocessedEntities`
+
+### Patch Changes
+
+- 12a8c94eda8d: Add package repository and homepage metadata
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.6.0
+  - @backstage/plugin-auth-node@0.2.17
+  - @backstage/catalog-model@1.4.1
+
+## 0.2.0-next.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.6.0-next.2
+  - @backstage/plugin-auth-node@0.2.17-next.2
+
+## 0.2.0-next.1
+
+### Patch Changes
+
+- 12a8c94eda8d: Add package repository and homepage metadata
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.2.17-next.1
+  - @backstage/backend-plugin-api@0.6.0-next.1
+  - @backstage/catalog-model@1.4.1
+
+## 0.2.0-next.0
+
+### Minor Changes
+
+- 5156a94c2e2a: **BREAKING**: Fixing typo in exported module. You will have to rename the import to the correct spelling. `UnprocessedEntites` -> `UnprocessedEntities`
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.5.5-next.0
+  - @backstage/catalog-model@1.4.1
+  - @backstage/plugin-auth-node@0.2.17-next.0
+
+## 0.1.1
+
+### Patch Changes
+
+- a8fa79ccc105: Fix and improve documentation for the unprocessed entities modules.
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.5.4
+  - @backstage/catalog-model@1.4.1
+  - @backstage/plugin-auth-node@0.2.16
+
 ## 0.1.1-next.0
 
 ### Patch Changes

@@ -35,7 +35,7 @@ import { PendingPodContent } from './PendingPodContent';
 import { ErrorList } from '../ErrorList';
 import { usePodMetrics } from '../../../hooks/usePodMetrics';
 import { ResourceUtilization } from '../../ResourceUtilization';
-import { bytesToMiB, formatMilicores } from '../../../utils/resources';
+import { bytesToMiB, formatMillicores } from '../../../utils/resources';
 
 const useDrawerContentStyles = makeStyles((_theme: Theme) =>
   createStyles({
@@ -109,13 +109,13 @@ export const PodDrawer = ({ podAndErrors, open }: PodDrawerProps) => {
                 title="CPU requests"
                 usage={podMetrics.cpu.currentUsage}
                 total={podMetrics.cpu.requestTotal}
-                totalFormated={formatMilicores(podMetrics.cpu.requestTotal)}
+                totalFormatted={formatMillicores(podMetrics.cpu.requestTotal)}
               />
               <ResourceUtilization
                 title="CPU limits"
                 usage={podMetrics.cpu.currentUsage}
                 total={podMetrics.cpu.limitTotal}
-                totalFormated={formatMilicores(podMetrics.cpu.limitTotal)}
+                totalFormatted={formatMillicores(podMetrics.cpu.limitTotal)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -123,13 +123,13 @@ export const PodDrawer = ({ podAndErrors, open }: PodDrawerProps) => {
                 title="Memory requests"
                 usage={podMetrics.memory.currentUsage}
                 total={podMetrics.memory.requestTotal}
-                totalFormated={bytesToMiB(podMetrics.memory.requestTotal)}
+                totalFormatted={bytesToMiB(podMetrics.memory.requestTotal)}
               />
               <ResourceUtilization
                 title="Memory limits"
                 usage={podMetrics.memory.currentUsage}
                 total={podMetrics.memory.limitTotal}
-                totalFormated={bytesToMiB(podMetrics.memory.requestTotal)}
+                totalFormatted={bytesToMiB(podMetrics.memory.requestTotal)}
               />
             </Grid>
           </Grid>
@@ -173,7 +173,7 @@ export const PodDrawer = ({ podAndErrors, open }: PodDrawerProps) => {
             </Grid>
             {podAndErrors.errors.length > 0 && (
               <Grid item xs={12}>
-                <Typography variant="h5">Errors:</Typography>
+                <Typography variant="h5">Errors</Typography>
               </Grid>
             )}
             {podAndErrors.errors.length > 0 && (

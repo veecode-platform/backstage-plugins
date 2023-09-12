@@ -27,4 +27,14 @@ export async function getUser(Params: ParamsService): Promise<string> {
     default:
       return 'Not Owner avaliable';
   }
+}  
+export interface Config {
+  /** Optional configurations for the SonarQube plugin */
+  sonarqube?: {
+    /**
+     * The base url of the sonarqube installation. Defaults to https://sonarcloud.io.
+     * @visibility frontend
+     */
+    baseUrl?: string;
+  };
 }

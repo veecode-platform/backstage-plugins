@@ -21,3 +21,12 @@ export interface RepoUrlPickerState {
   workspace?: string;
   project?: string;
 }
+
+/**
+ * Architecture Decision Records backend plugin.
+ *
+ * @packageDocumentation
+ */
+export * from './search';
+export * from './service';
+export { adrPlugin } from './plugin';

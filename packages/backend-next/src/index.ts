@@ -32,16 +32,37 @@ import { techdocsPlugin } from '@backstage/plugin-techdocs-backend/alpha';
 import { todoPlugin } from '@backstage/plugin-todo-backend';
 import { entityFeedbackPlugin } from '@backstage/plugin-entity-feedback-backend';
 import { catalogModuleUnprocessedEntities } from '@backstage/plugin-catalog-backend-module-unprocessed';
+import { badgesPlugin } from '@backstage/plugin-badges-backend';
+import { azureDevOpsPlugin } from '@backstage/plugin-azure-devops-backend';
+import { linguistPlugin } from '@backstage/plugin-linguist-backend';
+import { devtoolsPlugin } from '@backstage/plugin-devtools-backend';
+import { adrPlugin } from '@backstage/plugin-adr-backend';
+import { lighthousePlugin } from '@backstage/plugin-lighthouse-backend';
+import { proxyPlugin } from '@backstage/plugin-proxy-backend';
 
 const backend = createBackend();
 
-backend.add(appPlugin({ appPackageName: 'example-app' }));
+backend.add(appPlugin());
+
+// Badges
+backend.add(badgesPlugin());
+
+// Azure DevOps
+backend.add(azureDevOpsPlugin());
+
+// DevTools
+backend.add(devtoolsPlugin());
 
 // Entity Feedback
 backend.add(entityFeedbackPlugin());
 
+// Linguist
+backend.add(linguistPlugin());
+
 // Todo
 backend.add(todoPlugin());
+
+backend.add(adrPlugin());
 
 // Techdocs
 backend.add(techdocsPlugin());
@@ -60,6 +81,12 @@ backend.add(searchModuleExploreCollator());
 
 // Kubernetes
 backend.add(kubernetesPlugin());
+
+// Lighthouse
+backend.add(lighthousePlugin());
+
+// Proxy
+backend.add(proxyPlugin());
 
 // Permissions
 backend.add(permissionPlugin());
