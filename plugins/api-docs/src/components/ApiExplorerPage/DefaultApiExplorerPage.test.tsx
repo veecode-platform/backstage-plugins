@@ -24,7 +24,7 @@ import {
 import {
   CatalogTableRow,
   DefaultStarredEntitiesApi,
-} from '@backstage/plugin-catalog';
+} from '@veecode-platform/plugin-catalog';
 import {
   CatalogApi,
   catalogApiRef,
