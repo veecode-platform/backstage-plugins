@@ -28,12 +28,12 @@ const useStyles = makeStyles(
     avatar: {
       width: '4rem',
       height: '4rem',
-      color: theme.palette.common.white,
+      color: theme.palette.common.white
     },
     avatarText: {
-      fontWeight: theme.typography.fontWeightBold,
       letterSpacing: '1px',
       textTransform: 'uppercase',
+      // fontWeight: theme.typography.fontWeightBold
     },
   }),
   { name: 'BackstageAvatar' },

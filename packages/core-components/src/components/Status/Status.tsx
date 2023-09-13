@@ -31,7 +31,7 @@ export type StatusClassKey =
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
     status: {
-      fontWeight: theme.typography.fontWeightMedium,
+      // fontWeight: theme.typography.fontWeightMedium,
       '&::before': {
         width: '0.7em',
         height: '0.7em',

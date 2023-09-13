@@ -18,12 +18,11 @@ import { renderInTestApp } from '@backstage/test-utils';
 
 import React from 'react';
 import { CreatedAtColumn } from './CreatedAtColumn';
-import { DateTime } from 'luxon';
 
 describe('<CreatedAtColumn />', () => {
   it('should render the column with the time', async () => {
     const props = {
-      createdAt: DateTime.now().toISO(),
+      createdAt: "12/04/2009",
     };
 
     const { getByText } = await renderInTestApp(<CreatedAtColumn {...props} />);

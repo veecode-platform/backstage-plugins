@@ -47,7 +47,7 @@ const useStyles = makeStyles(
       padding: theme.spacing(2, 2, 2, 2.5),
     },
     headerTitle: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
     },
     headerSubheader: {
       paddingTop: theme.spacing(1),

@@ -28,7 +28,7 @@ import { LogViewerControls } from './LogViewerControls';
 import { HEADER_SIZE, useStyles } from './styles';
 import { useLogViewerSearch } from './useLogViewerSearch';
 import { useLogViewerSelection } from './useLogViewerSelection';
-
+ 
 export interface RealLogViewerProps {
   text: string;
   classes?: { root?: string };

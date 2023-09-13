@@ -154,7 +154,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       },
       searchField: {
         color: '#b5b5b5',
-        fontWeight: theme.typography.fontWeightBold,
+        // fontWeight: theme.typography.fontWeightBold,
         fontSize: theme.typography.fontSize,
       },
       searchFieldHTMLInput: {
@@ -350,10 +350,12 @@ export const WorkaroundNavLink = React.forwardRef<
       ref={ref}
       aria-current={ariaCurrent}
       style={{ ...style, ...(isActive ? activeStyle : undefined) }}
+      className={classnames(isActive ? activeClassName : undefined) }
+/* original 
       className={classnames([
         className,
         isActive ? activeClassName : undefined,
-      ])}
+      ])} */
     />
   );
 });

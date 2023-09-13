@@ -59,7 +59,7 @@ const useIconStyles = makeStyles(
     },
     label: {
       textTransform: 'uppercase',
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       letterSpacing: 1.2,
     },
   }),

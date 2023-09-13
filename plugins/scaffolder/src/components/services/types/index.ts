@@ -16,13 +16,3 @@
 export * from './ParamsService';
 export * from './ResponseType';
 export * from './ParamsProvider';
-
-/**
- * Azure DevOps backend plugin that contains the API for retrieving builds, pull requests, etc. which is used by the Azure DevOps frontend plugin.
- *
- * @packageDocumentation
- */
-
-export { AzureDevOpsApi } from './api';
-export * from './service/router';
-export { azureDevOpsPlugin } from './plugin';

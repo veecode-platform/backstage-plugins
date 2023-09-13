@@ -31,7 +31,7 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     label: {
       color: theme.page.fontColor,
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       letterSpacing: 0,
       fontSize: theme.typography.fontSize,
       marginBottom: theme.spacing(1) / 2,

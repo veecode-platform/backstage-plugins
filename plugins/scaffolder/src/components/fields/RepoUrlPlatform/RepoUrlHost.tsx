@@ -52,10 +52,10 @@ export const RepoUrlPickerHost = (props: {
   useEffect(()=>{
     async function fetchData(){
       try{
-        const hosts = [];
-        if(githubIntegrationsExists) hosts.push(githubHostIntegration);
-        if(gitlabIntegrationsExists) hosts.push(gitlabHostIntegration);
-        setHostsData(hosts);
+        const hostss = [];
+        if(githubIntegrationsExists) hostss.push(githubHostIntegration);
+        if(gitlabIntegrationsExists) hostss.push(gitlabHostIntegration);
+        setHostsData(hostss);
       }catch(err){
         console.log(err)
       }
@@ -69,26 +69,24 @@ export const RepoUrlPickerHost = (props: {
 
   useEffect(()=>{
   const data = itemsList(hostsData as string[]);
-  setHostList( data != undefined ? data : [{label: "loading ...", value: "loading ..."}]);
+  setHostList( data !== undefined ? data : [{label: "loading ...", value: "loading ..."}]);
 },[hostsData]);
 
 const itemsList = (data:string[]) : SelectItem[] => {
   if(data !== undefined){
-    const hosts:SelectItem[] = [];
+    const hostss:SelectItem[] = [];
     data.forEach((item : string) =>{
-       hosts.push({
+       hostss.push({
         label: item,
         value: item
       })
     })
-    return hosts;
-  }
-  else{
+    return hostss;
+  } 
     return [{
       label: "loading",
       value: "loading"
     }]
-  }
 }
 
   useEffect(() => {

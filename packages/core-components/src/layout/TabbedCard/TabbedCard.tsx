@@ -145,7 +145,7 @@ const useCardTabStyles = makeStyles(
       },
     },
     selected: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
     },
   }),
   { name: 'BackstageCardTab' },

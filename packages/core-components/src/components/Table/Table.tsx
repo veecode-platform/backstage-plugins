@@ -105,7 +105,7 @@ const StyledMTableHeader = withStyles(
       borderTop: `1px solid ${theme.palette.grey.A100}`,
       borderBottom: `1px solid ${theme.palette.grey.A100}`,
       // withStyles hasn't a generic overload for theme
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       position: 'static',
       wordBreak: 'normal',
     },
@@ -136,14 +136,14 @@ const StyledMTableToolbar = withStyles(
 export type FiltersContainerClassKey = 'root' | 'title';
 
 const useFilterStyles = makeStyles<BackstageTheme>(
-  theme => ({
+  _theme => ({
     root: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
     },
     title: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightMedium,
       fontSize: 18,
       whiteSpace: 'nowrap',
     },

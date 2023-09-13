@@ -30,7 +30,7 @@ import {
   fetchApiRef,
   identityApiRef,
 } from '@backstage/core-plugin-api';
-import { CatalogEntityPage } from '@backstage/plugin-catalog';
+import { CatalogEntityPage } from '@veecode-platform/plugin-catalog';
 
 createDevApp()
   .addPage({

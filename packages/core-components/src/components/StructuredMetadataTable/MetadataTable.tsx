@@ -32,7 +32,7 @@ export type MetadataTableTitleCellClassKey = 'root';
 const tableTitleCellStyles = (theme: Theme) =>
   createStyles({
     root: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       whiteSpace: 'nowrap',
       paddingRight: theme.spacing(4),
       border: '0',
