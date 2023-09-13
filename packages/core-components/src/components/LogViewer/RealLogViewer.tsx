@@ -28,14 +28,14 @@ import { LogViewerControls } from './LogViewerControls';
 import { HEADER_SIZE, useStyles } from './styles';
 import { useLogViewerSearch } from './useLogViewerSearch';
 import { useLogViewerSelection } from './useLogViewerSelection';
- 
+
 export interface RealLogViewerProps {
   text: string;
   classes?: { root?: string };
 }
 
 export function RealLogViewer(props: RealLogViewerProps) {
-  const classes = useStyles({ classes: props.classes });
+  const classes:any = useStyles({ classes: props.classes });
   const listRef = useRef<FixedSizeList | null>(null);
 
   // The processor keeps state that optimizes appending to the text
