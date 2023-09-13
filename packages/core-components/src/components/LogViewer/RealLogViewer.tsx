@@ -69,7 +69,7 @@ export function RealLogViewer(props: RealLogViewerProps) {
 
   return (
     <AutoSizer>
-      {({ height, width }) => (
+      {({ height, width }: {height: number, width: number}) => (
         <Box style={{ width, height }} className={classes.root}>
           <Box className={classes.header}>
             <LogViewerControls {...search} />
