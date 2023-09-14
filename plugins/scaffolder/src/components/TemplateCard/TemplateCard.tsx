@@ -227,7 +227,9 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
       }}
     >
       <CardMedia className={classes.cardHeader}>
-        <FavoriteEntity className={classes.starButton} entity={template} />
+        <Box onClick={e => e.stopPropagation()}>
+          <FavoriteEntity className={classes.starButton} entity={template} />
+        </Box>
         {deprecated && <DeprecationWarning />}
         <ItemCardHeader
           title={templateProps.title}
