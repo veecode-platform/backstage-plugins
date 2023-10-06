@@ -20,4 +20,5 @@ export * from './RepoUrlPlatform';
 export * from './OwnedEntityPicker';
 export * from './EntityTagsPicker';
 export * from './MyGroupsPicker';
+export * from './ResourcePicker';
 export { type FieldSchema, makeFieldSchemaFromZod } from './utils';

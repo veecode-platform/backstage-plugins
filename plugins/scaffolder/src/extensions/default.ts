@@ -47,6 +47,10 @@ import {
 import { RepoUrlPlatform } from '../components/fields/RepoUrlPlatform/RepoUrlPlatform'
 import { repoCustomValidation } from '../components';
 import { RepoUrlPlatformSchema } from '../components/fields/RepoUrlPlatform/schema';
+import {
+  ResourcePicker,
+  ResourcePickerSchema,
+} from '../components/fields/ResourcePicker/ResourcePicker';
 
 
 export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
@@ -76,6 +80,11 @@ export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
     component: OwnerPicker,
     name: 'OwnerPicker',
     schema: OwnerPickerSchema,
+  },
+  {
+    component: ResourcePicker,
+    name: 'ResourcePicker',
+    schema: ResourcePickerSchema,
   },
   {
     component: OwnedEntityPicker,
