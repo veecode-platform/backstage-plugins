@@ -1,7 +1,7 @@
 {
   "name": "@veecode-platform/plugin-vault-backend",
   "description": "A Backstage backend plugin that integrates towards Vault - veeCode version",
-  "version": "0.3.14",
+  "version": "0.3.15",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "license": "Apache-2.0",
