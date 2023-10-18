@@ -32,15 +32,13 @@ export async function getOrgsGitlab(Params: ParamsProvider): Promise<string[]> {
     if (response.status === 200) {
       const orgs = response.data;
       for (const org of orgs) {
-        orgsList.push(org.name as string);
+        orgsList.push(org.full_path as string);
       }
       return orgsList;
     }
-    // console.log('Error');
     orgsList.push('Not Orgs');
     return orgsList;
   } catch (error) {
-    // console.log('Error');
     orgsList.push('Not Orgs');
     return orgsList;
   }
