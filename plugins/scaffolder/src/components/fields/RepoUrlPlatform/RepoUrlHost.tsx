@@ -136,7 +136,7 @@ const itemsList = (data:string[]) : SelectItem[] => {
         />
 
         <FormHelperText>
-          Define your git provider
+          Define the git provider
         </FormHelperText>
       </FormControl>
     </>
