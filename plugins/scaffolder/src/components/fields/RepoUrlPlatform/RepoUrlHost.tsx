@@ -136,7 +136,7 @@ const itemsList = (data:string[]) : SelectItem[] => {
         />
 
         <FormHelperText>
-          The host where the repository will be created
+          Define your git provider
         </FormHelperText>
       </FormControl>
     </>
