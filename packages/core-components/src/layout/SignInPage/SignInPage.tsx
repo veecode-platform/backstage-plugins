@@ -32,10 +32,15 @@ import { getSignInProviders, useSignInProviders } from './providers';
 import { GridItem, useStyles } from './styles';
 import { IdentityProviders, SignInProviderConfig } from './types';
 import { Logo } from './plataformLogo/plataformLogo';
-import BackstageLogo from "./assets/backstage.png";
-import KeycloakLogo from "./assets/keycloak.png";
-import OktaLogo from "./assets/okta.png";
-import GithubLogo from "./assets/github.png";
+//import BackstageLogo from "./assets/backstage.png";
+//import KeycloakLogo from "./assets/keycloak.png";
+//import OktaLogo from "./assets/okta.png";
+//import GithubLogo from "./assets/github.png";
+
+const BackstageLogo = "./assets/backstage.png";
+const KeycloakLogo = "./assets/keycloak.png";
+const OktaLogo = "./assets/okta.png";
+const GithubLogo = "./assets/github.png";
 
 
 type MultiSignInPageProps = SignInPageProps & {

@@ -16,7 +16,9 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import MicDropSvgUrl from './mic-drop.svg';
+//import MicDropSvgUrl from './mic-drop.svg';
+
+const MicDropSvgUrl = './mic-drop.svg';
 
 const useStyles = makeStyles(
   theme => ({

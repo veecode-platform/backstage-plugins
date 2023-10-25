@@ -15,7 +15,8 @@
  */
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import IconPlataform from '../assets/logo.png';
+//import IconPlataform from '../assets/logo.png';
+const IconPlataform = '../assets/logo.png';
 
 
 const useStyles = makeStyles (theme=>({

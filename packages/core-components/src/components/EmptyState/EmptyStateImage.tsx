@@ -15,15 +15,20 @@
  */
 
 import React from 'react';
-import missingAnnotation from './assets/missingAnnotation.svg';
-import noInformation from './assets/noInformation.svg';
-import createComponent from './assets/createComponent.svg';
-import noBuild from './assets/noBuild.svg';
+//import missingAnnotation from './assets/missingAnnotation.svg';
+//import noInformation from './assets/noInformation.svg';
+//import createComponent from './assets/createComponent.svg';
+//import noBuild from './assets/noBuild.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 type Props = {
   missing: 'field' | 'info' | 'content' | 'data';
 };
+
+const missingAnnotation = './assets/noInformation.svg'
+const noInformation = './assets/noInformation.svg';
+const createComponent = './assets/createComponent.svg';
+const noBuild = './assets/noBuild.svg';
 
 /** @public */
 export type EmptyStateImageClassKey = 'generalImg';

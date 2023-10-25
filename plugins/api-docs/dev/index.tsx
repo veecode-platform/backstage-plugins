@@ -27,12 +27,19 @@ import {
   defaultDefinitionWidgets,
   EntityApiDefinitionCard,
 } from '../src';
-import asyncapiApiEntity from './asyncapi-example-api.yaml';
-import graphqlApiEntity from './graphql-example-api.yaml';
-import invalidLanguageApiEntity from './invalid-language-example-api.yaml';
-import openapiApiEntity from './openapi-example-api.yaml';
-import otherApiEntity from './other-example-api.yaml';
-import trpcApiEntity from './trpc-example-api.yaml';
+//import asyncapiApiEntity from './asyncapi-example-api.yaml';
+//import graphqlApiEntity from './graphql-example-api.yaml';
+//import invalidLanguageApiEntity from './invalid-language-example-api.yaml';
+//import openapiApiEntity from './openapi-example-api.yaml';
+//import otherApiEntity from './other-example-api.yaml';
+//import trpcApiEntity from './trpc-example-api.yaml';
+
+const asyncapiApiEntity = './asyncapi-example-api.yaml';
+const graphqlApiEntity = './graphql-example-api.yaml';
+const invalidLanguageApiEntity = './invalid-language-example-api.yaml';
+const openapiApiEntity = './openapi-example-api.yaml';
+const otherApiEntity = './other-example-api.yaml';
+const trpcApiEntity = './trpc-example-api.yaml';
 
 const mockEntities = [
   openapiApiEntity,

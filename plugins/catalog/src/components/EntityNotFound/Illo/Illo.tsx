@@ -16,7 +16,8 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import IlloSvgUrl from './illo.svg';
+//import IlloSvgUrl from './illo.svg';
+const IlloSvgUrl = './illo.svg';
 
 const useStyles = makeStyles(theme => ({
   illo: {

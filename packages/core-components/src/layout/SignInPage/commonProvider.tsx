@@ -26,9 +26,13 @@ import { GridItem, useStyles } from './styles';
 import { ForwardedError } from '@backstage/errors';
 import { UserIdentity } from './UserIdentity';
 import  Grid from '@material-ui/core/Grid';
-import KeycloakLogo from "./assets/keycloak.png";
-import OktaLogo from "./assets/okta.png";
-import GithubLogo from "./assets/github.png";
+//import KeycloakLogo from "./assets/keycloak.png";
+//import OktaLogo from "./assets/okta.png";
+//import GithubLogo from "./assets/github.png";
+
+const KeycloakLogo = "./assets/keycloak.png";
+const OktaLogo = "./assets/okta.png";
+const GithubLogo = "./assets/github.png";
 
 const Component: ProviderComponent = ({
   config,
