@@ -171,4 +171,5 @@ plugins/*
 !plugins/user-settings
 !plugins/api-docs
 !plugins/catalog
-!plugins/scaffolde
+!plugins/scaffolder
+!plugins/scaffolder-backend
