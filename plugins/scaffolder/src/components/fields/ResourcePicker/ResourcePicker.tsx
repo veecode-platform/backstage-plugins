@@ -23,10 +23,9 @@ import {
 //   stringifyEntityRef,
 // } from '@backstage/catalog-model';
 import { useApi } from '@backstage/core-plugin-api';
-import {
-  catalogApiRef,
-} from '@backstage/plugin-catalog-react';
-import { Box, FormHelperText, makeStyles } from '@material-ui/core';
+import { catalogApiRef } from '@backstage/plugin-catalog-react';
+import { Box, Button, FormHelperText, makeStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 import FormControl from '@material-ui/core/FormControl';
 import React, { useEffect, useState } from 'react';
 import useAsync from 'react-use/lib/useAsync';
@@ -37,6 +36,7 @@ import {
   ResourcePickerFilterQuery,
 } from './schema';
 import { Select, SelectItem } from '@backstage/core-components';
+// import { stringifyEntityRef } from '@backstage/catalog-model';
 
 export { ResourcePickerSchema } from './schema';
 
@@ -49,9 +49,15 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: '.5rem'
-  }
-})
+    gap: '.5rem',
+  },
+});
+
+// test
+
+export interface Annotations {
+  [key: string]: string;
+}
 
 /**
  * The underlying component that is rendered in the form for the `ResourcePicker`
@@ -60,15 +66,11 @@ const useStyles = makeStyles({
  * @public
  */
 export const ResourcePicker = (props: ResourcePickerProps) => {
-  const {
-    onChange,
-    required,
-    uiSchema,
-    rawErrors,
-    formData
-  } = props;
+  const { onChange, required, uiSchema, rawErrors, formData } = props;
 
-  const [ entityNameSelected, setEntityNameSelected ] = useState<string>('Select the Resource')
+  const [entityNameSelected, setEntityNameSelected] = useState<string>(
+    'Select the Resource',
+  );
   const catalogFilter = buildCatalogFilter(uiSchema);
   const catalogApi = useApi(catalogApiRef);
   const classes = useStyles();
@@ -77,69 +79,58 @@ export const ResourcePicker = (props: ResourcePickerProps) => {
     const { items } = await catalogApi.getEntities(
       catalogFilter ? { filter: catalogFilter } : undefined,
     );
-    onChange(items[0].metadata.name)
+    onChange(JSON.stringify(items[0].metadata.labels));
     return items;
   });
 
   useEffect(() => {
     if (entities && entities?.length === 1) {
-      onChange(entities[0].metadata.name);
+      onChange(JSON.stringify(entities[0].metadata.labels));
     }
   }, [entities, onChange]);
 
-  // useEffect(()=>{
-  //   filterEntityType(entityNameSelected)
-  // },[entityNameSelected])
-
-
   const entitiesOptions: SelectItem[] = entities
-    ? entities.map(i => ({ label: i.metadata.name, value: i.metadata.name }))
+    ? entities.map(i => ({
+        label: i.metadata.name,
+        value: JSON.stringify(i.metadata.labels),
+      }))
     : [{ label: 'Loading...', value: 'loading' }];
-
-  // const filterEntityType = (entityName: string) => {
-  //   const entitySelected = entities?.filter(e => e.metadata.name === entityName &&  e);
-  //   if(entitySelected){
-  //     console.log(entitySelected[0])
-  //     const entity : Entity = entitySelected[0];
-  //     const entityType = entity.spec?.type;
-
-  //     switch (entityType) {
-  //       case 'website':
-  //         return onChange(entity.spec?.url)     
-  //       default:
-  //         return onChange(entity.spec?.name)
-  //     }
-  //   }
-  // }
 
   return (
     <>
-     { (entities && entities.length > 0) ? (
+      {entities && entities.length > 0 ? (
         <FormControl
           margin="normal"
           required={required}
           error={rawErrors?.length > 0 && !formData}
         >
-
           <Select
             native
             label="Resource Available"
             onChange={selected => {
               setEntityNameSelected(selected as string);
-              onChange(selected)
-            }
-            }
+              onChange(selected);
+            }}
             disabled={entities.length === 1}
             selected={entityNameSelected}
             items={entitiesOptions}
           />
           <FormHelperText>Select the desired resource</FormHelperText>
         </FormControl>
-      ):  (<Box 
-            className={classes.boxInfo} >
-             ⚠️ No resources available
-          </Box>)
-      }
+      ) : (
+        <Box className={classes.boxInfo}>
+          ⚠️ No resources available
+          <Button
+            component={RouterLink}
+            to="/create"
+            style={{ margin: '16px' }}
+            size="large"
+            variant="outlined"
+          >
+            Register Resource
+          </Button>
+        </Box>
+      )}
     </>
   );
 };
@@ -197,7 +188,10 @@ function buildCatalogFilter(
 ): EntityFilterQuery | undefined {
   const defaultKind = uiSchema['ui:options']?.defaultKind;
 
-  const catalogFilter: ResourcePickerUiOptions['catalogFilter'] | undefined | any =
+  const catalogFilter:
+    | ResourcePickerUiOptions['catalogFilter']
+    | undefined
+    | any =
     uiSchema['ui:options']?.catalogFilter ||
     (defaultKind && { kind: defaultKind });
 
