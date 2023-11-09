@@ -44,7 +44,8 @@
       "plugins/user-settings",
       "plugins/api-docs",
       "plugins/catalog",
-      "plugins/scaffolder"
+      "plugins/scaffolder",
+      "plugins/scaffolder-backend"
     ]
   },
   "resolutions": {
