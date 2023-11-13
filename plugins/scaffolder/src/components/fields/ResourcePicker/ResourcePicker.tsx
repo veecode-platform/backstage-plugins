@@ -79,20 +79,20 @@ export const ResourcePicker = (props: ResourcePickerProps) => {
     const { items } = await catalogApi.getEntities(
       catalogFilter ? { filter: catalogFilter } : undefined,
     );
-    onChange(JSON.stringify(items[0].metadata.labels));
+    onChange(JSON.stringify(items[0].metadata.environment));
     return items;
   });
 
   useEffect(() => {
     if (entities && entities?.length === 1) {
-      onChange(JSON.stringify(entities[0].metadata.labels));
+      onChange(JSON.stringify(entities[0].metadata.environment));
     }
   }, [entities, onChange]);
 
   const entitiesOptions: SelectItem[] = entities
     ? entities.map(i => ({
         label: i.metadata.name,
-        value: JSON.stringify(i.metadata.labels),
+        value: JSON.stringify(i.metadata.environment),
       }))
     : [{ label: 'Loading...', value: 'loading' }];
 
