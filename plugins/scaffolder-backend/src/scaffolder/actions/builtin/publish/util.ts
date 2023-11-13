@@ -45,11 +45,11 @@ export type RepoSpec = {
   project?: string;
 };
 
-export type LabelsType = {
+export type JSONType = {
     [key:string]: string
 }
 
-export type JsonSpec = LabelsType;
+export type JsonSpec = JSONType;
 
 export const parseRepoUrl = (
   repoUrl: string,
@@ -107,11 +107,11 @@ export const parseRepoUrl = (
 };
 
 export const parseJSON = (
-  labels: string,
+  objString: string,
 ): JsonSpec => {
   let parsed;
   try {
-    parsed = JSON.parse(labels);
+    parsed = JSON.parse(objString);
   } catch (error) {
     throw new InputError(
       `Invalid object passed to publisher, ${error}`,

@@ -34,6 +34,6 @@ export const createDefaultFilters = ({
       const { owner, repo } = parseRepoUrl(repoUrl as string, integrations);
       return `${owner}/${repo}`;
     },
-    parseJSON: labels => parseJSON(labels as string),
+    parseJSON: objString => parseJSON(objString as string),
   };
 };
