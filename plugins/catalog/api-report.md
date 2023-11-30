@@ -7,14 +7,20 @@
 
 import { ApiHolder } from '@backstage/core-plugin-api';
 import { BackstagePlugin } from '@backstage/core-plugin-api';
+import { CatalogApi } from '@backstage/plugin-catalog-react';
 import { ComponentEntity } from '@backstage/catalog-model';
 import { CompoundEntityRef } from '@backstage/catalog-model';
 import { Entity } from '@backstage/catalog-model';
 import { EntityOwnerPickerProps } from '@backstage/plugin-catalog-react';
+import { EntityPresentationApi } from '@backstage/plugin-catalog-react';
+import { EntityRefPresentation } from '@backstage/plugin-catalog-react';
+import { EntityRefPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import { ExternalRouteRef } from '@backstage/core-plugin-api';
+import { HumanDuration } from '@backstage/types';
 import { IconComponent } from '@backstage/core-plugin-api';
 import { IndexableDocument } from '@backstage/plugin-search-common';
 import { InfoCardVariants } from '@backstage/core-components';
+import { JSX as JSX_2 } from 'react';
 import { Observable } from '@backstage/types';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { default as React_2 } from 'react';
@@ -39,7 +45,7 @@ export interface AboutCardProps {
 }
 
 // @public (undocumented)
-export function AboutContent(props: AboutContentProps): JSX.Element;
+export function AboutContent(props: AboutContentProps): React_2.JSX.Element;
 
 // @public
 export interface AboutContentProps {
@@ -48,7 +54,7 @@ export interface AboutContentProps {
 }
 
 // @public (undocumented)
-export function AboutField(props: AboutFieldProps): JSX.Element;
+export function AboutField(props: AboutFieldProps): React_2.JSX.Element;
 
 // @public
 export interface AboutFieldProps {
@@ -79,7 +85,9 @@ export const CatalogEntityPage: () => JSX.Element;
 export const CatalogIndexPage: (props: DefaultCatalogPageProps) => JSX.Element;
 
 // @public @deprecated (undocumented)
-export function CatalogKindHeader(props: CatalogKindHeaderProps): JSX.Element;
+export function CatalogKindHeader(
+  props: CatalogKindHeaderProps,
+): React_2.JSX.Element;
 
 // @public
 export interface CatalogKindHeaderProps {
@@ -114,8 +122,7 @@ export const catalogPlugin: BackstagePlugin<
       },
       true
     >;
-  },
-  CatalogInputPluginOptions
+  }
 >;
 
 // @public (undocumented)
@@ -137,7 +144,7 @@ export interface CatalogSearchResultListItemProps {
 
 // @public (undocumented)
 export const CatalogTable: {
-  (props: CatalogTableProps): JSX.Element;
+  (props: CatalogTableProps): React_2.JSX.Element;
   columns: Readonly<{
     createNameColumn(
       options?:
@@ -194,6 +201,7 @@ export interface CatalogTableRow {
   // (undocumented)
   resolved: {
     name: string;
+    entityRef: string;
     partOfSystemRelationTitle?: string;
     partOfSystemRelations: CompoundEntityRef[];
     ownedByRelationsTitle?: string;
@@ -220,6 +228,47 @@ export interface DefaultCatalogPageProps {
   ownerPickerMode?: EntityOwnerPickerProps['mode'];
   // (undocumented)
   tableOptions?: TableProps<CatalogTableRow>['options'];
+}
+
+// @public
+export class DefaultEntityPresentationApi implements EntityPresentationApi {
+  static create(
+    options: DefaultEntityPresentationApiOptions,
+  ): EntityPresentationApi;
+  static createLocal(): EntityPresentationApi;
+  // (undocumented)
+  forEntity(
+    entityOrRef: Entity | string,
+    context?: {
+      defaultKind?: string;
+      defaultNamespace?: string;
+    },
+  ): EntityRefPresentation;
+}
+
+// @public
+export interface DefaultEntityPresentationApiOptions {
+  batchDelay?: HumanDuration;
+  cacheTtl?: HumanDuration;
+  catalogApi?: CatalogApi;
+  kindIcons?: Record<string, IconComponent>;
+  renderer?: DefaultEntityPresentationApiRenderer;
+}
+
+// @public
+export interface DefaultEntityPresentationApiRenderer {
+  async?: boolean;
+  render: (options: {
+    entityRef: string;
+    loading: boolean;
+    entity: Entity | undefined;
+    context: {
+      defaultKind?: string;
+      defaultNamespace?: string;
+    };
+  }) => {
+    snapshot: Omit<EntityRefPresentationSnapshot, 'entityRef'>;
+  };
 }
 
 // @public
@@ -303,7 +352,7 @@ export const EntityHasSubcomponentsCard: (
 export const EntityHasSystemsCard: (props: HasSystemsCardProps) => JSX.Element;
 
 // @public (undocumented)
-export const EntityLabelsCard: (props: EntityLabelsCardProps) => JSX.Element;
+export const EntityLabelsCard: (props: EntityLabelsCardProps) => JSX_2.Element;
 
 // @public (undocumented)
 export interface EntityLabelsCardProps {
@@ -315,7 +364,7 @@ export interface EntityLabelsCardProps {
 
 // @public
 export const EntityLayout: {
-  (props: EntityLayoutProps): JSX.Element;
+  (props: EntityLayoutProps): React_2.JSX.Element;
   Route: (props: EntityLayoutRouteProps) => null;
 };
 
@@ -350,7 +399,7 @@ export type EntityLayoutRouteProps = {
 };
 
 // @public (undocumented)
-export const EntityLinksCard: (props: EntityLinksCardProps) => JSX.Element;
+export const EntityLinksCard: (props: EntityLinksCardProps) => JSX_2.Element;
 
 // @public (undocumented)
 export interface EntityLinksCardProps {
@@ -366,10 +415,10 @@ export type EntityLinksEmptyStateClassKey = 'code';
 // @public @deprecated (undocumented)
 export const EntityListContainer: (props: {
   children: ReactNode;
-}) => JSX.Element;
+}) => JSX_2.Element;
 
 // @public
-export function EntityOrphanWarning(): JSX.Element;
+export function EntityOrphanWarning(): React_2.JSX.Element;
 
 // @public (undocumented)
 export interface EntityPredicates {
@@ -380,14 +429,17 @@ export interface EntityPredicates {
 }
 
 // @public
-export function EntityProcessingErrorsPanel(): JSX.Element | null;
+export function EntityProcessingErrorsPanel(): React_2.JSX.Element | null;
+
+// @public
+export function EntityRelationWarning(): React_2.JSX.Element | null;
 
 // @public
 export function EntityRelationWarning(): JSX.Element | null;
 
 // @public (undocumented)
 export const EntitySwitch: {
-  (props: EntitySwitchProps): JSX.Element;
+  (props: EntitySwitchProps): React_2.JSX.Element;
   Case: (_props: EntitySwitchCaseProps) => null;
 };
 
@@ -428,7 +480,7 @@ export const FilterContainer: (props: {
         drawerAnchor?: 'left' | 'top' | 'bottom' | 'right' | undefined;
       }
     | undefined;
-}) => JSX.Element;
+}) => JSX_2.Element;
 
 // @public @deprecated (undocumented)
 export const FilteredEntityLayout: (props: {
@@ -445,6 +497,8 @@ export function hasCatalogProcessingErrors(
 
 // @public (undocumented)
 export interface HasComponentsCardProps {
+  // (undocumented)
+  title?: string;
   // (undocumented)
   variant?: InfoCardVariants;
 }
@@ -463,6 +517,8 @@ export function hasRelationWarnings(
 // @public (undocumented)
 export interface HasResourcesCardProps {
   // (undocumented)
+  title?: string;
+  // (undocumented)
   variant?: InfoCardVariants;
 }
 
@@ -471,11 +527,15 @@ export interface HasSubcomponentsCardProps {
   // (undocumented)
   tableOptions?: TableOptions;
   // (undocumented)
+  title?: string;
+  // (undocumented)
   variant?: InfoCardVariants;
 }
 
 // @public (undocumented)
 export interface HasSystemsCardProps {
+  // (undocumented)
+  title?: string;
   // (undocumented)
   variant?: InfoCardVariants;
 }

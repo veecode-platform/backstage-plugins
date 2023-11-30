@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Backstage Authors
+ * Copyright 2020 The Backstage Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,30 +16,10 @@
 import {
   ANNOTATION_EDIT_URL,
   ANNOTATION_LOCATION,
+  CompoundEntityRef,
   DEFAULT_NAMESPACE,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
-import {
-  HeaderIconLinkRow,
-  IconLinkVerticalProps,
-  InfoCardVariants,
-  Link,
-  // Link,
-} from '@backstage/core-components';
-import {
-   alertApiRef,
-   errorApiRef,
-   useApi
-  } from '@backstage/core-plugin-api';
-import {
-  ScmIntegrationIcon,
-  scmIntegrationsApiRef,
-} from '@backstage/integration-react';
-import {
-  catalogApiRef,
-  getEntitySourceLocation,
-  useEntity,
-} from '@backstage/plugin-catalog-react';
 import {
   Card,
   CardContent,
@@ -48,11 +28,42 @@ import {
   IconButton,
   makeStyles,
 } from '@material-ui/core';
+import {
+  HeaderIconLinkRow,
+  IconLinkVerticalProps,
+  InfoCardVariants,
+  Link,
+} from '@backstage/core-components';
+import React, { useCallback } from 'react';
+import {
+  ScmIntegrationIcon,
+  scmIntegrationsApiRef,
+} from '@backstage/integration-react';
+import {
+  alertApiRef,
+  errorApiRef,
+  useApi,
+  useApp,
+  useRouteRef,
+} from '@backstage/core-plugin-api';
+import {
+  catalogApiRef,
+  getEntitySourceLocation,
+  useEntity,
+} from '@backstage/plugin-catalog-react';
+import { createFromTemplateRouteRef, viewTechDocRouteRef } from '../../routes';
+
+import { AboutContent } from './AboutContent';
 import CachedIcon from '@material-ui/icons/Cached';
+import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import DocsIcon from '@material-ui/icons/Description';
 import EditIcon from '@material-ui/icons/Edit';
-import React, { useCallback } from 'react';
-import { AboutContent } from './AboutContent';
+import { isTemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
+import { parseEntityRef } from '@backstage/catalog-model';
+
+const TECHDOCS_ANNOTATION = 'backstage.io/techdocs-ref';
+
+const TECHDOCS_EXTERNAL_ANNOTATION = 'backstage.io/techdocs-entity';
 
 const useStyles = makeStyles({
   gridItemCard: {
@@ -88,12 +99,15 @@ export interface AboutCardProps {
  */
 export function AboutCard(props: AboutCardProps) {
   const { variant } = props;
+  const app = useApp();
   const classes = useStyles();
   const { entity } = useEntity();
   const scmIntegrationsApi = useApi(scmIntegrationsApiRef);
   const catalogApi = useApi(catalogApiRef);
   const alertApi = useApi(alertApiRef);
   const errorApi = useApi(errorApiRef);
+  const viewTechdocLink = useRouteRef(viewTechDocRouteRef);
+  const templateRoute = useRouteRef(createFromTemplateRouteRef);
 
   const entitySourceLocation = getEntitySourceLocation(
     entity,
@@ -102,26 +116,67 @@ export function AboutCard(props: AboutCardProps) {
   const entityMetadataEditUrl =
     entity.metadata.annotations?.[ANNOTATION_EDIT_URL];
 
+  let techdocsRef: CompoundEntityRef | undefined;
+
+  if (entity.metadata.annotations?.[TECHDOCS_EXTERNAL_ANNOTATION]) {
+    try {
+      techdocsRef = parseEntityRef(
+        entity.metadata.annotations?.[TECHDOCS_EXTERNAL_ANNOTATION],
+      );
+      // not a fan of this but we don't care if the parseEntityRef fails
+    } catch {
+      techdocsRef = undefined;
+    }
+  }
+
   const viewInSource: IconLinkVerticalProps = {
     label: 'View Source',
     disabled: !entitySourceLocation,
     icon: <ScmIntegrationIcon type={entitySourceLocation?.integrationType} />,
     href: entitySourceLocation?.locationTargetUrl,
   };
-  
   const viewInTechDocs: IconLinkVerticalProps = {
     label: 'View TechDocs',
     disabled:
-      !entity.metadata.annotations?.hasOwnProperty('backstage.io/techdocs-ref') || entity.spec?.type === "openapi",
+      !(
+        entity.metadata.annotations?.[TECHDOCS_ANNOTATION] ||
+        entity.metadata.annotations?.[TECHDOCS_EXTERNAL_ANNOTATION]
+      ) || !viewTechdocLink,
     icon: <DocsIcon />,
     href: `/catalog/${entity.metadata.namespace ?? DEFAULT_NAMESPACE }/${entity.kind}/${entity.metadata.name}/docs`
-      // viewTechdocLink &&
-      // viewTechdocLink({
-      //   namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
-      //   kind: entity.kind,
-      //   name: entity.metadata.name,
-      // }),
+      //original viewTechdocLink &&
+      //original (techdocsRef
+      //original   ? viewTechdocLink({
+      //original       namespace: techdocsRef.namespace || DEFAULT_NAMESPACE,
+      //original       kind: techdocsRef.kind,
+      //original       name: techdocsRef.name,
+      //original     })
+      //original   : viewTechdocLink({
+      //original       namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
+      //original       kind: entity.kind,
+      //original       name: entity.metadata.name,
+      //original     })),
   };
+
+  const subHeaderLinks = [viewInSource, viewInTechDocs];
+
+  if (isTemplateEntityV1beta3(entity)) {
+    const Icon = app.getSystemIcon('scaffolder') ?? CreateComponentIcon;
+
+    const launchTemplate: IconLinkVerticalProps = {
+      label: 'Launch Template',
+      icon: <Icon />,
+      disabled: !templateRoute,
+      href:
+        templateRoute &&
+        templateRoute({
+          templateName: entity.metadata.name,
+          namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
+        }),
+    };
+
+    subHeaderLinks.push(launchTemplate);
+  }
 
   let cardClass = '';
   if (variant === 'gridItem') {
@@ -129,6 +184,7 @@ export function AboutCard(props: AboutCardProps) {
   } else if (variant === 'fullHeight') {
     cardClass = classes.fullHeightCard;
   }
+
   let cardContentClass = '';
   if (variant === 'gridItem') {
     cardContentClass = classes.gridItemCardContent;
@@ -179,7 +235,7 @@ export function AboutCard(props: AboutCardProps) {
             </IconButton>
           </>
         }
-        subheader={<HeaderIconLinkRow links={[viewInSource, viewInTechDocs]} />} // to do
+        subheader={<HeaderIconLinkRow links={subHeaderLinks} />}
       />
       <Divider />
       <CardContent className={cardContentClass}>
