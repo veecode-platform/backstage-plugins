@@ -44,14 +44,15 @@
       "plugins/user-settings",
       "plugins/api-docs",
       "plugins/catalog",
-      "plugins/scaffolder"
+      "plugins/scaffolder",
+      "plugins/scaffolder-backend"
     ]
   },
   "resolutions": {
     "@types/react": "^17",
     "@types/react-dom": "^17"
   },
-  "version": "1.17.11",
+  "version": "1.17.17",
   "dependencies": {
     "@backstage/errors": "^1.1.5",
     "@manypkg/get-packages": "^1.1.3",
