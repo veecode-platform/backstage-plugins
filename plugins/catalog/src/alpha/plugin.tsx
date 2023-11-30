@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+/*import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
 import { createPlugin } from '@backstage/frontend-plugin-api';
 
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
@@ -32,10 +32,10 @@ import filters from './filters';
 import navItems from './navItems';
 import entityCards from './entityCards';
 import entityContents from './entityContents';
-import searchResultItems from './searchResultItems';
+import searchResultItems from './searchResultItems';*/
 
 /** @alpha */
-export default createPlugin({
+/*export default createPlugin({
   id: 'catalog',
   routes: {
     catalogIndex: convertLegacyRouteRef(rootRouteRef),
@@ -55,4 +55,4 @@ export default createPlugin({
     ...entityContents,
     ...searchResultItems,
   ],
-});
+});*/
