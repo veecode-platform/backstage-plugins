@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-//import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
 import { createPlugin } from '@backstage/frontend-plugin-api';
 
-//import { entityRouteRef } from '@backstage/plugin-catalog-react';
+import { entityRouteRef } from '@backstage/plugin-catalog-react';
 
-/*import {
+import {
   createComponentRouteRef,
   createFromTemplateRouteRef,
   rootRouteRef,
   viewTechDocRouteRef,
-} from '../routes';*/
+} from '../routes';
 
 import apis from './apis';
 import pages from './pages';
@@ -38,13 +38,13 @@ import searchResultItems from './searchResultItems';
 export default createPlugin({
   id: 'catalog',
   routes: {
-    //catalogIndex: convertLegacyRouteRef(rootRouteRef),
-    //catalogEntity: convertLegacyRouteRef(entityRouteRef),
+    catalogIndex: convertLegacyRouteRef(rootRouteRef),
+    catalogEntity: convertLegacyRouteRef(entityRouteRef),
   },
   externalRoutes: {
-    //viewTechDoc: convertLegacyRouteRef(viewTechDocRouteRef),
-    //createComponent: convertLegacyRouteRef(createComponentRouteRef),
-    //createFromTemplate: convertLegacyRouteRef(createFromTemplateRouteRef),
+    viewTechDoc: convertLegacyRouteRef(viewTechDocRouteRef),
+    createComponent: convertLegacyRouteRef(createComponentRouteRef),
+    createFromTemplate: convertLegacyRouteRef(createFromTemplateRouteRef),
   },
   extensions: [
     ...apis,

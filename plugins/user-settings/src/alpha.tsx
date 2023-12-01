@@ -51,6 +51,6 @@ export default createPlugin({
   id: 'alpha-user-settings',
   extensions: [UserSettingsPage],
   routes: {
-    //root: convertLegacyRouteRef(settingsRouteRef),
+    root: convertLegacyRouteRef(settingsRouteRef),
   },
 });
