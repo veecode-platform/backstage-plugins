@@ -11578,7 +11578,7 @@ __metadata:
     "@testing-library/jest-dom": ^6.0.0
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.0.0
-    "@types/react": ^16.13.1 || ^17.0.0
+    "@types/react": ^17.0.0
     "@types/swagger-ui-react": ^4.18.0
     "@veecode-platform/plugin-application-common": ^0.1.0
     cross-fetch: ^4.0.0
