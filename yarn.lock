@@ -3712,7 +3712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@backstage/plugin-permission-common@npm:^0.7.10":
+"@backstage/plugin-permission-common@npm:^0.7.10, @backstage/plugin-permission-common@npm:^0.7.5":
   version: 0.7.10
   resolution: "@backstage/plugin-permission-common@npm:0.7.10"
   dependencies:
@@ -11580,6 +11580,7 @@ __metadata:
     "@testing-library/user-event": ^14.0.0
     "@types/react": ^16.13.1 || ^17.0.0
     "@types/swagger-ui-react": ^4.18.0
+    "@veecode-platform/plugin-application-common": ^0.1.0
     cross-fetch: ^4.0.0
     graphiql: 3.0.9
     graphql: ^16.0.0
@@ -11594,6 +11595,15 @@ __metadata:
     react-router-dom: ^6.3.0
   languageName: unknown
   linkType: soft
+
+"@veecode-platform/plugin-application-common@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@veecode-platform/plugin-application-common@npm:0.1.0"
+  dependencies:
+    "@backstage/plugin-permission-common": ^0.7.5
+  checksum: 52b7e05cd2e8ec275a997f5c83d2ad7e6d3c6ddb1c6a56ddbc3a2b13a10971907dfaf0638eaef523632c811c02583865f3296012511ebe9597d8d6497bfb9555
+  languageName: node
+  linkType: hard
 
 "@veecode-platform/plugin-catalog@workspace:plugins/catalog":
   version: 0.0.0-use.local
