@@ -7,7 +7,6 @@
     "plugins/*/migrations"
   ],
   "compilerOptions": {
-    "declaration": false, //teste para usar classes em alpha sem dar erro - default: remover e  usar direto do @backstage/cli/config/tsconfig.json
     "composite": false,
     "outDir": "dist-types",
     "rootDir": ".",

@@ -35,24 +35,26 @@ import entityContents from './entityContents';
 import searchResultItems from './searchResultItems';
 
 /** @alpha */
-export default createPlugin({
-  id: 'catalog',
-  routes: {
-    catalogIndex: convertLegacyRouteRef(rootRouteRef),
-    catalogEntity: convertLegacyRouteRef(entityRouteRef),
-  },
-  externalRoutes: {
-    viewTechDoc: convertLegacyRouteRef(viewTechDocRouteRef),
-    createComponent: convertLegacyRouteRef(createComponentRouteRef),
-    createFromTemplate: convertLegacyRouteRef(createFromTemplateRouteRef),
-  },
-  extensions: [
-    ...apis,
-    ...pages,
-    ...filters,
-    ...navItems,
-    ...entityCards,
-    ...entityContents,
-    ...searchResultItems,
-  ],
-});
+export default () => {
+  createPlugin({
+    id: 'catalog',
+    routes: {
+      catalogIndex: convertLegacyRouteRef(rootRouteRef),
+      catalogEntity: convertLegacyRouteRef(entityRouteRef),
+    },
+    externalRoutes: {
+      viewTechDoc: convertLegacyRouteRef(viewTechDocRouteRef),
+      createComponent: convertLegacyRouteRef(createComponentRouteRef),
+      createFromTemplate: convertLegacyRouteRef(createFromTemplateRouteRef),
+    },
+    extensions: [
+      ...apis,
+      ...pages,
+      ...filters,
+      ...navItems,
+      ...entityCards,
+      ...entityContents,
+      ...searchResultItems,
+    ],
+  });
+}

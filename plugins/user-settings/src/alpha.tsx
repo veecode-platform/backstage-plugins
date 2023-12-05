@@ -47,10 +47,12 @@ const UserSettingsPage = createPageExtension({
 /**
  * @alpha
  */
-export default createPlugin({
-  id: 'alpha-user-settings',
-  extensions: [UserSettingsPage],
-  routes: {
-    root: convertLegacyRouteRef(settingsRouteRef),
-  },
-});
+export default () => {
+  createPlugin({
+    id: 'alpha-user-settings',
+    extensions: [UserSettingsPage],
+    routes: {
+      root: convertLegacyRouteRef(settingsRouteRef),
+    },
+  });
+}
