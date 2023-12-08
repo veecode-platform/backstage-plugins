@@ -37,12 +37,11 @@ import { Logo } from './plataformLogo/plataformLogo';
 //import OktaLogo from "./assets/okta.png";
 //import GithubLogo from "./assets/github.png";
 //import GitlabLogo from "./assets/gitlab.png"
-
-const BackstageLogo = "./assets/backstage.png";
-const KeycloakLogo = "./assets/keycloak.png";
-const OktaLogo = "./assets/okta.png";
-const GithubLogo = "./assets/github.png";
-const GitlabLogo = "./assets/gitlab.png"
+import BackstageLogo from "./assets/backstage.png";
+import KeycloakLogo from "./assets/keycloak.png";
+import OktaLogo from "./assets/okta.png";
+import GithubLogo from "./assets/github.png";
+import GitlabLogo from "./assets/gitlab.png"
 
 type MultiSignInPageProps = SignInPageProps & {
   providers: IdentityProviders;
@@ -76,6 +75,8 @@ export const MultiSignInPage = ({
     return <Progress />;
   }
 
+  console.log(providerElements)
+
   return (
     <Page themeId="home">
       {/* <Header title={configApi.getString('app.title')} /> */}
@@ -87,11 +88,48 @@ export const MultiSignInPage = ({
         <Grid
             container
             justifyContent="center"
-            spacing={2}
+            //spacing={1}
             component="ul"
-            classes={classes}
+            lg={4}
+            md={6}
+            sm={8}
+            xs={12}
           >
-          {providerElements}
+           {!Array.isArray(providerElements) ? providerElements: 
+                    providerElements.map((provider, index) => (
+                      <div key={index} className={classes.providerItem}>
+                        {provider.key?.includes("keycloak") && (
+                          <img
+                            src={KeycloakLogo}
+                            alt={provider.key}
+                            className={classes.providerLogo}
+                          />
+                        )}
+                        {provider.key?.includes("okta") && (
+                          <img
+                            src={OktaLogo}
+                            alt={provider.key}
+                            className={classes.providerLogo}
+                          />
+                        )}
+                        {provider.key?.includes("github") && (
+                          <img
+                            src={GithubLogo}
+                            alt={provider.key}
+                            className={classes.providerLogo}
+                          />
+                        )}
+                        {provider.key?.includes("gitlab") && (
+                          <img
+                            src={GitlabLogo}
+                            alt={provider.key}
+                            className={classes.providerLogo}
+                          />
+                        )}
+                        <h3>{provider.props.config.message}</h3>
+                      </div>
+                    )
+           )}
         </Grid>
         <Grid item className={classes.footerWrapper} lg={12}>
               <p className={classes.footer}>
@@ -195,10 +233,10 @@ export const SingleSignInPage = ({
                 }}
               >
                 <div className={classes.providerTitleBar}>
-                  {provider.title === "Keycloak" && <img src={KeycloakLogo} alt={provider.title} className={classes.providerLogo}/>}
-                  {provider.title === "Okta" && <img src={OktaLogo} alt={provider.title} className={classes.providerLogo} />}
-                  {provider.title === "GitHub" && <img src={GithubLogo} alt={provider.title} className={classes.providerLogo} />}
-                  {provider.title === "Gitlab" && <img src={GitlabLogo} alt={provider.title} className={classes.providerLogo} />}
+                  {provider.title.includes("Keycloak") && <img src={KeycloakLogo} alt={provider.title} className={classes.providerLogo}/>}
+                  {provider.title.includes("Okta") && <img src={OktaLogo} alt={provider.title} className={classes.providerLogo} />}
+                  {provider.title.includes("GitHub") && <img src={GithubLogo} alt={provider.title} className={classes.providerLogo} />}
+                  {provider.title.includes("Gitlab") && <img src={GitlabLogo} alt={provider.title} className={classes.providerLogo} />}
                   <h3>{provider.message}</h3>
                 </div>
                 {error && error.name !== 'PopupRejectedError' && (

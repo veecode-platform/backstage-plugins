@@ -17,7 +17,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 //import BgSVG from './assets/bg.svg';
-const BgSVG = './assets/bg.svg';
+import BgSVG from './assets/bg.svg';
 
 export type SignInPageClassKey = 'container' | 'item';
 
@@ -80,7 +80,7 @@ export const useStyles = makeStyles( theme =>
       width: '100%',
       padding: '.5rem',
       borderRadius: '18px',
-      margin: ' 1rem auto',
+      margin: ' .4rem auto',
       cursor: 'pointer',
       display: 'flex',
       alignItems: 'center',
@@ -107,6 +107,27 @@ export const useStyles = makeStyles( theme =>
     },
     providerLogo:{
       width: '50px'
+    },
+    providerItem: {
+        width: '100%',
+        padding: '1rem .5rem',
+        borderRadius: '18px',
+        margin: ' 1rem auto',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.2rem',
+        gap: '2rem',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+        background: `linear-gradient(270deg, ${theme.palette.background.paper}, ${theme.palette.background.default})`,
+        border: `2px solid ${theme.palette.background.paper}`,
+        transition: 'all .5s ease-in-out',
+  
+        "&:hover":{
+          border: `2px solid #33FFCE`,
+          transition: 'all .5s ease-in'
+        }
     },
     footerWrapper:{
       // width: '100%',
