@@ -80,7 +80,6 @@ const useStyles = makeStyles(
     createStyles({
       formControl: {
         margin: theme.spacing(1, 0),
-        maxWidth: 300,
       },
       select:{
         width: '100%'
