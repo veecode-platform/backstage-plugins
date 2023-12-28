@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { LinearProgress } from '@material-ui/core';
+import { LinearProgress, makeStyles } from '@material-ui/core';
 import { IChangeEvent } from '@rjsf/core';
 import qs from 'qs';
 import React, { ComponentType, useCallback, useState } from 'react';
@@ -65,6 +65,24 @@ type Props = {
   };
 };
 
+const useStyles = makeStyles(theme => ({
+  container: {
+    maxWidth: '100vw',
+    marginAuto: 'auto',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  },
+  content:{
+    background: theme.palette.background.paper,
+    width: '80%',
+    maxWidth: '1100px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%' 
+    }
+  }
+}));
+
 export const TemplatePage = ({
   ReviewStepComponent,
   customFieldExtensions = [],
@@ -74,6 +92,7 @@ export const TemplatePage = ({
   const apiHolder = useApiHolder();
   const secretsContext = useTemplateSecrets();
   const errorApi = useApi(errorApiRef);
+  const classes = useStyles();
   const scaffolderApi = useApi(scaffolderApiRef);
   const { templateName, namespace } = useRouteRefParams(
     selectedTemplateRouteRef,
@@ -151,13 +170,14 @@ export const TemplatePage = ({
           subtitle="Create new software components using standard templates"
           {...headerOptions}
         />
-        <Content>
+        <Content className={classes.container}>
           {loading && <LinearProgress data-testid="loading-progress" />}
           {schema && (
             <InfoCard
               title={schema.title}
               noPadding
               titleTypographyProps={{ component: 'h2' }}
+              className={classes.content}
             >
               <MultistepJsonForm
                 ReviewStepComponent={ReviewStepComponent}
