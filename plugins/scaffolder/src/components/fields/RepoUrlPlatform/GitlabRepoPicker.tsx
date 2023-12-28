@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import { Select, SelectItem } from '@backstage/core-components';
+//import { Select, SelectItem } from '@backstage/core-components';
+import { Select, SelectItem } from '@veecode-platform/core-components';
 import { RepoUrlPickerState } from './types';
 import { useIntegrations } from '../../hooks/useIntegrations';
 import { Grid, Input, InputLabel } from '@material-ui/core';

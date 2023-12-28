@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 import React, { useEffect, useState } from 'react';
-import { Progress, Select, SelectItem } from '@backstage/core-components';
+//import { Progress, Select, SelectItem } from '@backstage/core-components';
+import { Progress, Select, SelectItem } from '@veecode-platform/core-components';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { useApi } from '@backstage/core-plugin-api';

@@ -20,7 +20,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { RepoUrlPickerState } from './types';
-import { Select, SelectItem } from '@backstage/core-components';
+//import { Select, SelectItem } from '@backstage/core-components';
+import { Select, SelectItem } from '@veecode-platform/core-components';
 
 export const AzureRepoPicker = (props: {
   allowedOrganizations?: string[];

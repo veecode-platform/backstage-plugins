@@ -18,7 +18,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Select, SelectItem } from '@backstage/core-components';
+//import { Select, SelectItem } from '@backstage/core-components';
+import { Select, SelectItem } from '@veecode-platform/core-components';
 import { RepoUrlPickerState } from './types';
 
 /**

@@ -35,7 +35,8 @@ import {
   ResourcePickerUiOptions,
   ResourcePickerFilterQuery,
 } from './schema';
-import { Select, SelectItem } from '@backstage/core-components';
+//import { Select, SelectItem } from '@backstage/core-components';
+import { Select, SelectItem } from '@veecode-platform/core-components';
 // import { stringifyEntityRef } from '@backstage/catalog-model';
 
 export { ResourcePickerSchema } from './schema';

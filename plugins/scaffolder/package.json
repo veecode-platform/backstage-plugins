@@ -76,6 +76,7 @@
     "@rjsf/validator-ajv8": "5.13.6",
     "@types/react": "^17.0.0",
     "@uiw/react-codemirror": "^4.9.3",
+    "@veecode-platform/core-components": "workspace:^",
     "axios": "1.4.0",
     "classnames": "^2.2.6",
     "event-source-polyfill": "^1.0.31",

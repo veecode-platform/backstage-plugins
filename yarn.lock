@@ -11480,7 +11480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@veecode-platform/core-components@workspace:packages/core-components":
+"@veecode-platform/core-components@workspace:^, @veecode-platform/core-components@workspace:packages/core-components":
   version: 0.0.0-use.local
   resolution: "@veecode-platform/core-components@workspace:packages/core-components"
   dependencies:
@@ -11772,6 +11772,7 @@ __metadata:
     "@types/json-schema": ^7.0.9
     "@types/react": ^17.0.0
     "@uiw/react-codemirror": ^4.9.3
+    "@veecode-platform/core-components": "workspace:^"
     axios: 1.4.0
     classnames: ^2.2.6
     event-source-polyfill: ^1.0.31
