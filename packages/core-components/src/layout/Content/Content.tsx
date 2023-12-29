@@ -43,6 +43,15 @@ const useStyles = makeStyles(
     noPadding: {
       padding: 0,
     },
+    content:{
+      background: theme.palette.background.paper,
+      width: '80%',
+      maxWidth: '1100px',
+      alignSelf:'center',
+      [theme.breakpoints.down('sm')]: {
+        width: '100%' 
+      }
+    }
   }),
   { name: 'BackstageContent' },
 );
@@ -70,6 +79,7 @@ export function Content(props: PropsWithChildren<Props>) {
       className={classNames(classes.root, className, {
         [classes.stretch]: stretch,
         [classes.noPadding]: noPadding,
+        [classes.content] : true
       })}
     >
       {children}
