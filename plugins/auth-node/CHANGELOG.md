@@ -1,5 +1,6 @@
 # @backstage/plugin-auth-node
 
+<<<<<<< HEAD
 ## 0.4.8-next.0
 
 ### Patch Changes
@@ -17,6 +18,29 @@
   - @backstage/catalog-model@1.4.5-next.0
   - @backstage/config@1.1.2-next.0
   - @backstage/types@1.1.1
+=======
+## 0.4.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.4.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-plugin-api@0.6.11
+
+## 0.4.5
+
+### Patch Changes
+
+- 65f76be: Fix issue with `providerInfo` not being set properly for some proxy providers, by making `providerInfo` an explicit optional return from `authenticate`
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.4.4
 

@@ -1,16 +1,35 @@
 # @backstage/plugin-explore-backend
 
+<<<<<<< HEAD
 ## 0.0.23-next.0
+=======
+## 0.0.22
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/plugin-search-backend-module-explore@0.1.17-next.0
   - @backstage/config@1.1.2-next.0
   - @backstage/types@1.1.1
   - @backstage/plugin-explore-common@0.0.2
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/plugin-search-backend-module-explore@0.1.16
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/plugin-search-backend-module-explore@0.1.15
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.0.20
 

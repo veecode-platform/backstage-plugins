@@ -1,5 +1,6 @@
 # @backstage/plugin-adr-backend
 
+<<<<<<< HEAD
 ## 0.4.10-next.0
 
 ### Patch Changes
@@ -16,6 +17,23 @@
   - @backstage/catalog-model@1.4.5-next.0
   - @backstage/config@1.1.2-next.0
   - @backstage/integration@1.9.1-next.0
+=======
+## 0.4.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.4.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.4.7
 

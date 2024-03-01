@@ -1,5 +1,6 @@
 # @backstage/plugin-events-node
 
+<<<<<<< HEAD
 ## 0.3.0-next.0
 
 ### Minor Changes
@@ -110,6 +111,21 @@
 
 - Updated dependencies
   - @backstage/backend-plugin-api@0.6.13-next.0
+=======
+## 0.2.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.2.20
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.2.19
 

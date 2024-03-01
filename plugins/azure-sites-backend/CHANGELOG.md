@@ -1,5 +1,6 @@
 # @backstage/plugin-azure-sites-backend
 
+<<<<<<< HEAD
 ## 0.3.0-next.0
 
 ### Minor Changes
@@ -21,6 +22,25 @@
   - @backstage/catalog-model@1.4.5-next.0
   - @backstage/config@1.1.2-next.0
   - @backstage/plugin-azure-sites-common@0.1.3-next.0
+=======
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/plugin-auth-node@0.4.7
+  - @backstage/plugin-permission-node@0.7.23
+
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/plugin-auth-node@0.4.6
+  - @backstage/plugin-permission-node@0.7.22
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.2.0
 

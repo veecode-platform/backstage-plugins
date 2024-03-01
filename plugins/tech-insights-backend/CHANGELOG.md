@@ -1,5 +1,6 @@
 # @backstage/plugin-tech-insights-backend
 
+<<<<<<< HEAD
 ## 0.5.27-next.0
 
 ### Patch Changes
@@ -18,6 +19,27 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/types@1.1.1
   - @backstage/plugin-tech-insights-common@0.2.12
+=======
+## 0.5.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-tasks@0.5.17
+  - @backstage/plugin-tech-insights-node@0.4.18
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.5.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-tasks@0.5.16
+  - @backstage/plugin-tech-insights-node@0.4.17
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.5.24
 

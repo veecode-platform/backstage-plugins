@@ -1,5 +1,6 @@
 # @backstage/backend-app-api
 
+<<<<<<< HEAD
 ## 0.6.0-next.0
 
 ### Minor Changes
@@ -25,6 +26,33 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/cli-common@0.1.13
   - @backstage/types@1.1.1
+=======
+## 0.5.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-tasks@0.5.17
+  - @backstage/plugin-auth-node@0.4.7
+  - @backstage/plugin-permission-node@0.7.23
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/cli-node@0.2.3
+  - @backstage/config-loader@1.6.2
+
+## 0.5.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-tasks@0.5.16
+  - @backstage/plugin-auth-node@0.4.6
+  - @backstage/plugin-permission-node@0.7.22
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/cli-node@0.2.3
+  - @backstage/config-loader@1.6.2
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.5.11
 

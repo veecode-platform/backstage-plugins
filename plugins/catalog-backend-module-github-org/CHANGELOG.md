@@ -1,16 +1,39 @@
 # @backstage/plugin-catalog-backend-module-github-org
 
+<<<<<<< HEAD
 ## 0.1.7-next.0
+=======
+## 0.1.6
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/plugin-catalog-backend-module-github@0.5.3-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/plugin-catalog-node@1.8.0-next.0
   - @backstage/backend-tasks@0.5.18-next.0
   - @backstage/config@1.1.2-next.0
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-tasks@0.5.17
+  - @backstage/plugin-catalog-backend-module-github@0.5.2
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/plugin-catalog-node@1.7.2
+
+## 0.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-tasks@0.5.16
+  - @backstage/plugin-catalog-backend-module-github@0.5.1
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/plugin-catalog-node@1.7.1
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.1.4
 

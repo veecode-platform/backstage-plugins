@@ -1,5 +1,6 @@
 # @backstage/repo-tools
 
+<<<<<<< HEAD
 ## 0.6.3-next.0
 
 ### Patch Changes
@@ -11,6 +12,23 @@
   - @backstage/cli-node@0.2.4-next.0
   - @backstage/catalog-model@1.4.5-next.0
   - @backstage/cli-common@0.1.13
+=======
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/cli-node@0.2.3
+
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/cli-node@0.2.3
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.6.0
 

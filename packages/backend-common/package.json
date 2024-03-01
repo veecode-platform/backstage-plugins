@@ -1,7 +1,11 @@
 {
   "name": "@backstage/backend-common",
   "description": "Common functionality library for Backstage backends",
+<<<<<<< HEAD
   "version": "0.21.3-next.0",
+=======
+  "version": "0.21.2",
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
   "main": "src/index.ts",
   "types": "src/index.ts",
   "publishConfig": {

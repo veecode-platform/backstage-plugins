@@ -1,16 +1,37 @@
 # @backstage/plugin-app-backend
 
+<<<<<<< HEAD
 ## 0.3.61-next.0
+=======
+## 0.3.60
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/config-loader@1.6.3-next.0
   - @backstage/config@1.1.2-next.0
   - @backstage/plugin-app-node@0.1.13-next.0
   - @backstage/types@1.1.1
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/config-loader@1.6.2
+  - @backstage/plugin-app-node@0.1.12
+
+## 0.3.59
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/config-loader@1.6.2
+  - @backstage/plugin-app-node@0.1.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.3.58
 

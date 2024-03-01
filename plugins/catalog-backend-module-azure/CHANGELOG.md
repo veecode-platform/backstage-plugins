@@ -1,5 +1,6 @@
 # @backstage/plugin-catalog-backend-module-azure
 
+<<<<<<< HEAD
 ## 0.1.32-next.0
 
 ### Patch Changes
@@ -14,6 +15,27 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/integration@1.9.1-next.0
   - @backstage/plugin-catalog-common@1.0.22-next.0
+=======
+## 0.1.31
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-tasks@0.5.17
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/plugin-catalog-node@1.7.2
+
+## 0.1.30
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-tasks@0.5.16
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/plugin-catalog-node@1.7.1
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.1.29
 

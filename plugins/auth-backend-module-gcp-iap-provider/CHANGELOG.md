@@ -1,5 +1,6 @@
 # @backstage/plugin-auth-backend-module-gcp-iap-provider
 
+<<<<<<< HEAD
 ## 0.2.8-next.0
 
 ### Patch Changes
@@ -11,6 +12,31 @@
   - @backstage/errors@1.2.4-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/types@1.1.1
+=======
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.4.7
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.4.6
+  - @backstage/backend-plugin-api@0.6.11
+
+## 0.2.5
+
+### Patch Changes
+
+- 65f76be: Fix issue with `providerInfo` not being set properly for some proxy providers, by making `providerInfo` an explicit optional return from `authenticate`
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.4.5
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.2.4
 

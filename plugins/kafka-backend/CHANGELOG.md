@@ -1,14 +1,31 @@
 # @backstage/plugin-kafka-backend
 
+<<<<<<< HEAD
 ## 0.3.11-next.0
+=======
+## 0.3.10
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/errors@1.2.4-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/config@1.1.2-next.0
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.3.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.3.8
 

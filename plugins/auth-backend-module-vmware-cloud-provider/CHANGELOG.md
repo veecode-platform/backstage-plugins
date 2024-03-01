@@ -1,5 +1,6 @@
 # @backstage/plugin-auth-backend-module-vmware-cloud-provider
 
+<<<<<<< HEAD
 ## 0.1.5-next.0
 
 ### Patch Changes
@@ -9,6 +10,23 @@
   - @backstage/plugin-auth-node@0.4.8-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
   - @backstage/catalog-model@1.4.5-next.0
+=======
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.4.7
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-node@0.4.6
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.1.2
 

@@ -1,10 +1,15 @@
 # @backstage/plugin-techdocs-backend
 
+<<<<<<< HEAD
 ## 1.9.6-next.0
+=======
+## 1.9.5
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/errors@1.2.4-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
@@ -16,6 +21,22 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/integration@1.9.1-next.0
   - @backstage/plugin-catalog-common@1.0.22-next.0
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/plugin-search-backend-module-techdocs@0.1.16
+  - @backstage/plugin-techdocs-node@1.11.4
+  - @backstage/backend-plugin-api@0.6.12
+
+## 1.9.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/plugin-search-backend-module-techdocs@0.1.15
+  - @backstage/plugin-techdocs-node@1.11.3
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 1.9.3
 

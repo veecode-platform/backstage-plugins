@@ -1,7 +1,11 @@
 {
   "name": "@techdocs/cli",
   "description": "Utility CLI for managing TechDocs sites in Backstage.",
+<<<<<<< HEAD
   "version": "1.8.5-next.0",
+=======
+  "version": "1.8.4",
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
   "publishConfig": {
     "access": "public"
   },

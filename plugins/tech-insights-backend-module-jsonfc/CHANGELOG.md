@@ -1,10 +1,15 @@
 # @backstage/plugin-tech-insights-backend-module-jsonfc
 
+<<<<<<< HEAD
 ## 0.1.45-next.0
+=======
+## 0.1.44
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ### Patch Changes
 
 - Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/errors@1.2.4-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
@@ -12,6 +17,20 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/types@1.1.1
   - @backstage/plugin-tech-insights-common@0.2.12
+=======
+  - @backstage/backend-common@0.21.2
+  - @backstage/plugin-tech-insights-node@0.4.18
+  - @backstage/backend-plugin-api@0.6.12
+
+## 0.1.43
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/backend-common@0.21.1
+  - @backstage/plugin-tech-insights-node@0.4.17
+  - @backstage/backend-plugin-api@0.6.11
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.1.42
 

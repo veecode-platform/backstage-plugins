@@ -1,5 +1,6 @@
 # @backstage/plugin-azure-devops-backend
 
+<<<<<<< HEAD
 ## 0.6.0-next.0
 
 ### Minor Changes
@@ -13,10 +14,23 @@
   ```yaml
   dev.azure.com/readme-path: /my-path/README.md
   ```
+=======
+## 0.5.4
 
 ### Patch Changes
 
 - Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/plugin-catalog-node@1.7.2
+
+## 0.5.3
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
+
+### Patch Changes
+
+- Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/errors@1.2.4-next.0
   - @backstage/backend-plugin-api@0.6.13-next.0
@@ -26,6 +40,11 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/integration@1.9.1-next.0
   - @backstage/plugin-catalog-common@1.0.22-next.0
+=======
+  - @backstage/backend-common@0.21.1
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/plugin-catalog-node@1.7.1
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.5.2
 

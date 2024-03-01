@@ -1,14 +1,31 @@
 # @backstage/plugin-kubernetes-backend
 
+<<<<<<< HEAD
 ## 0.16.0-next.0
 
 ### Minor Changes
 
 - e1e540c: **BREAKING**: The `KubernetesBuilder.createBuilder` method now requires the `discovery` service to be forwarded from the plugin environment. This is part of the migration to support new auth services.
+=======
+## 0.15.2
 
 ### Patch Changes
 
 - Updated dependencies
+  - @backstage/backend-common@0.21.2
+  - @backstage/plugin-auth-node@0.4.7
+  - @backstage/plugin-kubernetes-node@0.1.6
+  - @backstage/plugin-permission-node@0.7.23
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/plugin-catalog-node@1.7.2
+
+## 0.15.1
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
+
+### Patch Changes
+
+- Updated dependencies
+<<<<<<< HEAD
   - @backstage/backend-common@0.21.3-next.0
   - @backstage/plugin-auth-node@0.4.8-next.0
   - @backstage/errors@1.2.4-next.0
@@ -23,6 +40,14 @@
   - @backstage/config@1.1.2-next.0
   - @backstage/integration-aws-node@0.1.10-next.0
   - @backstage/types@1.1.1
+=======
+  - @backstage/backend-common@0.21.1
+  - @backstage/plugin-auth-node@0.4.6
+  - @backstage/plugin-kubernetes-node@0.1.5
+  - @backstage/plugin-permission-node@0.7.22
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/plugin-catalog-node@1.7.1
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.15.0
 

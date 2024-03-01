@@ -1,5 +1,6 @@
 # @backstage/backend-common
 
+<<<<<<< HEAD
 ## 0.21.3-next.0
 
 ### Patch Changes
@@ -29,6 +30,27 @@
   - @backstage/backend-dev-utils@0.1.4
   - @backstage/cli-common@0.1.13
   - @backstage/types@1.1.1
+=======
+## 0.21.2
+
+### Patch Changes
+
+- 3ae6fba: Resolve the `basePath` before constructing the target path
+- Updated dependencies
+  - @backstage/backend-app-api@0.5.13
+  - @backstage/backend-plugin-api@0.6.12
+  - @backstage/config-loader@1.6.2
+
+## 0.21.1
+
+### Patch Changes
+
+- cf6ecd3: Fix issue where `resolveSafeChildPath` path would incorrectly resolve when operating on a symlink
+- Updated dependencies
+  - @backstage/backend-app-api@0.5.12
+  - @backstage/backend-plugin-api@0.6.11
+  - @backstage/config-loader@1.6.2
+>>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
 
 ## 0.21.0
 
