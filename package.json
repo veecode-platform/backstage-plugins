@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "1.24.0-next.0",
+  "version": "1.23.3",
   "private": true,
   "repository": {
     "type": "git",
@@ -89,10 +89,6 @@
     "@types/react-dom": "^18",
     "jest-haste-map@^29.7.0": "patch:jest-haste-map@npm%3A29.7.0#./.yarn/patches/jest-haste-map-npm-29.7.0-e3be419eff.patch"
   },
-<<<<<<< HEAD
-=======
-  "version": "1.23.3",
->>>>>>> 39a7508ba283b27265e129edc5a9b84fed384a86
   "dependencies": {
     "@backstage/errors": "workspace:^",
     "@manypkg/get-packages": "^1.1.3",
