@@ -43,6 +43,7 @@ import React from 'react';
 import { registerComponentRouteRef } from '../../routes';
 import { usePermission } from '@backstage/plugin-permission-react';
 import { adminAccessPermission } from '@veecode-platform/plugin-application-common';
+import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
 const defaultColumns: TableColumn<CatalogTableRow>[] = [
   CatalogTable.columns.createTitleColumn({ hidden: true }),
@@ -80,6 +81,9 @@ export const DefaultApiExplorerPage = (props: DefaultApiExplorerPageProps) => {
   const registerComponentLink = useRouteRef(registerComponentRouteRef);
   const { loading: loadingPermission, allowed: adminView } = usePermission({
     permission: adminAccessPermission,
+  })
+  const { allowed } = usePermission({
+    permission: catalogEntityCreatePermission,
   });
 
   return (

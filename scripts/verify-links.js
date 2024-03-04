@@ -78,6 +78,9 @@ async function verifyUrl(basePath, absUrl, docPages) {
   }
 
   if (basePath.startsWith('.changeset/')) {
+    if (absUrl.match(/^https?:\/\//)) {
+      return undefined;
+    }
     return { url, basePath, problem: 'out-of-changeset' };
   }
 
@@ -168,6 +171,9 @@ async function findExternalDocsLinks(dir) {
 async function main() {
   process.chdir(projectRoot);
 
+  const isCI = Boolean(process.env.CI);
+  const hasReference = existsSync(resolvePath(projectRoot, 'docs/reference'));
+
   const files = await listFiles('.');
   const mdFiles = files.filter(f => f.endsWith('.md'));
   const badUrls = [];
@@ -180,10 +186,19 @@ async function main() {
     badUrls.push(...badFileUrls);
   }
 
+  if (!hasReference) {
+    console.log(
+      "Skipping API reference link validation, no docs/reference/ dir. Reference docs can be built with 'yarn build:api-docs'",
+    );
+  }
+
   if (badUrls.length) {
     console.log(`Found ${badUrls.length} bad links within repo`);
     for (const { url, basePath, problem } of badUrls) {
       if (problem === 'missing') {
+        if (url.startsWith('../reference/') && !isCI && !hasReference) {
+          continue;
+        }
         console.error(
           `Unable to reach ${url} from root or microsite/static/, linked from ${basePath}`,
         );

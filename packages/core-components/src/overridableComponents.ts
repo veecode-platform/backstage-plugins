@@ -83,7 +83,6 @@ import {
   SidebarSpaceClassKey,
   SidebarSpacerClassKey,
   SidebarDividerClassKey,
-  SidebarIntroClassKey,
   SidebarItemClassKey,
   SidebarPageClassKey,
   CustomProviderClassKey,
@@ -157,7 +156,6 @@ type BackstageComponentsNameToClassKey = {
   BackstageSidebarSpace: SidebarSpaceClassKey;
   BackstageSidebarSpacer: SidebarSpacerClassKey;
   BackstageSidebarDivider: SidebarDividerClassKey;
-  BackstageSidebarIntro: SidebarIntroClassKey;
   BackstageSidebarItem: SidebarItemClassKey;
   BackstageSidebarPage: SidebarPageClassKey;
   BackstageCustomProvider: CustomProviderClassKey;
@@ -173,3 +171,8 @@ export type BackstageOverrides = Overrides & {
     StyleRules<BackstageComponentsNameToClassKey[Name]>
   >;
 };
+
+declare module '@backstage/theme' {
+  interface OverrideComponentNameToClassKeys
+    extends BackstageComponentsNameToClassKey {}
+}

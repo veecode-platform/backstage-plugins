@@ -15,27 +15,20 @@
  */
 
 import { ScmIntegrations } from '@backstage/integration';
-import {
-  TaskContext,
-  TaskTrackType,
-  WorkflowResponse,
-  WorkflowRunner,
-} from './types';
+import { TaskTrackType, WorkflowResponse, WorkflowRunner } from './types';
 import * as winston from 'winston';
 import fs from 'fs-extra';
 import path from 'path';
 import nunjucks from 'nunjucks';
 import { JsonArray, JsonObject, JsonValue } from '@backstage/types';
-import { InputError, NotAllowedError } from '@backstage/errors';
+import { InputError, NotAllowedError, stringifyError } from '@backstage/errors';
 import { PassThrough } from 'stream';
 import { generateExampleOutput, isTruthy } from './helper';
 import { validate as validateJsonSchema } from 'jsonschema';
 import { TemplateActionRegistry } from '../actions';
 import {
-  TemplateFilter,
   SecureTemplater,
   SecureTemplateRenderer,
-  TemplateGlobal,
 } from '../../lib/templating/SecureTemplater';
 import {
   TaskSpec,
@@ -43,7 +36,12 @@ import {
   TaskStep,
 } from '@backstage/plugin-scaffolder-common';
 
-import { TemplateAction } from '@backstage/plugin-scaffolder-node';
+import {
+  TemplateAction,
+  TemplateFilter,
+  TemplateGlobal,
+  TaskContext,
+} from '@backstage/plugin-scaffolder-node';
 import { createConditionAuthorizer } from '@backstage/plugin-permission-node';
 import { UserEntity } from '@backstage/catalog-model';
 import { createCounterMetric, createHistogramMetric } from '../../util/metrics';
@@ -55,6 +53,7 @@ import {
 } from '@backstage/plugin-permission-common';
 import { scaffolderActionRules } from '../../service/rules';
 import { actionExecutePermission } from '@backstage/plugin-scaffolder-common/alpha';
+import { TaskRecovery } from '@backstage/plugin-scaffolder-common';
 
 type NunjucksWorkflowRunnerOptions = {
   workingDirectory: string;
@@ -68,6 +67,7 @@ type NunjucksWorkflowRunnerOptions = {
 
 type TemplateContext = {
   parameters: JsonObject;
+  EXPERIMENTAL_recovery?: TaskRecovery;
   steps: {
     [stepName: string]: { output: { [outputName: string]: JsonValue } };
   };
@@ -78,6 +78,16 @@ type TemplateContext = {
   };
   each?: JsonValue;
 };
+
+type CheckpointState =
+  | {
+      status: 'failed';
+      reason: string;
+    }
+  | {
+      status: 'success';
+      value: JsonValue;
+    };
 
 const isValidTaskSpec = (taskSpec: TaskSpec): taskSpec is TaskSpecV1beta3 => {
   return taskSpec.apiVersion === 'scaffolder.backstage.io/v1beta3';
@@ -119,6 +129,7 @@ const isActionAuthorized = createConditionAuthorizer(
 
 export class NunjucksWorkflowRunner implements WorkflowRunner {
   private readonly defaultTemplateFilters: Record<string, TemplateFilter>;
+
   constructor(private readonly options: NunjucksWorkflowRunnerOptions) {
     this.defaultTemplateFilters = createDefaultFilters({
       integrations: this.options.integrations,
@@ -223,7 +234,7 @@ export class NunjucksWorkflowRunner implements WorkflowRunner {
 
     try {
       if (step.if) {
-        const ifResult = await this.render(step.if, context, renderTemplate);
+        const ifResult = this.render(step.if, context, renderTemplate);
         if (!isTruthy(ifResult)) {
           await stepTrack.skipFalsy();
           return;
@@ -276,78 +287,114 @@ export class NunjucksWorkflowRunner implements WorkflowRunner {
           return;
         }
       }
+      const iterations = (
+        step.each
+          ? Object.entries(this.render(step.each, context, renderTemplate)).map(
+              ([key, value]) => ({
+                each: { key, value },
+              }),
+            )
+          : [{}]
+      ).map(i => ({
+        ...i,
+        // Secrets are only passed when templating the input to actions for security reasons
+        input: step.input
+          ? this.render(
+              step.input,
+              { ...context, secrets: task.secrets ?? {}, ...i },
+              renderTemplate,
+            )
+          : {},
+      }));
+      for (const iteration of iterations) {
+        const actionId = `${action.id}${
+          iteration.each ? `[${iteration.each.key}]` : ''
+        }`;
 
-      // Secrets are only passed when templating the input to actions for security reasons
-      const input =
-        (step.input &&
-          this.render(
-            step.input,
-            { ...context, secrets: task.secrets ?? {} },
-            renderTemplate,
-          )) ??
-        {};
-
-      if (action.schema?.input) {
-        const validateResult = validateJsonSchema(input, action.schema.input);
-        if (!validateResult.valid) {
-          const errors = validateResult.errors.join(', ');
-          throw new InputError(
-            `Invalid input passed to action ${action.id}, ${errors}`,
+        if (action.schema?.input) {
+          const validateResult = validateJsonSchema(
+            iteration.input,
+            action.schema.input,
+          );
+          if (!validateResult.valid) {
+            const errors = validateResult.errors.join(', ');
+            throw new InputError(
+              `Invalid input passed to action ${actionId}, ${errors}`,
+            );
+          }
+        }
+        if (
+          !isActionAuthorized(decision, {
+            action: action.id,
+            input: iteration.input,
+          })
+        ) {
+          throw new NotAllowedError(
+            `Unauthorized action: ${actionId}. The action is not allowed. Input: ${JSON.stringify(
+              iteration.input,
+              null,
+              2,
+            )}`,
           );
         }
       }
-
-      if (!isActionAuthorized(decision, { action: action.id, input })) {
-        throw new NotAllowedError(
-          `Unauthorized action: ${
-            action.id
-          }. The action is not allowed. Input: ${JSON.stringify(
-            input,
-            null,
-            2,
-          )}`,
-        );
-      }
-
       const tmpDirs = new Array<string>();
       const stepOutput: { [outputName: string]: JsonValue } = {};
+      const prevTaskState = await task.getTaskState?.();
 
-      const iterations = new Array<JsonValue>();
-      if (step.each) {
-        const each = await this.render(step.each, context, renderTemplate);
-        iterations.push(
-          ...Object.keys(each).map((key: any) => {
-            return { key: key, value: each[key] };
-          }),
-        );
-      } else {
-        iterations.push({});
-      }
-
-      let actionInput = input;
       for (const iteration of iterations) {
-        if (step.each) {
-          taskLogger.info(`Running step each: ${iteration}`);
-          const iterationContext = {
-            ...context,
-            each: iteration,
-          };
-          // re-render input with the modified context that includes each
-          actionInput =
-            (step.input &&
-              this.render(
-                step.input,
-                { ...iterationContext, secrets: task.secrets ?? {} },
-                renderTemplate,
-              )) ??
-            {};
+        if (iteration.each) {
+          taskLogger.info(
+            `Running step each: ${JSON.stringify(
+              iteration.each,
+              (k, v) => (k ? v.toString() : v),
+              0,
+            )}`,
+          );
         }
         await action.handler({
-          input: actionInput,
+          input: iteration.input,
           secrets: task.secrets ?? {},
           logger: taskLogger,
           logStream: streamLogger,
           workspacePath,
+          async checkpoint<U extends JsonValue>(
+            keySuffix: string,
+            fn: () => Promise<U>,
+          ) {
+            const key = `v1.task.checkpoint.${keySuffix}`;
+            try {
+              let prevValue: U | undefined;
+              if (prevTaskState) {
+                const prevState = (
+                  prevTaskState.state?.checkpoints as {
+                    [key: string]: CheckpointState;
+                  }
+                )?.[key];
+                if (prevState && prevState.status === 'success') {
+                  prevValue = prevState.value as U;
+                }
+              }
+
+              const value = prevValue ? prevValue : await fn();
+
+              if (!prevValue) {
+                task.updateCheckpoint?.({
+                  key,
+                  status: 'success',
+                  value,
+                });
+              }
+              return value;
+            } catch (err) {
+              task.updateCheckpoint?.({
+                key,
+                status: 'failed',
+                reason: stringifyError(err),
+              });
+              throw err;
+            }
+          },
           createTemporaryDirectory: async () => {
             const tmpDir = await fs.mkdtemp(
               `${workspacePath}_step-${step.id}-`,

@@ -16,18 +16,23 @@
 import {
   coreExtensionData,
   createExtensionInput,
+  createNavItemExtension,
   createPageExtension,
   createPlugin,
 } from '@backstage/frontend-plugin-api';
-import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+import {
+  convertLegacyRouteRef,
+  convertLegacyRouteRefs,
+  compatWrapper,
+} from '@backstage/core-compat-api';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { settingsRouteRef } from './plugin';
 
 import React from 'react';
 
 export * from './translation';
 
-const UserSettingsPage = createPageExtension({
-  id: 'plugin.user-settings.page',
+const userSettingsPage = createPageExtension({
   defaultPath: '/settings',
   routeRef: convertLegacyRouteRef(settingsRouteRef),
   inputs: {
@@ -39,20 +44,29 @@ const UserSettingsPage = createPageExtension({
     ),
   },
   loader: ({ inputs }) =>
-    import('./components/SettingsPage').then(m => (
-      <m.SettingsPage providerSettings={inputs.providerSettings?.element} />
-    )),
+    import('./components/SettingsPage').then(m =>
+      compatWrapper(
+        <m.SettingsPage
+          providerSettings={inputs.providerSettings?.output.element}
+        />,
+      ),
+    ),
+});
+
+/** @alpha */
+export const settingsNavItem = createNavItemExtension({
+  routeRef: convertLegacyRouteRef(settingsRouteRef),
+  title: 'Settings',
+  icon: SettingsIcon,
 });
 
 /**
  * @alpha
  */
-export default () => {
-  createPlugin({
-    id: 'alpha-user-settings',
-    extensions: [UserSettingsPage],
-    routes: {
-      root: convertLegacyRouteRef(settingsRouteRef),
-    },
-  });
-}
+export default createPlugin({
+  id: 'user-settings',
+  extensions: [userSettingsPage, settingsNavItem],
+  routes: convertLegacyRouteRefs({
+    root: settingsRouteRef,
+  }),
+});

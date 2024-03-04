@@ -15,7 +15,10 @@
  */
 
 import React from 'react';
-import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+import {
+  compatWrapper,
+  convertLegacyRouteRef,
+} from '@backstage/core-compat-api';
 import {
   createPageExtension,
   coreExtensionData,
@@ -25,12 +28,12 @@ import {
   AsyncEntityProvider,
   entityRouteRef,
 } from '@backstage/plugin-catalog-react';
-import { entityContentTitleExtensionDataRef } from '@backstage/plugin-catalog-react/alpha';
+import { catalogExtensionData } from '@backstage/plugin-catalog-react/alpha';
 import { rootRouteRef } from '../routes';
 import { useEntityFromUrl } from '../components/CatalogEntityPage/useEntityFromUrl';
+import { buildFilterFn } from './filter/FilterWrapper';
 
-export const CatalogIndexPage = createPageExtension({
-  id: 'plugin.catalog.page.index',
+export const catalogPage = createPageExtension({
   defaultPath: '/catalog',
   routeRef: convertLegacyRouteRef(rootRouteRef),
   inputs: {
@@ -40,13 +43,13 @@ export const CatalogIndexPage = createPageExtension({
   },
   loader: async ({ inputs }) => {
     const { BaseCatalogPage } = await import('../components/CatalogPage');
-    const filters = inputs.filters.map(filter => filter.element);
-    return <BaseCatalogPage filters={<>{filters}</>} />;
+    const filters = inputs.filters.map(filter => filter.output.element);
+    return compatWrapper(<BaseCatalogPage filters={<>{filters}</>} />);
   },
 });
 
-export const CatalogEntityPage = createPageExtension({
-  id: 'plugin.catalog.page.entity',
+export const catalogEntityPage = createPageExtension({
+  name: 'entity',
   defaultPath: '/catalog/:namespace/:kind/:name',
   routeRef: convertLegacyRouteRef(entityRouteRef),
   inputs: {
@@ -54,7 +57,9 @@ export const CatalogEntityPage = createPageExtension({
       element: coreExtensionData.reactElement,
       path: coreExtensionData.routePath,
       routeRef: coreExtensionData.routeRef.optional(),
-      title: entityContentTitleExtensionDataRef,
+      title: catalogExtensionData.entityContentTitle,
+      filterFunction: catalogExtensionData.entityFilterFunction.optional(),
+      filterExpression: catalogExtensionData.entityFilterExpression.optional(),
     }),
   },
   loader: async ({ inputs }) => {
@@ -63,21 +68,25 @@ export const CatalogEntityPage = createPageExtension({
       return (
         <AsyncEntityProvider {...useEntityFromUrl()}>
           <EntityLayout>
-            {inputs.contents.map(content => (
+            {inputs.contents.map(({ output }) => (
               <EntityLayout.Route
-                key={content.path}
-                path={content.path}
-                title={content.title}
+                key={output.path}
+                path={output.path}
+                title={output.title}
+                if={buildFilterFn(
+                  output.filterFunction,
+                  output.filterExpression,
+                )}
               >
-                {content.element}
+                {output.element}
               </EntityLayout.Route>
             ))}
           </EntityLayout>
         </AsyncEntityProvider>
       );
     };
-    return <Component />;
+    return compatWrapper(<Component />);
   },
 });
 
-export default [CatalogIndexPage, CatalogEntityPage];
+export default [catalogPage, catalogEntityPage];

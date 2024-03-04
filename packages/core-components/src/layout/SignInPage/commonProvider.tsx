@@ -33,6 +33,8 @@ import  Grid from '@material-ui/core/Grid';
 const KeycloakLogo = "./assets/keycloak.png";
 const OktaLogo = "./assets/okta.png";
 const GithubLogo = "./assets/github.png";
+import { coreComponentsTranslationRef } from '../../translation';
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 
 const Component: ProviderComponent = ({
   config,
@@ -44,6 +46,7 @@ const Component: ProviderComponent = ({
   const authApi = useApi(apiRef);
   const errorApi = useApi(errorApiRef);
   const classes = useStyles();
+  const { t } = useTranslationRef(coreComponentsTranslationRef);
 
   const handleLogin = async () => {
     try {
@@ -69,7 +72,7 @@ const Component: ProviderComponent = ({
       );
     } catch (error) {
       onSignInFailure();
-      errorApi.post(new ForwardedError('Login failed', error));
+      errorApi.post(new ForwardedError(t('signIn.loginFailed'), error));
     }
   };
 
@@ -85,6 +88,17 @@ const Component: ProviderComponent = ({
           <h3>{message}</h3>
         </div>
       </Grid>
+      <InfoCard
+        variant="fullHeight"
+        title={title}
+        actions={
+          <Button color="primary" variant="outlined" onClick={handleLogin}>
+            {t('signIn.title')}
+          </Button>
+        }
+      >
+        <Typography variant="body1">{message}</Typography>
+      </InfoCard>
     </GridItem>
   );
 };

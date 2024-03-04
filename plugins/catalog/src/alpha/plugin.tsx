@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+import { convertLegacyRouteRefs } from '@backstage/core-compat-api';
 import { createPlugin } from '@backstage/frontend-plugin-api';
 
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
@@ -23,6 +23,7 @@ import {
   createComponentRouteRef,
   createFromTemplateRouteRef,
   rootRouteRef,
+  unregisterRedirectRouteRef,
   viewTechDocRouteRef,
 } from '../routes';
 
@@ -35,26 +36,25 @@ import entityContents from './entityContents';
 import searchResultItems from './searchResultItems';
 
 /** @alpha */
-export default () => {
-  createPlugin({
-    id: 'catalog',
-    routes: {
-      catalogIndex: convertLegacyRouteRef(rootRouteRef),
-      catalogEntity: convertLegacyRouteRef(entityRouteRef),
-    },
-    externalRoutes: {
-      viewTechDoc: convertLegacyRouteRef(viewTechDocRouteRef),
-      createComponent: convertLegacyRouteRef(createComponentRouteRef),
-      createFromTemplate: convertLegacyRouteRef(createFromTemplateRouteRef),
-    },
-    extensions: [
-      ...apis,
-      ...pages,
-      ...filters,
-      ...navItems,
-      ...entityCards,
-      ...entityContents,
-      ...searchResultItems,
-    ],
-  });
-}
+export default createPlugin({
+  id: 'catalog',
+  routes: convertLegacyRouteRefs({
+    catalogIndex: rootRouteRef,
+    catalogEntity: entityRouteRef,
+  }),
+  externalRoutes: convertLegacyRouteRefs({
+    viewTechDoc: viewTechDocRouteRef,
+    createComponent: createComponentRouteRef,
+    createFromTemplate: createFromTemplateRouteRef,
+    unregisterRedirect: unregisterRedirectRouteRef,
+  }),
+  extensions: [
+    ...apis,
+    ...pages,
+    ...filters,
+    ...navItems,
+    ...entityCards,
+    ...entityContents,
+    ...searchResultItems,
+  ],
+});

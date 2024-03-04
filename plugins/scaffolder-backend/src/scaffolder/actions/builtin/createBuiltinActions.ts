@@ -22,14 +22,17 @@ import {
   GithubCredentialsProvider,
   ScmIntegrations,
 } from '@backstage/integration';
-import { TemplateAction } from '@backstage/plugin-scaffolder-node';
+import {
+  TemplateAction,
+  TemplateFilter,
+  TemplateGlobal,
+} from '@backstage/plugin-scaffolder-node';
 import {
   createCatalogRegisterAction,
   createCatalogWriteAction,
   createFetchCatalogEntityAction,
 } from './catalog';
 
-import { TemplateFilter, TemplateGlobal } from '../../../lib';
 import { createDebugLogAction, createWaitAction } from './debug';
 import {
   createFetchPlainAction,
@@ -42,26 +45,43 @@ import {
 } from './filesystem';
 import {
   createGithubActionsDispatchAction,
+  createGithubAutolinksAction,
   createGithubDeployKeyAction,
   createGithubEnvironmentAction,
   createGithubIssuesLabelAction,
   createGithubRepoCreateAction,
   createGithubRepoPushAction,
   createGithubWebhookAction,
-} from './github';
-import {
-  createPublishAzureAction,
-  createPublishBitbucketAction,
-  createPublishBitbucketCloudAction,
-  createPublishBitbucketServerAction,
-  createPublishBitbucketServerPullRequestAction,
-  createPublishGerritAction,
-  createPublishGerritReviewAction,
   createPublishGithubAction,
   createPublishGithubPullRequestAction,
+} from '@backstage/plugin-scaffolder-backend-module-github';
+
+import { createPublishAzureAction } from '@backstage/plugin-scaffolder-backend-module-azure';
+
+import { createPublishBitbucketAction } from '@backstage/plugin-scaffolder-backend-module-bitbucket';
+
+import {
+  createPublishBitbucketCloudAction,
+  createBitbucketPipelinesRunAction,
+} from '@backstage/plugin-scaffolder-backend-module-bitbucket-cloud';
+
+import {
+  createPublishBitbucketServerAction,
+  createPublishBitbucketServerPullRequestAction,
+} from '@backstage/plugin-scaffolder-backend-module-bitbucket-server';
+
+import {
+  createPublishGerritAction,
+  createPublishGerritReviewAction,
+} from '@backstage/plugin-scaffolder-backend-module-gerrit';
+
+import {
   createPublishGitlabAction,
+  createGitlabRepoPushAction,
   createPublishGitlabMergeRequestAction,
-} from './publish';
+} from '@backstage/plugin-scaffolder-backend-module-gitlab';
+
+import { createPublishGiteaAction } from '@backstage/plugin-scaffolder-backend-module-gitea';
 
 /**
  * The options passed to {@link createBuiltinActions}
@@ -96,8 +116,11 @@ export interface CreateBuiltInActionsOptions {
  * A function to generate create a list of default actions that the scaffolder provides.
  * Is called internally in the default setup, but can be used when adding your own actions or overriding the default ones
  *
+ * TODO(blam): version 2 of the scaffolder shouldn't ship with the additional modules. We should ship the basics, and let people install
+ * modules for the providers they want to use.
  * @public
  * @returns A list of actions that can be used in the scaffolder
+ *
  */
 export const createBuiltinActions = (
   options: CreateBuiltInActionsOptions,
@@ -137,6 +160,10 @@ export const createBuiltinActions = (
       integrations,
       config,
     }),
+    createPublishGiteaAction({
+      integrations,
+      config,
+    }),
     createPublishGithubAction({
       integrations,
       config,
@@ -151,6 +178,9 @@ export const createBuiltinActions = (
       config,
     }),
     createPublishGitlabMergeRequestAction({
+      integrations,
+    }),
+    createGitlabRepoPushAction({
       integrations,
     }),
     createPublishBitbucketAction({
@@ -205,6 +235,13 @@ export const createBuiltinActions = (
       integrations,
     }),
     createGithubDeployKeyAction({
+      integrations,
+    }),
+    createGithubAutolinksAction({
+      integrations,
+      githubCredentialsProvider,
+    }),
+    createBitbucketPipelinesRunAction({
       integrations,
     }),
   ];

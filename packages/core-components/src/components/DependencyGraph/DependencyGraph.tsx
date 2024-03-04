@@ -20,7 +20,6 @@ import * as d3Selection from 'd3-selection';
 import useTheme from '@material-ui/core/styles/useTheme';
 import dagre from 'dagre';
 import debounce from 'lodash/debounce';
-import { BackstageTheme } from '@backstage/theme';
 import { DependencyGraphTypes as Types } from './types';
 import { Node } from './Node';
 import { Edge, GraphEdge } from './Edge';
@@ -162,6 +161,12 @@ export interface DependencyGraphProps<NodeData, EdgeData>
    */
   curve?: 'curveStepBefore' | 'curveMonotoneX';
   /**
+   * Controls if the arrow heads should be rendered or not.
+   *
+   * Default: false
+   */
+  showArrowHeads?: boolean;
+  /**
    * Controls if the graph should be contained or grow
    *
    * @remarks
@@ -202,10 +207,11 @@ export function DependencyGraph<NodeData, EdgeData>(
     defs,
     zoom = 'enabled',
     curve = 'curveMonotoneX',
+    showArrowHeads = false,
     fit = 'grow',
     ...svgProps
   } = props;
-  const theme: BackstageTheme = useTheme();
+  const theme = useTheme();
   const [containerWidth, setContainerWidth] = React.useState<number>(100);
   const [containerHeight, setContainerHeight] = React.useState<number>(100);
 
@@ -437,6 +443,7 @@ export function DependencyGraph<NodeData, EdgeData>(
                 render={renderLabel}
                 edge={edge}
                 curve={curve}
+                showArrowHeads={showArrowHeads}
               />
             );
           })}

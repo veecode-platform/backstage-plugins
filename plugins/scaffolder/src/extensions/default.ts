@@ -53,6 +53,13 @@ import {
 } from '../components/fields/ResourcePicker/ResourcePicker';
 
 
+import { SecretInput } from '../components/fields/SecretInput';
+import {
+  MultiEntityPicker,
+  MultiEntityPickerSchema,
+  validateMultiEntityPickerValidation,
+} from '../components/fields/MultiEntityPicker/MultiEntityPicker';
+
 export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
   {
     component: EntityPicker,
@@ -101,5 +108,15 @@ export const DEFAULT_SCAFFOLDER_FIELD_EXTENSIONS = [
     name: 'RepoUrlPlatform',
     validation: repoCustomValidation,
     schema: RepoUrlPlatformSchema,
-  }
+  },
+  {
+    component: SecretInput,
+    name: 'Secret',
+  },
+  {
+    component: MultiEntityPicker,
+    name: 'MultiEntityPicker',
+    schema: MultiEntityPickerSchema,
+    validation: validateMultiEntityPickerValidation,
+  },
 ];

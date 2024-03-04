@@ -17,7 +17,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 //import BgSVG from './assets/bg.svg';
-import BgSVG from './assets/bg.svg';
+import BgSVG from "./assets/bg.svg";
 
 export type SignInPageClassKey = 'container' | 'item';
 

@@ -8,7 +8,6 @@
 import { ApiRef } from '@backstage/core-plugin-api';
 import { BackstageIdentityApi } from '@backstage/core-plugin-api';
 import { BackstagePalette } from '@backstage/theme';
-import { BackstageTheme } from '@backstage/theme';
 import { BackstageUserIdentity } from '@backstage/core-plugin-api';
 import { BottomNavigationActionProps } from '@material-ui/core/BottomNavigationAction';
 import { ButtonProps as ButtonProps_2 } from '@material-ui/core/Button';
@@ -65,6 +64,15 @@ export type AlertDisplayProps = {
     horizontal: 'left' | 'center' | 'right';
   };
   transientTimeoutMs?: number;
+};
+
+// @public
+export function AppIcon(props: AppIconProps): React_2.JSX.Element;
+
+// @public
+export type AppIconProps = IconComponentProps & {
+  id: string;
+  Fallback?: IconComponent;
 };
 
 // @public
@@ -131,8 +139,6 @@ export type BreadcrumbsClickableTextClassKey = 'root';
 // @public (undocumented)
 export type BreadcrumbsStyledBoxClassKey = 'root';
 
-// Warning: (ae-forgotten-export) The symbol "IconComponentProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function BrokenImageIcon(props: IconComponentProps): React_2.JSX.Element;
 
@@ -266,6 +272,7 @@ export interface DependencyGraphProps<NodeData, EdgeData>
   rankMargin?: number;
   renderLabel?: DependencyGraphTypes.RenderLabelFunction<EdgeData>;
   renderNode?: DependencyGraphTypes.RenderNodeFunction<NodeData>;
+  showArrowHeads?: boolean;
   zoom?: 'enabled' | 'disabled' | 'enable-on-click';
 }
 
@@ -541,6 +548,20 @@ export type HorizontalScrollGridClassKey =
   | 'buttonLeft'
   | 'buttonRight';
 
+// @public
+export type IconComponentProps = ComponentProps<IconComponent>;
+
+// @public (undocumented)
+export function IconLinkVertical({
+  color,
+  disabled,
+  href,
+  icon,
+  label,
+  onClick,
+  title,
+}: IconLinkVerticalProps): React_2.JSX.Element;
+
 // @public (undocumented)
 export type IconLinkVerticalClassKey =
   | 'link'
@@ -582,11 +603,6 @@ export type InfoCardClassKey =
 
 // @public (undocumented)
 export type InfoCardVariants = 'flex' | 'fullHeight' | 'gridItem';
-
-// Warning: (ae-forgotten-export) The symbol "IntroCardProps" needs to be exported by the entry point index.d.ts
-//
-// @public
-export function IntroCard(props: IntroCardProps): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "ItemCardProps" needs to be exported by the entry point index.d.ts
 // Warning: (ae-missing-release-tag) "ItemCard" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
@@ -942,19 +958,6 @@ export interface SidebarGroupProps extends BottomNavigationActionProps {
   priority?: number;
   to?: string;
 }
-
-// Warning: (ae-missing-release-tag) "SidebarIntro" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
-// @public (undocumented)
-export function SidebarIntro(_props: {}): React_2.JSX.Element | null;
-
-// @public (undocumented)
-export type SidebarIntroClassKey =
-  | 'introCard'
-  | 'introDismiss'
-  | 'introDismissLink'
-  | 'introDismissText'
-  | 'introDismissIcon';
 
 // Warning: (ae-forgotten-export) The symbol "SidebarItemProps" needs to be exported by the entry point index.d.ts
 // Warning: (ae-missing-release-tag) "SidebarItem" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
