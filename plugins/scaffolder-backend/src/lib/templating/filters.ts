@@ -16,7 +16,6 @@
 import { parseEntityRef } from '@backstage/catalog-model';
 import { ScmIntegrations } from '@backstage/integration';
 import type { JsonObject, JsonValue } from '@backstage/types';
-import { parseJSON } from '../../scaffolder/actions/builtin/publish/util';
 import {
   parseRepoUrl,
   TemplateFilter,
@@ -37,6 +36,5 @@ export const createDefaultFilters = ({
       const { owner, repo } = parseRepoUrl(repoUrl as string, integrations);
       return `${owner}/${repo}`;
     },
-    parseJSON: objString => parseJSON(objString as string),
   };
 };
