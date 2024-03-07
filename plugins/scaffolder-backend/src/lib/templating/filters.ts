@@ -21,6 +21,14 @@ import {
   TemplateFilter,
 } from '@backstage/plugin-scaffolder-node';
 import get from 'lodash/get';
+import { parseJSON } from '../../scaffolder/actions/builtin/publish/util';
+import { InputError } from '@backstage/errors';
+
+export type JSONType = {
+  [key:string]: string
+}
+
+export type JsonSpec = JSONType;
 
 export const createDefaultFilters = ({
   integrations,
@@ -36,5 +44,29 @@ export const createDefaultFilters = ({
       const { owner, repo } = parseRepoUrl(repoUrl as string, integrations);
       return `${owner}/${repo}`;
     },
+    parseJSON: ( objString: string ): JsonSpec => {
+      let parsed;
+      try {
+        parsed = JSON.parse(objString);
+      } catch (error) {
+        throw new InputError(
+          `Invalid object passed to publisher, ${error}`,
+        );
+      }
+    
+      let results: JsonSpec = {};
+    
+      if (parsed) {
+        for (const key in parsed) {
+          if (parsed.hasOwnProperty(key)) {
+            results[key] = parsed[key];
+          }
+        }
+      }
+    
+      return {...results};
+    }
   };
 };
+
+
